@@ -8,7 +8,7 @@ create schema "public";
 
 CREATE TABLE "exercises" (
 	"exerciseId" serial NOT NULL,
-	"name" TEXT NOT NULL,
+	"exerciseName" TEXT NOT NULL,
 	"demoImage" TEXT NOT NULL,
 	"howToDescription" TEXT NOT NULL,
 	"muscleGroupId" integer NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE "exercises" (
 
 CREATE TABLE "muscleGroups" (
 	"muscleGroupId" serial NOT NULL,
-	"name" TEXT NOT NULL,
+	"muscleName" TEXT NOT NULL,
 	CONSTRAINT "muscleGroups_pk" PRIMARY KEY ("muscleGroupId")
 ) WITH (
   OIDS=FALSE

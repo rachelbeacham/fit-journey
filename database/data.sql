@@ -1,4 +1,4 @@
-insert into "muscleGroups" ("name")
+insert into "muscleGroups" ("muscleName")
 values ('arms'),
        ('back'),
        ('chest'),
@@ -6,7 +6,7 @@ values ('arms'),
        ('legs'),
        ('shoulders');
 
-insert into "exercises" ("name", "demoImage", "howToDescription", "muscleGroupId")
+insert into "exercises" ("exerciseName", "demoImage", "howToDescription", "muscleGroupId")
 values ('Barbell Bench Press', '/images/bench_press.jpg', 'Lie on the bench with you eyes under the bar.
 Grab the bar with a medium grip-width (thumbs around the bar!)
 Unrack the bar by straigtenting your arms.
