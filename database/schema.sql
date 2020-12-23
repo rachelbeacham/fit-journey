@@ -31,12 +31,12 @@ CREATE TABLE "muscleGroups" (
 
 CREATE TABLE "Users" (
 	"userId" serial NOT NULL,
-	"name" TEXT NOT NULL,
+	"userName" TEXT NOT NULL,
 	"currentWeight" integer,
 	"profilePictureUrl" TEXT,
 	"username" TEXT NOT NULL,
 	"hashedPassword" TEXT NOT NULL,
-	"email" TEXT NOT NULL,
+	"userEmail" TEXT NOT NULL,
 	CONSTRAINT "Users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
@@ -47,8 +47,8 @@ CREATE TABLE "Users" (
 CREATE TABLE "workouts" (
 	"workoutId" serial NOT NULL,
 	"userId" integer NOT NULL,
-	"date" DATE NOT NULL,
-	"duration" integer NOT NULL,
+	"workoutDate" DATE NOT NULL,
+	"workoutDuration" integer NOT NULL,
 	CONSTRAINT "workouts_pk" PRIMARY KEY ("workoutId")
 ) WITH (
   OIDS=FALSE
@@ -91,9 +91,9 @@ CREATE TABLE "exerciseSets" (
 
 CREATE TABLE "routineExercises" (
 	"routineId" integer NOT NULL,
-	"exerciseName" TEXT NOT NULL,
-	"reps" integer NOT NULL,
-	"sets" integer NOT NULL,
+	"routineExerciseName" TEXT NOT NULL,
+	"routineReps" integer NOT NULL,
+	"routineSets" integer NOT NULL,
 	CONSTRAINT "routineExercises_pk" PRIMARY KEY ("routineId")
 ) WITH (
   OIDS=FALSE
@@ -106,7 +106,7 @@ CREATE TABLE "progressPhotos" (
 	"url" TEXT NOT NULL,
 	"caption" TEXT NOT NULL,
 	"userId" integer NOT NULL,
-	"date" DATE NOT NULL,
+	"photoDate" DATE NOT NULL,
 	CONSTRAINT "progressPhotos_pk" PRIMARY KEY ("photoId")
 ) WITH (
   OIDS=FALSE
@@ -127,7 +127,7 @@ CREATE TABLE "favorites" (
 
 CREATE TABLE "goals" (
 	"goalId" serial NOT NULL,
-	"description" TEXT NOT NULL,
+	"goalDescription" TEXT NOT NULL,
 	"userId" integer NOT NULL,
 	"completed" BOOLEAN NOT NULL,
 	CONSTRAINT "goals_pk" PRIMARY KEY ("goalId")
@@ -139,9 +139,9 @@ CREATE TABLE "goals" (
 
 CREATE TABLE "customWorkouts" (
 	"customWorkoutId" serial NOT NULL,
-	"date" DATE NOT NULL,
-	"duration" integer NOT NULL,
-	"name" TEXT NOT NULL,
+	"customWorkoutDate" DATE NOT NULL,
+	"customWorkoutDuration" integer NOT NULL,
+	"customWorkoutName" TEXT NOT NULL,
 	"type" TEXT NOT NULL,
 	"userId" integer NOT NULL,
 	CONSTRAINT "customWorkouts_pk" PRIMARY KEY ("customWorkoutId")
