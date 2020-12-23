@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fit Journey</title>
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oregano&family=Palanquin&family=Palanquin+Dark&family=Yanone+Kaffeesatz:wght@300;400&display=swap"
-    rel="stylesheet">
-    <link rel="stylesheet" crossorigin="anonymous"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div id="root"></div>
-  <header class="container mt-3">
+import React from 'react';
+
+export default class ExerciseList extends React.Component {
+  render() {
+    return (
+      <>
+      <header class="container mt-3">
     <div class="row">
       <div class="col-2">
         <button class="pop-out-colors mt-2 gray-text top-button">Back</button>
@@ -86,8 +72,7 @@
       <i class="fas fa-question-circle question"></i>
     </div>
   </div>
-
-
-  <script src="/main.js"></script>
-</body>
-</html>
+  </>
+    )
+  }
+}

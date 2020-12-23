@@ -1,5 +1,6 @@
 body {
   position: relative;
+  font-family: 'Palanquin', sans-serif;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(./images/dark-background-texture-of-beech-hd-copy.jpg);
 }
 
