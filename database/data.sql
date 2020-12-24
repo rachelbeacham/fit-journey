@@ -1,10 +1,10 @@
 insert into "muscleGroups" ("muscleName")
-values ('arms'),
-       ('back'),
-       ('chest'),
-       ('core'),
-       ('legs'),
-       ('shoulders');
+values ('Arms'),
+       ('Back'),
+       ('Chest'),
+       ('Core'),
+       ('Legs'),
+       ('Shoulders');
 
 insert into "exercises" ("exerciseName", "demoImage", "howToDescription", "muscleGroupId")
 values ('Barbell Bench Press', '/images/bench_press.jpg', 'Lie on the bench with you eyes under the bar.

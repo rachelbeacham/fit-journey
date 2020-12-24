@@ -5,6 +5,6 @@ import Home from './pages/home';
 
 export default class App extends React.Component {
   render() {
-    return <ExerciseList />;
+    return <ExerciseList  />
   }
 }
