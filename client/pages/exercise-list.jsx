@@ -1,11 +1,11 @@
 import React from 'react';
 
 class ExerciseList extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       exercises: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -16,13 +16,13 @@ constructor(props) {
       }));
   }
 
- getExercises() {
-   const exercises = this.state.exercises
-   const exerciseList = exercises.map(exercise => {
+  getExercises() {
+    const exercises = this.state.exercises;
+    const exerciseList = exercises.map(exercise => {
       return (
         <div key={exercise.exerciseName} className="mt-3 mx-2 border-bottom row">
           <div className="col lh-1 flex-col">
-            <h4 className="white-text">{ exercise.exerciseName }</h4>
+            <h4 className="text-white">{ exercise.exerciseName }</h4>
             <p className="gray-text">{ exercise.muscleName }</p>
             <p className="green-text">Add to Favorites</p>
           </div>
@@ -30,12 +30,12 @@ constructor(props) {
             <i className="fas fa-question-circle question"></i>
           </div>
         </div>
-      )
-   })
-   return exerciseList
-    }
+      );
+    });
+    return exerciseList;
+  }
 
-    render() {
+  render() {
     return (
       <>
         <header className="container mt-3">
@@ -50,12 +50,12 @@ constructor(props) {
         </header>
 
         <div className="col">
-          <h1 className="white-text mt-3 text-center">Exercises</h1>
+          <h1 className="text-white mt-3 text-center">Exercises</h1>
         </div>
 
         <div className="col">
           <form className="text-center">
-            <select defaultValue="Filter by Muscle" className="pop-out-colors reg-font w-75 gray-text mb-3">
+            <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3">
               <option disabled>Filter by Muscle</option>
               <option value='arms'>Arms</option>
               <option value='back'>Back</option>
@@ -68,7 +68,7 @@ constructor(props) {
         </div>
         {this.getExercises()}
       </>
-    )
+    );
   }
 }
 
