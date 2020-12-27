@@ -27,6 +27,24 @@ app.get('/api/exercises', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/exercises/:muscleName', (req, res, next) => {
+  const muscleName = req.params.muscleName;
+  const sql = `
+    select "exerciseName",
+           "muscleName"
+    from   "exercises"
+    join   "muscleGroups" using ("muscleGroupId")
+    where  "muscleName" = $1
+  order by "exerciseName"
+  `;
+  const params = [muscleName];
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
