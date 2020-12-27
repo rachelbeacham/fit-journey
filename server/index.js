@@ -18,6 +18,7 @@ app.get('/api/exercises', (req, res, next) => {
            "muscleName"
     from   "exercises"
     join   "muscleGroups" using ("muscleGroupId")
+  order by "exerciseName"
   `;
   db.query(sql)
     .then(result => {
