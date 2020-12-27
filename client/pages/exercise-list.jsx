@@ -6,10 +6,19 @@ class ExerciseList extends React.Component {
     this.state = {
       exercises: []
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     fetch('/api/exercises')
+      .then(res => res.json())
+      .then(exercises => this.setState({
+        exercises
+      }));
+  }
+
+  handleChange(e) {
+    fetch(`/api/exercises/${e.target.value}`)
       .then(res => res.json())
       .then(exercises => this.setState({
         exercises
@@ -55,14 +64,14 @@ class ExerciseList extends React.Component {
 
         <div className="col">
           <form className="text-center">
-            <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3">
+            <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>
               <option disabled>Filter by Muscle</option>
-              <option value='arms'>Arms</option>
-              <option value='back'>Back</option>
-              <option value='chest'>Chest</option>
-              <option value='core'>Core</option>
-              <option value='legs'>Legs</option>
-              <option value='shoulders'>Shoulders</option>
+              <option value='Arms'>Arms</option>
+              <option value='Back'>Back</option>
+              <option value='Chest'>Chest</option>
+              <option value='Core'>Core</option>
+              <option value='Legs'>Legs</option>
+              <option value='Shoulders'>Shoulders</option>
             </select>
           </form>
         </div>
