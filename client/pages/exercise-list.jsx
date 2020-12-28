@@ -1,4 +1,5 @@
 import React from 'react';
+// import ExerciseDetailModal from './pages/exercise-detail-modal';
 
 class ExerciseList extends React.Component {
   constructor(props) {
