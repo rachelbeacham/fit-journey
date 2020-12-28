@@ -27,9 +27,11 @@ app.get('/api/exercises', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/exercises/:muscleName', (req, res, next) => {
-  const muscleName = req.params.muscleName;
-  const sql = `
+app.get('/api/exercises/:id', (req, res, next) => {
+  let id = req.params.id;
+  let sql;
+  if (id.length > 1) {
+    sql = `
     select "exerciseName",
            "muscleName"
     from   "exercises"
@@ -37,7 +39,15 @@ app.get('/api/exercises/:muscleName', (req, res, next) => {
     where  "muscleName" = $1
   order by "exerciseName"
   `;
-  const params = [muscleName];
+  } else {
+    id = parseInt(id);
+    sql = `
+    select *
+    from   "exercises"
+    where  "exerciseId" = $1
+  `;
+  }
+  const params = [id];
   db.query(sql, params)
     .then(result => {
       res.status(200).json(result.rows);
