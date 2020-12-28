@@ -16,8 +16,8 @@ class ExerciseDetail extends React.Component {
           4. Lower the bar to your mid chest. <br />
           5. Press the bar back up until your arms are straight. <br />
         </p>
-        <div className="text-center">
-          <button className="text-center white-text my-3">Done</button>
+        <div className="text-center my-3">
+          <button className="text-center px-4 fs-4 py-2 green-button">Done</button>
         </div>
       </div>
     );

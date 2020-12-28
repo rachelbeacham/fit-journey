@@ -7,7 +7,7 @@ values ('Arms'),
        ('Shoulders');
 
 insert into "exercises" ("exerciseName", "demoImage", "howToDescription", "muscleGroupId")
-values ('Barbell Bench Press', '/images/bench_press.jpg', '1. Lie on the bench with you eyes under the bar.
+values ('Barbell Bench Press', '/images/barbell-chest-press.jpeg', '1. Lie on the bench with you eyes under the bar.
 2. Grab the bar with a medium grip-width (thumbs around the bar!)
 3. Unrack the bar by straigtenting your arms.
 4. Lower the bar to your mid chest.
