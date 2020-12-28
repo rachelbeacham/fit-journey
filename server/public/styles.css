@@ -6,6 +6,7 @@ body {
 
 select {
   height: 3rem;
+  outline: none;
 }
 
 .oregano {
