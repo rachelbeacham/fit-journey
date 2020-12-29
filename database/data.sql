@@ -8,8 +8,8 @@ values ('Arms'),
 
 insert into "exercises" ("exerciseName", "demoImage", "howToDescription", "muscleGroupId")
 values ('Barbell Bench Press', '/images/barbell-chest-press.jpeg', '1. Lie on the bench with you eyes under the bar.
-2. Grab the bar with a medium grip-width (thumbs around the bar!)
-3. Unrack the bar by straigtenting your arms.
+2. Grab the bar with a medium grip-width (thumbs around the bar!).
+3. Unrack the bar by straightening your arms.
 4. Lower the bar to your mid chest.
 5. Press the bar back up until your arms are straight.', '3'),
         ('Barbell Squat', '/images/barbell_squat.png', '1. Stand with your feet roughly shoulder-width apart, toes pointing slightly out.
@@ -61,5 +61,5 @@ values ('Barbell Bench Press', '/images/barbell-chest-press.jpeg', '1. Lie on th
 2. Grasp the lat bar with a little wider than shoulder-width grip. This is the starting position.
 3. Begin exercise by pulling the bar down to your upper chest. Focus on using your lats to pull the bar down and not your arms.
 4. Reverse movement back to starting position with control.', '2'),
-        ('Plank', '/image/plank.jpg', '1. Assume a standard push-up position. Except instead of resting your weight on your hands, place your elbows and forearms flat on the floor.
+        ('Plank', '/images/plank.jpg', '1. Assume a standard push-up position. Except instead of resting your weight on your hands, place your elbows and forearms flat on the floor.
 2. Begin exercise by raising hips so that your entire body from your heels to your head is in a straight line. Hold this position for at least 30 seconds. Brace your core and breath deeply throughout hold.', '4')

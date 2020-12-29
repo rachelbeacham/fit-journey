@@ -56,3 +56,7 @@ select {
   color: white;
   outline: none;
 }
+
+.white-space {
+  white-space: pre-wrap;
+}

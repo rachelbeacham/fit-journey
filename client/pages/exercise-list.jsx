@@ -6,7 +6,7 @@ class ExerciseList extends React.Component {
     super(props);
     this.state = {
       exercises: [],
-      modalOpen: ''
+      infoBox: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -30,13 +30,13 @@ class ExerciseList extends React.Component {
 
   handleClick(e) {
     this.setState({
-      modalOpen: e.target.id
+      infoBox: e.target.id
     });
   }
 
   getModal() {
     const exercises = this.state.exercises;
-    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.modalOpen));
+    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
     return <ExerciseDetail name={this.state.exercises[index].exerciseName}
       howTo={this.state.exercises[index].howToDescription}
       image={this.state.exercises[index].demoImage}
@@ -64,7 +64,7 @@ class ExerciseList extends React.Component {
 
   render() {
     let element;
-    if (!this.state.modalOpen) {
+    if (!this.state.infoBox) {
       element = this.getExercises();
     } else {
       element = this.getModal();
