@@ -1,3 +1,6 @@
+insert into "Users" ("userName", "currentWeight", "profilePictureUrl", "username", "userEmail")
+values ('Rachel Beacham', '120', '/images/profie-pic.jpeg', 'rbeach', 'rbeach17@yahoo.com');
+
 insert into "muscleGroups" ("muscleName")
 values ('Arms'),
        ('Back'),

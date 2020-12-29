@@ -35,7 +35,7 @@ CREATE TABLE "Users" (
 	"currentWeight" integer,
 	"profilePictureUrl" TEXT,
 	"username" TEXT NOT NULL,
-	"hashedPassword" TEXT NOT NULL,
+	"hashedPassword" TEXT,
 	"userEmail" TEXT NOT NULL,
 	CONSTRAINT "Users_pk" PRIMARY KEY ("userId")
 ) WITH (
