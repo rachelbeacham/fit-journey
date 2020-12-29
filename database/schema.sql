@@ -48,7 +48,7 @@ CREATE TABLE "workouts" (
 	"workoutId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"workoutDate" DATE NOT NULL,
-	"workoutDuration" integer NOT NULL,
+	"workoutDuration" TEXT NOT NULL,
 	CONSTRAINT "workouts_pk" PRIMARY KEY ("workoutId")
 ) WITH (
   OIDS=FALSE

@@ -5,12 +5,14 @@ const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
 
 const app = express();
+const jsonMiddleware = express.json();
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
 app.use(staticMiddleware);
+app.use(jsonMiddleware);
 
 app.get('/api/exercises', (req, res, next) => {
   const sql = `
@@ -39,6 +41,20 @@ app.get('/api/exercises/:id', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/workouts', (req, res, next) => {
+  const { date, duration, user } = req.body;
+  const sql = `
+    insert into "workouts" ("workoutDate", "workoutDuration", "userId")
+    values ($1, $2, $3)
+  `;
+  const params = [date, duration, user];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result);
     })
     .catch(err => next(err));
 });
