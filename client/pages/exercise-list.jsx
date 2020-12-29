@@ -1,12 +1,15 @@
 import React from 'react';
+import ExerciseDetail from '../components/exercise-detail';
 
 class ExerciseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      exercises: []
+      exercises: [],
+      infoBox: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -25,18 +28,33 @@ class ExerciseList extends React.Component {
       }));
   }
 
+  handleClick(e) {
+    this.setState({
+      infoBox: e.target.id
+    });
+  }
+
+  getModal() {
+    const exercises = this.state.exercises;
+    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
+    return <ExerciseDetail name={this.state.exercises[index].exerciseName}
+      howTo={this.state.exercises[index].howToDescription}
+      image={this.state.exercises[index].demoImage}
+      handleClick={this.handleClick} />;
+  }
+
   getExercises() {
     const exercises = this.state.exercises;
     const exerciseList = exercises.map(exercise => {
       return (
-        <div key={exercise.exerciseName} className="mt-3 mx-2 border-bottom row">
+        <div key={exercise.exerciseId} onClick={this.handleClick} className="mt-3 mx-2 border-bottom row">
           <div className="col lh-1 flex-col">
             <h4 className="text-white">{ exercise.exerciseName }</h4>
             <p className="gray-text">{ exercise.muscleName }</p>
             <p className="green-text">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
-            <i className="fas fa-question-circle question"></i>
+            <i className="fas fa-question-circle question" id={exercise.exerciseId} onClick={this.handleClick}></i>
           </div>
         </div>
       );
@@ -45,6 +63,12 @@ class ExerciseList extends React.Component {
   }
 
   render() {
+    let element;
+    if (!this.state.infoBox) {
+      element = this.getExercises();
+    } else {
+      element = this.getModal();
+    }
     return (
       <>
         <header className="container mt-3">
@@ -75,7 +99,7 @@ class ExerciseList extends React.Component {
             </select>
           </form>
         </div>
-        {this.getExercises()}
+        {element}
       </>
     );
   }

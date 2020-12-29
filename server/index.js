@@ -14,8 +14,7 @@ app.use(staticMiddleware);
 
 app.get('/api/exercises', (req, res, next) => {
   const sql = `
-    select "exerciseName",
-           "muscleName"
+    select *
     from   "exercises"
     join   "muscleGroups" using ("muscleGroupId")
   order by "exerciseName"
@@ -27,17 +26,16 @@ app.get('/api/exercises', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/exercises/:muscleName', (req, res, next) => {
-  const muscleName = req.params.muscleName;
+app.get('/api/exercises/:id', (req, res, next) => {
+  const id = req.params.id;
   const sql = `
-    select "exerciseName",
-           "muscleName"
+    select *
     from   "exercises"
     join   "muscleGroups" using ("muscleGroupId")
     where  "muscleName" = $1
   order by "exerciseName"
   `;
-  const params = [muscleName];
+  const params = [id];
   db.query(sql, params)
     .then(result => {
       res.status(200).json(result.rows);
