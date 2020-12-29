@@ -3,23 +3,19 @@ import React from 'react';
 class ExerciseDetail extends React.Component {
   render() {
     return (
-      <div className="w-75 mt-5 container pop-out-colors">
-        <h3 className="mt-3 text-center text-white">Barbell Bench Press</h3>
-        <div className="text-center">
-          <img className="w-75" src="images/barbell-chest-press.jpeg" alt="demo image"></img>
-        </div>
-        <h4 className="mt-3 text-center text-white">How To:</h4>
-        <p className="text-white text-md-center text-left">
-          1. Lie on the bench with you eyes under the bar. <br />
-          2. Grab the bar with a medium grip-width (thumbs around the bar!) <br />
-          3. Unrack the bar by straigtenting your arms. <br />
-          4. Lower the bar to your mid chest. <br />
-          5. Press the bar back up until your arms are straight. <br />
-        </p>
-        <div className="text-center my-3">
-          <button className="text-center px-4 fs-4 py-2 green-button">Done</button>
-        </div>
+    <div className="w-75 my-5 container pop-out-colors">
+      <h3 className="mt-3 text-center text-white">{this.props.name}</h3>
+      <div className="text-center">
+        <img className="w-75" src={this.props.image} alt="demo image"></img>
       </div>
+      <h4 className="mt-3 text-center text-white">How To:</h4>
+      <p className="text-white text-md-center text-left">
+        {this.props.howTo}
+      </p>
+      <div className="text-center my-3">
+        <button onClick={this.props.handleClick} className="text-center px-4 fs-4 py-2 green-button">Done</button>
+      </div>
+    </div>
     );
   }
 }
