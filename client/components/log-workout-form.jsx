@@ -13,15 +13,17 @@ class LogWorkoutForm extends React.Component {
     return (
       <>
        <Header button='Discard' heading='Log a Workout' />
-       <form className="row">
-        <div className="flex-column justify-content-center">
-          <label htmlFor="date" className="form-label my-2 text-white">Date</label>
-          <input type="date" id="date" className="form-control pop-in-colors w-75 d-block"></input>
-          <label htmlFor="duration" className="form-label my-2 text-white">Duration</label>
-          <input type="text" id="duration" className="form-control pop-in-colors w-75 d-block"></input>
-          <button type="submit" className="green-button py-2 w-75">Add Exercises</button>
-        </div>
-       </form>
+       <div className="container">
+        <form>
+          <div className="row justify-content-center">
+            <label htmlFor="date" className="my-1 w-75 text-white">Date</label>
+            <input type="date" id="date" className="mb-3 gray-text w-75 pop-in-colors d-block"></input>
+            <label htmlFor="duration" className="my-1 w-75 text-white">Duration</label>
+            <input type="text" placeholder="How long was your workout?" id="duration" className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
+            <button type="submit" className="bottom-button my-5 green-button w-75 fs-2 py-2">Add Exercises</button>
+          </div>
+        </form>
+      </div>
       </>
     );
   }
