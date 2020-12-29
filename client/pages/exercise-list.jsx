@@ -1,5 +1,6 @@
 import React from 'react';
 import ExerciseDetail from '../components/exercise-detail';
+import Header from '../components/header';
 
 class ExerciseList extends React.Component {
   constructor(props) {
@@ -71,20 +72,7 @@ class ExerciseList extends React.Component {
     }
     return (
       <>
-        <header className="container mt-3">
-          <div className="row">
-            <div className="col-2">
-              <button className="pop-out-colors mt-2 gray-text top-button">Back</button>
-            </div>
-            <div className="col-10">
-              <h1 className="oregano title green-text text-center">Fit Journey</h1>
-            </div>
-          </div>
-        </header>
-
-        <div className="col">
-          <h1 className="text-white mt-3 text-center">Exercises</h1>
-        </div>
+        <Header button='Back' heading='Exercises'/>
 
         <div className="col">
           <form className="text-center">
