@@ -50,11 +50,12 @@ app.put('/api/workouts', (req, res, next) => {
   const sql = `
     insert into "workouts" ("workoutDate", "workoutDuration", "userId")
     values ($1, $2, $3)
+    returning "workoutId"
   `;
   const params = [date, duration, userId];
   db.query(sql, params)
     .then(result => {
-      res.status(201).json(result);
+      res.status(201).json(result.rows[0]);
     })
     .catch(err => next(err));
 });

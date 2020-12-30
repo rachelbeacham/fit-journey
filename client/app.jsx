@@ -6,6 +6,6 @@ import AddExercise from './components/add-exercise';
 export default class App extends React.Component {
 
   render() {
-    return <AddExercise />;
+    return <LogWorkout />;
   }
 }

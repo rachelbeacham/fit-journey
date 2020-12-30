@@ -6,10 +6,10 @@ class ExerciseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: this.props.view,
       exercises: [],
       infoBox: '',
-      addBox: ''
+      addBox: '',
+      workoutId: this.props.workoutId
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -54,9 +54,9 @@ class ExerciseList extends React.Component {
 
   getExercises() {
     let addButtonClass;
-    if (this.state.view === 'Add') {
+    if (this.state.workoutId) {
       addButtonClass = 'green-button px-3 py-1 mx-1';
-    } else if (this.state.view === 'Display') {
+    } else {
       addButtonClass = 'green-button px-3 py-1 mx-1 invisible';
     }
     const exercises = this.state.exercises;
