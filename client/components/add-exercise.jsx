@@ -11,7 +11,7 @@ class AddExercise extends React.Component {
   render() {
     return (
     <div className="w-75 my-5 text-center justify-content-center container pop-out-colors">
-      <h3 className="my-3 text-center text-white">Barbell Bench Press</h3>
+      <h3 className="my-3 text-center text-white">{this.props.name}</h3>
       <div className="row mt-5">
         <div className="col">
           <p className="text-white">Set</p>

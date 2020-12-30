@@ -1,4 +1,5 @@
 import React from 'react';
+import AddExercise from '../components/add-exercise';
 import ExerciseDetail from '../components/exercise-detail';
 import Header from '../components/header';
 
@@ -52,6 +53,13 @@ class ExerciseList extends React.Component {
       handleClick={this.handleClick} />;
   }
 
+  getAddBox() {
+    const exercises = this.state.exercises;
+    const index = exercises.findIndex(exercise => exercise.exercisesId === parseInt(this.state.addBox));
+    return <AddExercise name={this.state.exercise[index].exerciseName}
+        handleClick={this.handleClick()} />;
+  }
+
   getExercises() {
     let addButtonClass;
     if (this.state.workoutId) {
@@ -82,7 +90,7 @@ class ExerciseList extends React.Component {
     let element;
     if (!this.state.infoBox) {
       element = this.getExercises();
-    } else {
+    } else if (this.state.infoBox) {
       element = this.getInfoBox();
     }
     return (
