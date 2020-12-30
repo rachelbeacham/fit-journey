@@ -8,7 +8,8 @@ class ExerciseList extends React.Component {
     this.state = {
       view: this.props.view,
       exercises: [],
-      infoBox: ''
+      infoBox: '',
+      addBox: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -31,12 +32,17 @@ class ExerciseList extends React.Component {
   }
 
   handleClick(e) {
+    if (e.target.tagName === 'BUTTON' && e.target.id) {
+      this.setState({
+        addBox: e.target.id
+      });
+    }
     this.setState({
       infoBox: e.target.id
     });
   }
 
-  getModal() {
+  getInfoBox() {
     const exercises = this.state.exercises;
     const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
     return <ExerciseDetail name={this.state.exercises[index].exerciseName}
@@ -62,7 +68,7 @@ class ExerciseList extends React.Component {
             <p className="green-text">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
-            <button className={addButtonClass}>ADD</button>
+            <button id={exercise.exerciseId} className={addButtonClass}>ADD</button>
             <i className="fas fa-question-circle mx-1 question" id={exercise.exerciseId} onClick={this.handleClick}></i>
           </div>
         </div>
@@ -76,7 +82,7 @@ class ExerciseList extends React.Component {
     if (!this.state.infoBox) {
       element = this.getExercises();
     } else {
-      element = this.getModal();
+      element = this.getInfoBox();
     }
     return (
       <>
