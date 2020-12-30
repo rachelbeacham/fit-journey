@@ -36,10 +36,11 @@ class ExerciseList extends React.Component {
       this.setState({
         addBox: e.target.id
       });
+    } else {
+      this.setState({
+        infoBox: e.target.id
+      });
     }
-    this.setState({
-      infoBox: e.target.id
-    });
   }
 
   getInfoBox() {
