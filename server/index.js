@@ -60,6 +60,21 @@ app.put('/api/workouts', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.put('/api/sets', (req, res, next) => {
+  const { reps, weight } = req.body;
+  const sql = `
+    insert into "sets" ("reps", "weight")
+    values ($1, $2)
+    returning "setId"
+  `;
+  const params = [reps, weight];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

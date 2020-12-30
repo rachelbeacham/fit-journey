@@ -69,8 +69,8 @@ CREATE TABLE "routines" (
 
 CREATE TABLE "sets" (
 	"setId" serial NOT NULL,
-	"reps" serial NOT NULL,
-	"weight" serial NOT NULL,
+	"reps" integer NOT NULL,
+	"weight" integer NOT NULL,
 	CONSTRAINT "sets_pk" PRIMARY KEY ("setId")
 ) WITH (
   OIDS=FALSE
