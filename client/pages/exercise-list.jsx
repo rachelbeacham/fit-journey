@@ -87,18 +87,25 @@ class ExerciseList extends React.Component {
 
   render() {
     let element;
+    let filterClass;
+    let heading;
     if (!this.state.infoBox && !this.state.addBox) {
       element = this.getExercises();
+      filterClass = 'col';
+      heading = 'Exercises';
     } else if (this.state.infoBox) {
       element = this.getInfoBox();
+      filterClass = 'hidden';
+      heading = 'Exercise';
     } else if (this.state.addBox) {
       element = this.getAddBox();
+      filterClass = 'hidden';
+      heading = 'Add Exercise';
     }
     return (
       <>
-        <Header button='Back' heading='Exercises'/>
-
-        <div className="col">
+        <Header button='Back' heading={heading}/>
+        <div className={filterClass}>
           <form className="text-center">
             <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>
               <option disabled>Filter by Muscle</option>
