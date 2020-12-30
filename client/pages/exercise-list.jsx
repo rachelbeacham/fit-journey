@@ -46,6 +46,12 @@ class ExerciseList extends React.Component {
   }
 
   getExercises() {
+    let addButtonClass;
+    if (this.state.view === 'Add') {
+      addButtonClass = 'green-button px-3 py-1 mx-1';
+    } else if (this.state.view === 'Display') {
+      addButtonClass = 'green-button px-3 py-1 mx-1 invisible';
+    }
     const exercises = this.state.exercises;
     const exerciseList = exercises.map(exercise => {
       return (
@@ -56,7 +62,7 @@ class ExerciseList extends React.Component {
             <p className="green-text">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
-            <button className="green-button px-3 py-1 mx-1">ADD</button>
+            <button className={addButtonClass}>ADD</button>
             <i className="fas fa-question-circle mx-1 question" id={exercise.exerciseId} onClick={this.handleClick}></i>
           </div>
         </div>
