@@ -75,6 +75,21 @@ app.put('/api/sets', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.put('/api/exerciseSets', (req, res, next) => {
+  const { workoutId, exerciseId, setId } = req.body;
+  const sql = `
+    insert into "exerciseSets" ("workoutId", "exerciseId", "setId")
+    values ($1, $2, $3)
+    returning *
+  `;
+  const params = [workoutId, exerciseId, setId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
