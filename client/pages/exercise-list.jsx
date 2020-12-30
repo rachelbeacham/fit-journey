@@ -9,7 +9,7 @@ class ExerciseList extends React.Component {
     this.state = {
       exercises: [],
       infoBox: '',
-      addBox: '',
+      addBox: this.props.addBox,
       workoutId: this.props.workoutId
     };
     this.handleChange = this.handleChange.bind(this);
@@ -57,7 +57,7 @@ class ExerciseList extends React.Component {
     const exercises = this.state.exercises;
     const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.addBox));
     return <AddExercise name={this.state.exercises[index].exerciseName}
-      workoutId={this.state.workoutId} exerciseId={this.state.exercises[index].exerciseId}/>;
+      workoutId={this.state.workoutId} view='Add' exerciseId={this.state.exercises[index].exerciseId}/>;
   }
 
   getExercises() {

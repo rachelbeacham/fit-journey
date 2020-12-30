@@ -1,12 +1,14 @@
 import React from 'react';
+import ExerciseList from '../pages/exercise-list';
 
 class AddExercise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      setCount: 1,
+      view: this.props.view,
       workoutId: this.props.workoutId,
       exerciseId: this.props.exerciseId,
+      setCount: 1,
       reps: '',
       weight: ''
     };
@@ -51,11 +53,22 @@ class AddExercise extends React.Component {
   }
 
   handleSubmit() {
+    this.handleClick();
+    this.setState({
+      view: 'exercises'
+    });
 
   }
 
   render() {
-    return (
+    if (this.state.view === 'exercises') {
+      return (
+        <>
+        <ExerciseList addBox='' workoutId={this.state.workoutId} />
+        </>
+      );
+    } else {
+      return (
     <div className="w-75 my-5 text-center justify-content-center container pop-out-colors">
       <h3 className="my-3 text-center text-white">{this.props.name}</h3>
       <div className="row mt-5">
@@ -89,11 +102,12 @@ class AddExercise extends React.Component {
           <p className="fs-3 me-3 green-text" onClick={this.handleClick}>+Add another set</p>
         </div>
         <div className="text-center my-3">
-          <button className="text-center px-4 fs-4 py-2 green-button">Add to Workout</button>
+          <button className="text-center px-4 fs-4 py-2 green-button">Add Another Exercise</button>
         </div>
       </form>
     </div>
-    );
+      );
+    }
   }
 }
 
