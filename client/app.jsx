@@ -5,6 +5,6 @@ import LogWorkout from './pages/log-workout';
 export default class App extends React.Component {
 
   render() {
-    return <LogWorkout />;
+    return <ExerciseList view='Add' />;
   }
 }

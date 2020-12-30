@@ -56,7 +56,8 @@ class ExerciseList extends React.Component {
             <p className="green-text">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
-            <i className="fas fa-question-circle question" id={exercise.exerciseId} onClick={this.handleClick}></i>
+            <button className="green-button px-3 py-1 mx-1">ADD</button>
+            <i className="fas fa-question-circle mx-1 question" id={exercise.exerciseId} onClick={this.handleClick}></i>
           </div>
         </div>
       );
