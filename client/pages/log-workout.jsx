@@ -43,7 +43,11 @@ class LogWorkout extends React.Component {
       body: JSON.stringify(data)
     };
     fetch('/api/workouts', req)
-      .then(result => console.log(result))
+      .then(() => {
+        this.setState({
+          view: 'exercises'
+        });
+      })
       .catch(err => console.error(err));
   }
 
@@ -58,7 +62,7 @@ class LogWorkout extends React.Component {
     } else if (this.state.view === 'exercises') {
       return (
         <>
-          <ExerciseList />
+          <ExerciseList view='Add' />
         </>
       );
     }

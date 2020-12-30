@@ -6,6 +6,7 @@ class ExerciseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      view: this.props.view,
       exercises: [],
       infoBox: ''
     };
