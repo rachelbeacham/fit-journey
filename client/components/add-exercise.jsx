@@ -6,33 +6,52 @@ class AddExercise extends React.Component {
     this.state = {
       setCount: 1,
       workoutId: this.props.workoutId,
-      exerciseId: this.props.exerciseId
+      exerciseId: this.props.exerciseId,
+      reps: '',
+      weight: ''
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick(e) {
-    if (e.target.tagName === 'P') {
-      this.setState({
+  handleClick() {
+    const data = {
+      reps: this.state.reps,
+      weight: this.state.weight,
+      workoutId: this.state.workoutId,
+      exerciseId: this.state.exerciseId
+    };
+    const req = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+
+    fetch('/api/sets', req)
+      .then(res => res.json())
+      .then(() => this.setState({
         setCount: this.state.setCount + 1
+      }))
+      .catch(err => console.error(err));
+  }
+
+  handleChange(e) {
+    if (e.target.id === 'reps') {
+      this.setState({
+        reps: e.target.value
+      });
+    } else {
+      this.setState({
+        weight: e.target.value
       });
     }
   }
 
-  renderForm() {
-    return (
-      <>
-      <div className="col text-center">
-        <p className="fs-2 gray-text">{this.state.setCount}</p>
-      </div>
-      <div className="col text-center">
-        <input type="number" className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"></input>
-      </div>
-      <div className="col text-center">
-        <input type="number" className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"></input>
-      </div>
-      </>
-    );
+  handleSubmit() {
+
   }
 
   render() {
@@ -50,16 +69,20 @@ class AddExercise extends React.Component {
           <p className="text-white">Weight</p>
         </div>
       </div>
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="col text-center">
             <p className="fs-2 gray-text">{this.state.setCount}</p>
           </div>
           <div className="col text-center">
-            <input type="number" className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"></input>
+            <input type="number" id='reps'
+              className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"
+              onChange={this.handleChange}></input>
           </div>
           <div className="col text-center">
-            <input type="number" className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"></input>
+            <input type="number" id='weight'
+              className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"
+              onChange={this.handleChange}></input>
           </div>
         </div>
         <div className="d-flex justify-content-end">

@@ -82,7 +82,7 @@ CREATE TABLE "exerciseSets" (
 	"workoutId" integer NOT NULL,
 	"exerciseId" integer NOT NULL,
 	"setId" integer NOT NULL,
-	CONSTRAINT "exerciseSets_pk" PRIMARY KEY ("workoutId")
+	CONSTRAINT "exerciseSets_pk" PRIMARY KEY ("setId")
 ) WITH (
   OIDS=FALSE
 );

@@ -61,31 +61,26 @@ app.put('/api/workouts', (req, res, next) => {
 });
 
 app.put('/api/sets', (req, res, next) => {
-  const { reps, weight } = req.body;
-  const sql = `
+  const { reps, weight, exerciseId, workoutId } = req.body;
+  const sql1 = `
     insert into "sets" ("reps", "weight")
     values ($1, $2)
     returning "setId"
   `;
-  const params = [reps, weight];
-  db.query(sql, params)
-    .then(result => {
-      res.status(201).json(result.rows[0]);
-    })
-    .catch(err => next(err));
-});
-
-app.put('/api/exerciseSets', (req, res, next) => {
-  const { workoutId, exerciseId, setId } = req.body;
-  const sql = `
+  const sql2 = `
     insert into "exerciseSets" ("workoutId", "exerciseId", "setId")
     values ($1, $2, $3)
     returning *
   `;
-  const params = [workoutId, exerciseId, setId];
-  db.query(sql, params)
+  const params1 = [reps, weight];
+  db.query(sql1, params1)
     .then(result => {
+      const setId = result.rows[0].setId;
       res.status(201).json(result.rows[0]);
+      const params2 = [workoutId, exerciseId, setId];
+      db.query(sql2, params2)
+      // .then(res.status(201).json(result.rows[0]))
+        .catch(err => next(err));
     })
     .catch(err => next(err));
 });
