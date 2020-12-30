@@ -46,12 +46,12 @@ app.get('/api/exercises/:id', (req, res, next) => {
 });
 
 app.put('/api/workouts', (req, res, next) => {
-  const { date, duration, user } = req.body;
+  const { date, duration, userId } = req.body;
   const sql = `
     insert into "workouts" ("workoutDate", "workoutDuration", "userId")
     values ($1, $2, $3)
   `;
-  const params = [date, duration, user];
+  const params = [date, duration, userId];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result);

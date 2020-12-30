@@ -1,10 +1,10 @@
 import React from 'react';
 import ExerciseList from './pages/exercise-list';
-import LogWorkoutForm from './components/log-workout-form';
+import LogWorkout from './pages/log-workout';
 
 export default class App extends React.Component {
 
   render() {
-    return <LogWorkoutForm />;
+    return <LogWorkout />;
   }
 }
