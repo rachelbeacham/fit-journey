@@ -55,9 +55,8 @@ class ExerciseList extends React.Component {
 
   getAddBox() {
     const exercises = this.state.exercises;
-    const index = exercises.findIndex(exercise => exercise.exercisesId === parseInt(this.state.addBox));
-    return <AddExercise name={this.state.exercise[index].exerciseName}
-        handleClick={this.handleClick()} />;
+    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.addBox));
+    return <AddExercise name={this.state.exercises[index].exerciseName} handleClick={this.handleClick} />;
   }
 
   getExercises() {
@@ -88,10 +87,12 @@ class ExerciseList extends React.Component {
 
   render() {
     let element;
-    if (!this.state.infoBox) {
+    if (!this.state.infoBox && !this.state.addBox) {
       element = this.getExercises();
     } else if (this.state.infoBox) {
       element = this.getInfoBox();
+    } else if (this.state.addBox) {
+      element = this.getAddBox();
     }
     return (
       <>
