@@ -36,15 +36,10 @@ class AddExercise extends React.Component {
   }
 
   handleChange(e) {
-    if (e.target.id === 'reps') {
-      this.setState({
-        reps: e.target.value
-      });
-    } else {
-      this.setState({
-        weight: e.target.value
-      });
-    }
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   }
 
   handleSubmit() {
@@ -83,12 +78,12 @@ class AddExercise extends React.Component {
             <p className="fs-2 gray-text">{this.state.setCount}</p>
           </div>
           <div className="col text-center">
-            <input type="number" id='reps'
+            <input type="number" name='reps'
               className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
           <div className="col text-center">
-            <input type="number" id='weight'
+            <input type="number" name='weight'
               className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
