@@ -63,12 +63,9 @@ class ExerciseList extends React.Component {
   }
 
   getExercises() {
-    let addButtonClass;
-    if (this.props.workoutId) {
-      addButtonClass = 'green-button px-3 py-1 mx-1';
-    } else {
-      addButtonClass = 'green-button px-3 py-1 mx-1 invisible';
-    }
+    const addButtonClass = this.props.workoutId
+      ? 'green-button px-3 py-1 mx-1'
+      : 'green-button px-3 py-1 mx-1 invisible';
     const exercises = this.state.exercises;
     const exerciseList = exercises.map(exercise => {
       return (
