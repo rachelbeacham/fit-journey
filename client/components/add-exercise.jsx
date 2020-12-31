@@ -102,7 +102,7 @@ class AddExercise extends React.Component {
           <p className="fs-3 me-3 green-text" onClick={this.handleClick}>+Add another set</p>
         </div>
         <div className="text-center my-3">
-          <button className="text-center px-4 fs-4 py-2 green-button">Add Another Exercise</button>
+          <button onClick={this.props.handleClick} className="text-center px-4 fs-4 py-2 green-button">Add Another Exercise</button>
         </div>
       </form>
     </div>
