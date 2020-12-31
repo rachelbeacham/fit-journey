@@ -30,11 +30,8 @@ class LogWorkout extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const data = {
-      date: this.state.date,
-      duration: this.state.duration,
-      userId: this.state.userId
-    };
+    const { date, duration, userId } = this.state;
+    const data = { date, duration, userId };
     const req = {
       method: 'PUT',
       headers: {
