@@ -46,19 +46,20 @@ class ExerciseList extends React.Component {
 
   getInfoBox() {
     const exercises = this.state.exercises;
-    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
-    return <ExerciseDetail name={this.state.exercises[index].exerciseName}
-      howTo={this.state.exercises[index].howToDescription}
-      image={this.state.exercises[index].demoImage}
+    const selectedExercise = exercises.find(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
+    return <ExerciseDetail name={selectedExercise.exerciseName}
+      howTo={selectedExercise.howToDescription}
+      image={selectedExercise.demoImage}
       handleClick={this.handleClick} />;
   }
 
   getAddBox() {
     const exercises = this.state.exercises;
-    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.addBox));
-    return <AddExercise name={this.state.exercises[index].exerciseName}
-      workoutId={this.props.workoutId} view='Add' exerciseId={this.state.exercises[index].exerciseId}
-      handleClick={this.handleClick}/>;
+    const selectedExercise = exercises.find(exercise => exercise.exerciseId === parseInt(this.state.addBox));
+    return <AddExercise name={selectedExercise.exerciseName}
+      workoutId={this.props.workoutId}
+      exerciseId={selectedExercise.exerciseId}
+      handleClick={this.handleClick} />;
   }
 
   getExercises() {
