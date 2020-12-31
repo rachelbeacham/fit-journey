@@ -5,9 +5,7 @@ class AddExercise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: this.props.view,
-      workoutId: this.props.workoutId,
-      exerciseId: this.props.exerciseId,
+      view: '',
       setCount: 1,
       reps: '',
       weight: ''
@@ -18,12 +16,9 @@ class AddExercise extends React.Component {
   }
 
   handleClick() {
-    const data = {
-      reps: this.state.reps,
-      weight: this.state.weight,
-      workoutId: this.state.workoutId,
-      exerciseId: this.state.exerciseId
-    };
+    const { reps, weight } = this.state;
+    const { workoutId, exerciseId } = this.props;
+    const data = { reps, weight, workoutId, exerciseId };
     const req = {
       method: 'PUT',
       headers: {
