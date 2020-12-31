@@ -1,12 +1,15 @@
 import React from 'react';
+import AddExercise from '../components/add-exercise';
 import ExerciseDetail from '../components/exercise-detail';
+import Header from '../components/header';
 
 class ExerciseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       exercises: [],
-      infoBox: ''
+      infoBox: '',
+      addBox: this.props.addBox
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -29,21 +32,40 @@ class ExerciseList extends React.Component {
   }
 
   handleClick(e) {
-    this.setState({
-      infoBox: e.target.id
-    });
+    if (e.target.tagName === 'BUTTON' && e.target.id) {
+      this.setState({
+        addBox: e.target.id
+      });
+    } else {
+      this.setState({
+        infoBox: e.target.id,
+        addBox: e.target.id
+      });
+    }
   }
 
-  getModal() {
+  getInfoBox() {
     const exercises = this.state.exercises;
-    const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
-    return <ExerciseDetail name={this.state.exercises[index].exerciseName}
-      howTo={this.state.exercises[index].howToDescription}
-      image={this.state.exercises[index].demoImage}
+    const selectedExercise = exercises.find(exercise => exercise.exerciseId === parseInt(this.state.infoBox));
+    return <ExerciseDetail name={selectedExercise.exerciseName}
+      howTo={selectedExercise.howToDescription}
+      image={selectedExercise.demoImage}
+      handleClick={this.handleClick} />;
+  }
+
+  getAddBox() {
+    const exercises = this.state.exercises;
+    const selectedExercise = exercises.find(exercise => exercise.exerciseId === parseInt(this.state.addBox));
+    return <AddExercise name={selectedExercise.exerciseName}
+      workoutId={this.props.workoutId}
+      exerciseId={selectedExercise.exerciseId}
       handleClick={this.handleClick} />;
   }
 
   getExercises() {
+    const addButtonClass = this.props.workoutId
+      ? 'green-button px-3 py-1 mx-1'
+      : 'green-button px-3 py-1 mx-1 d-none';
     const exercises = this.state.exercises;
     const exerciseList = exercises.map(exercise => {
       return (
@@ -54,7 +76,8 @@ class ExerciseList extends React.Component {
             <p className="green-text">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
-            <i className="fas fa-question-circle question" id={exercise.exerciseId} onClick={this.handleClick}></i>
+            <button id={exercise.exerciseId} className={addButtonClass}>ADD</button>
+            <i className="fas fa-question-circle mx-1 question" id={exercise.exerciseId} onClick={this.handleClick}></i>
           </div>
         </div>
       );
@@ -64,29 +87,25 @@ class ExerciseList extends React.Component {
 
   render() {
     let element;
-    if (!this.state.infoBox) {
+    let filterClass;
+    let heading;
+    if (!this.state.infoBox && !this.state.addBox) {
       element = this.getExercises();
-    } else {
-      element = this.getModal();
+      filterClass = 'col';
+      heading = 'Exercises';
+    } else if (this.state.infoBox) {
+      element = this.getInfoBox();
+      filterClass = 'd-none';
+      heading = 'Exercise';
+    } else if (this.state.addBox) {
+      element = this.getAddBox();
+      filterClass = 'd-none';
+      heading = 'Add Exercise';
     }
     return (
       <>
-        <header className="container mt-3">
-          <div className="row">
-            <div className="col-2">
-              <button className="pop-out-colors mt-2 gray-text top-button">Back</button>
-            </div>
-            <div className="col-10">
-              <h1 className="oregano title green-text text-center">Fit Journey</h1>
-            </div>
-          </div>
-        </header>
-
-        <div className="col">
-          <h1 className="text-white mt-3 text-center">Exercises</h1>
-        </div>
-
-        <div className="col">
+        <Header button='Back' workoutId={this.props.workoutId} heading={heading}/>
+        <div className={filterClass}>
           <form className="text-center">
             <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>
               <option disabled>Filter by Muscle</option>

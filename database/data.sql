@@ -1,3 +1,6 @@
+insert into "Users" ("userName", "currentWeight", "profilePictureUrl", "username", "userEmail")
+values ('Rachel Beacham', '120', '/images/profie-pic.jpeg', 'rbeach', 'rbeach17@yahoo.com');
+
 insert into "muscleGroups" ("muscleName")
 values ('Arms'),
        ('Back'),
@@ -9,7 +12,7 @@ values ('Arms'),
 insert into "exercises" ("exerciseName", "demoImage", "howToDescription", "muscleGroupId")
 values ('Barbell Bench Press', '/images/barbell-chest-press.jpeg', '1. Lie on the bench with you eyes under the bar.
 2. Grab the bar with a medium grip-width (thumbs around the bar!).
-3. Unrack the bar by straightening your arms.
+3. Un-rack the bar by straightening your arms.
 4. Lower the bar to your mid chest.
 5. Press the bar back up until your arms are straight.', '3'),
         ('Barbell Squat', '/images/barbell_squat.png', '1. Stand with your feet roughly shoulder-width apart, toes pointing slightly out.

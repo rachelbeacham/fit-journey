@@ -5,12 +5,14 @@ const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
 
 const app = express();
+const jsonMiddleware = express.json();
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
 app.use(staticMiddleware);
+app.use(jsonMiddleware);
 
 app.get('/api/exercises', (req, res, next) => {
   const sql = `
@@ -39,6 +41,40 @@ app.get('/api/exercises/:id', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/workouts', (req, res, next) => {
+  const { date, duration, userId } = req.body;
+  const sql = `
+    insert into "workouts" ("workoutDate", "workoutDuration", "userId")
+    values ($1, $2, $3)
+    returning "workoutId"
+  `;
+  const params = [date, duration, userId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/sets', (req, res, next) => {
+  const { reps, weight, exerciseId, workoutId } = req.body;
+  const params = [reps, weight, workoutId, exerciseId];
+  const query = `with "insertedSet" as (
+    insert into "sets"("reps", "weight")
+    values($1, $2)
+    returning "setId"
+  )
+  insert into "exerciseSets"("workoutId", "exerciseId", "setId")
+  values($3, $4, (select "setId" from "insertedSet"))
+  returning *`;
+
+  db.query(query, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
     })
     .catch(err => next(err));
 });

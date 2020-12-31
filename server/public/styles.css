@@ -4,7 +4,8 @@ body {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(./images/dark-background-texture-of-beech-hd-copy.jpg);
 }
 
-select {
+select,
+input {
   height: 3rem;
   outline: none;
 }
@@ -25,7 +26,7 @@ select {
 }
 
 .title {
-  font-size: 40px;
+  font-size: 2rem;
   width: 80%;
 }
 
@@ -36,6 +37,15 @@ select {
   mix-blend-mode: normal;
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
+}
+
+.pop-in-colors {
+  background: linear-gradient(180deg, #2c2e2f 0%, #404142 100%);
+  border: 1px solid;
+  border-image-source: linear-gradient(180deg, #12161a 0%, #1e242b 100%);
+  mix-blend-mode: normal;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 2px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
 }
 
 .top-button {
@@ -59,4 +69,15 @@ select {
 
 .white-space {
   white-space: pre-wrap;
+}
+
+@media only screen and (min-width: 700px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+
+  .title {
+    font-size: 2.5rem !important;
+    width: 80% !important;
+  }
 }

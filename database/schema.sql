@@ -35,7 +35,7 @@ CREATE TABLE "Users" (
 	"currentWeight" integer,
 	"profilePictureUrl" TEXT,
 	"username" TEXT NOT NULL,
-	"hashedPassword" TEXT NOT NULL,
+	"hashedPassword" TEXT,
 	"userEmail" TEXT NOT NULL,
 	CONSTRAINT "Users_pk" PRIMARY KEY ("userId")
 ) WITH (
@@ -48,7 +48,7 @@ CREATE TABLE "workouts" (
 	"workoutId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"workoutDate" DATE NOT NULL,
-	"workoutDuration" integer NOT NULL,
+	"workoutDuration" TEXT NOT NULL,
 	CONSTRAINT "workouts_pk" PRIMARY KEY ("workoutId")
 ) WITH (
   OIDS=FALSE
@@ -69,8 +69,8 @@ CREATE TABLE "routines" (
 
 CREATE TABLE "sets" (
 	"setId" serial NOT NULL,
-	"reps" serial NOT NULL,
-	"weight" serial NOT NULL,
+	"reps" integer NOT NULL,
+	"weight" integer NOT NULL,
 	CONSTRAINT "sets_pk" PRIMARY KEY ("setId")
 ) WITH (
   OIDS=FALSE
@@ -82,7 +82,7 @@ CREATE TABLE "exerciseSets" (
 	"workoutId" integer NOT NULL,
 	"exerciseId" integer NOT NULL,
 	"setId" integer NOT NULL,
-	CONSTRAINT "exerciseSets_pk" PRIMARY KEY ("workoutId")
+	CONSTRAINT "exerciseSets_pk" PRIMARY KEY ("setId")
 ) WITH (
   OIDS=FALSE
 );
