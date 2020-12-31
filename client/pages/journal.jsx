@@ -6,7 +6,7 @@ class JournalPage extends React.Component {
     return (
       <>
       <div className="row justify-content-evenly">
-        <div className="col">
+        <div className="col-6 col-md-4 mt-3">
           <div className="pop-out-colors  lh-1 text-center">
             <p className="text-white mt-2">Date:</p>
             <p className="green-text">12/23/2020</p>
@@ -15,7 +15,7 @@ class JournalPage extends React.Component {
             <p className="mb-1 text-light text-decoration-underline">See Full Workout</p>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6 col-md-4 mt-3">
           <div className="pop-out-colors wh-75 lh-1 text-center">
             <p className="text-white mt-2">Date:</p>
             <p className="green-text">12/20/2020</p>
@@ -47,7 +47,7 @@ class JournalPage extends React.Component {
     return (
     <>
     <Header button='Back' heading='Logged Workouts' />
-    <div className="container mt-3">
+    <div className="container mt-1">
       {this.journalFull()}
     </div>
     </>
@@ -57,30 +57,3 @@ class JournalPage extends React.Component {
 }
 
 export default JournalPage;
-/*
-<div className="container mt-3">
-      <div className="row justify-content-evenly">
-        <div className="col">
-          <div className="pop-out-colors lh-1 text-center">
-            <p className="text-white mt-2">Date:</p>
-            <p className="green-text">12/23/2020</p>
-            <p className="text-white">Duration:</p>
-            <p className="green-text">1 hour 30 minutes</p>
-            <p className="mb-1 text-light text-decoration-underline">See Full Workout</p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="pop-out-colors wh-75 lh-1 text-center">
-            <p className="text-white mt-2">Date:</p>
-            <p className="green-text">12/20/2020</p>
-            <p className="text-white">Duration:</p>
-            <p className="green-text">1 hour</p>
-            <p className="mb-1 text-light text-decoration-underline">See Full Workout</p>
-          </div>
-        </div>
-      </div>
-      <button className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
-            Log a Workout
-      </button>
-    </div>
-    */

@@ -45,6 +45,31 @@ app.get('/api/exercises/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/workouts/:id', (req, res, next) => {
+  const id = req.params.id;
+  const sql = `
+  select "exerciseId",
+         "exerciseName",
+         "reps",
+         "setId",
+         "weight",
+         "workoutDate",
+         "workoutDuration",
+         "workoutId"
+    from "workouts"
+    join "exerciseSets" using ("workoutId")
+    join "exercises" using ("exerciseId")
+    join "sets" using ("setId")
+   where "userId" = $1
+  `;
+  const params = [id];
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/workouts', (req, res, next) => {
   const { date, duration, userId } = req.body;
   const sql = `
@@ -85,3 +110,12 @@ app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
 });
+
+/*
+select *
+    from "workouts"
+    join "exerciseSets" using ("workoutId")
+    join "exercises" using ("exerciseId")
+    join "sets" using ("setId")
+   where "userId" = $1
+   */
