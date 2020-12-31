@@ -9,8 +9,7 @@ class ExerciseList extends React.Component {
     this.state = {
       exercises: [],
       infoBox: '',
-      addBox: this.props.addBox,
-      workoutId: this.props.workoutId
+      addBox: this.props.addBox
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -58,13 +57,13 @@ class ExerciseList extends React.Component {
     const exercises = this.state.exercises;
     const index = exercises.findIndex(exercise => exercise.exerciseId === parseInt(this.state.addBox));
     return <AddExercise name={this.state.exercises[index].exerciseName}
-      workoutId={this.state.workoutId} view='Add' exerciseId={this.state.exercises[index].exerciseId}
+      workoutId={this.props.workoutId} view='Add' exerciseId={this.state.exercises[index].exerciseId}
       handleClick={this.handleClick}/>;
   }
 
   getExercises() {
     let addButtonClass;
-    if (this.state.workoutId) {
+    if (this.props.workoutId) {
       addButtonClass = 'green-button px-3 py-1 mx-1';
     } else {
       addButtonClass = 'green-button px-3 py-1 mx-1 invisible';
@@ -107,7 +106,7 @@ class ExerciseList extends React.Component {
     }
     return (
       <>
-        <Header button='Back' workoutId={this.state.workoutId} heading={heading}/>
+        <Header button='Back' workoutId={this.props.workoutId} heading={heading}/>
         <div className={filterClass}>
           <form className="text-center">
             <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>
