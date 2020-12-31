@@ -16,7 +16,7 @@ export default class InitialForm extends React.Component {
               placeholder="How long was your workout?"
               className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
             <button type="submit"
-              className="bottom-button my-5 green-button w-75 fs-2 py-2">
+              className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
               Add Exercises
               </button>
           </div>

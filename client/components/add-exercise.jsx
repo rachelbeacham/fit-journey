@@ -78,18 +78,18 @@ class AddExercise extends React.Component {
             <p className="fs-2 gray-text">{this.state.setCount}</p>
           </div>
           <div className="col text-center">
-            <input type="number" name='reps'
+            <input type="number" name='reps' required
               className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
           <div className="col text-center">
-            <input type="number" name='weight'
+            <input type="number" name='weight' required
               className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
         </div>
         <div className="d-flex justify-content-end">
-          <p className="fs-3 me-3 green-text" onClick={this.handleClick}>+Add another set</p>
+          <p className="fs-3 me-3 green-text" onClick={this.handleClick}>Save this Set!</p>
         </div>
         <div className="text-center my-3">
           <button onClick={this.props.handleClick} className="text-center px-4 fs-4 py-2 green-button">Add Another Exercise</button>
