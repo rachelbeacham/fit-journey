@@ -62,23 +62,23 @@ app.post('/api/workouts', (req, res, next) => {
 
 app.post('/api/sets', (req, res, next) => {
   const { reps, weight, exerciseId, workoutId } = req.body;
-  const sql1 = `
+  const insertSets = `
     insert into "sets" ("reps", "weight")
     values ($1, $2)
     returning "setId"
   `;
-  const sql2 = `
+  const insertExerciseSets = `
     insert into "exerciseSets" ("workoutId", "exerciseId", "setId")
     values ($1, $2, $3)
     returning *
   `;
   const params1 = [reps, weight];
-  db.query(sql1, params1)
+  db.query(insertSets, params1)
     .then(result => {
       const setId = result.rows[0].setId;
       res.status(201).json(result.rows[0]);
       const params2 = [workoutId, exerciseId, setId];
-      db.query(sql2, params2)
+      db.query(insertExerciseSets, params2)
       // .then(res.status(201).json(result.rows[0]))
         .catch(err => next(err));
     })
