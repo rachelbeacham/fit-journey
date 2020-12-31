@@ -62,25 +62,19 @@ app.post('/api/workouts', (req, res, next) => {
 
 app.post('/api/sets', (req, res, next) => {
   const { reps, weight, exerciseId, workoutId } = req.body;
-  const insertSets = `
-    insert into "sets" ("reps", "weight")
-    values ($1, $2)
+  const params = [reps, weight, workoutId, exerciseId];
+  const query = `with "insertedSet" as (
+    insert into "sets"("reps", "weight")
+    values($1, $2)
     returning "setId"
-  `;
-  const insertExerciseSets = `
-    insert into "exerciseSets" ("workoutId", "exerciseId", "setId")
-    values ($1, $2, $3)
-    returning *
-  `;
-  const params1 = [reps, weight];
-  db.query(insertSets, params1)
+  )
+  insert into "exerciseSets"("workoutId", "exerciseId", "setId")
+  values($3, $4, (select "setId" from "insertedSet"))
+  returning *`;
+
+  db.query(query, params)
     .then(result => {
-      const setId = result.rows[0].setId;
       res.status(201).json(result.rows[0]);
-      const params2 = [workoutId, exerciseId, setId];
-      db.query(insertExerciseSets, params2)
-      // .then(res.status(201).json(result.rows[0]))
-        .catch(err => next(err));
     })
     .catch(err => next(err));
 });
