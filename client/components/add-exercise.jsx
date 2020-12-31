@@ -20,7 +20,7 @@ class AddExercise extends React.Component {
     const { workoutId, exerciseId } = this.props;
     const data = { reps, weight, workoutId, exerciseId };
     const req = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },

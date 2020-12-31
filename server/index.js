@@ -45,7 +45,7 @@ app.get('/api/exercises/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.put('/api/workouts', (req, res, next) => {
+app.post('/api/workouts', (req, res, next) => {
   const { date, duration, userId } = req.body;
   const sql = `
     insert into "workouts" ("workoutDate", "workoutDuration", "userId")
@@ -60,7 +60,7 @@ app.put('/api/workouts', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.put('/api/sets', (req, res, next) => {
+app.post('/api/sets', (req, res, next) => {
   const { reps, weight, exerciseId, workoutId } = req.body;
   const sql1 = `
     insert into "sets" ("reps", "weight")

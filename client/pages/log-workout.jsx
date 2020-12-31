@@ -33,7 +33,7 @@ class LogWorkout extends React.Component {
     const { date, duration, userId } = this.state;
     const data = { date, duration, userId };
     const req = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
