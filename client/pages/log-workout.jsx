@@ -17,15 +17,10 @@ class LogWorkout extends React.Component {
   }
 
   handleChange(e) {
-    if (e.target.id === 'date') {
-      this.setState({
-        date: e.target.value
-      });
-    } else {
-      this.setState({
-        duration: e.target.value
-      });
-    }
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   }
 
   handleSubmit(e) {
