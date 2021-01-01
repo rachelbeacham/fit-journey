@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
+import { format } from 'date-fns';
 
 class JournalPage extends React.Component {
   constructor(props) {
@@ -19,34 +20,28 @@ class JournalPage extends React.Component {
       .catch(err => console.error(err));
   }
 
-  loggedWorkouts() {
-    return (
-      <>
-      <div className="row justify-content-evenly">
-        <div className="col-6 col-md-4 mt-3">
-          <div className="pop-out-colors  lh-1 text-center">
-            <p className="text-white mt-2">Date:</p>
-            <p className="green-text">12/23/2020</p>
-            <p className="text-white">Duration:</p>
-            <p className="green-text">1 hour 30 mins</p>
-            <p className="mb-1 text-light text-decoration-underline">See Full Workout</p>
+  formatDate(date) {
+    const newDate = new Date(date);
+    const formattedDate = format(newDate, 'MMMM dd, yyyy');
+    return formattedDate;
+  }
+
+  renderLoggedWorkouts() {
+    const workouts = this.state.workouts;
+    const journalList = workouts.map(workout => {
+      return (
+          <div key={workout.workoutId} className="col-6 col-md-4 mt-3">
+            <div className="pop-out-colors  lh-1 text-center">
+              <p className="text-white mt-2">Date:</p>
+              <p className="green-text">{this.formatDate(workout.workoutDate)}</p>
+              <p className="text-white">Duration:</p>
+              <p className="green-text">{workout.workoutDuration}</p>
+              <p className="mb-2 text-light text-decoration-underline">See Full Workout</p>
+            </div>
           </div>
-        </div>
-        <div className="col-6 col-md-4 mt-3">
-          <div className="pop-out-colors wh-75 lh-1 text-center">
-            <p className="text-white mt-2">Date:</p>
-            <p className="green-text">12/20/2020</p>
-            <p className="text-white">Duration:</p>
-            <p className="green-text">1 hour</p>
-            <p className="mb-1 text-light text-decoration-underline">See Full Workout</p>
-          </div>
-        </div>
-      </div>
-      <button className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
-        Log a Workout
-      </button>
-      </>
-    );
+      );
+    });
+    return journalList;
   }
 
   journalEmpty() {
@@ -61,14 +56,32 @@ class JournalPage extends React.Component {
   }
 
   render() {
-    return (
-    <>
-    <Header button='Back' heading='Logged Workouts' />
-    <div className="container mt-1">
-      {this.loggedWorkouts()}
-    </div>
-    </>
-    );
+    if (!this.state.workouts[0]) {
+      return (
+        <>
+          <Header button='Back' heading='Logged Workouts' />
+          <div className="container mt-1">
+            <div className="row">
+              {this.journalEmpty()}
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+        <Header button='Back' heading='Logged Workouts' />
+        <div className="container mt-1">
+          <div className="row justify-content-evenly">
+            {this.renderLoggedWorkouts()}
+          </div>
+          <button className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
+              Log a Workout
+          </button>
+        </div>
+        </>
+      );
+    }
   }
 
 }
