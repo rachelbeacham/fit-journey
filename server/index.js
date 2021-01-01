@@ -48,18 +48,10 @@ app.get('/api/exercises/:id', (req, res, next) => {
 app.get('/api/workouts/:id', (req, res, next) => {
   const id = req.params.id;
   const sql = `
-  select "exerciseId",
-         "exerciseName",
-         "reps",
-         "setId",
-         "weight",
-         "workoutDate",
+  select "workoutDate",
          "workoutDuration",
          "workoutId"
     from "workouts"
-    join "exerciseSets" using ("workoutId")
-    join "exercises" using ("exerciseId")
-    join "sets" using ("setId")
    where "userId" = $1
   `;
   const params = [id];

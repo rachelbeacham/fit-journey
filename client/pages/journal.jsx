@@ -2,7 +2,24 @@ import React from 'react';
 import Header from '../components/header';
 
 class JournalPage extends React.Component {
-  journalFull() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userId: 1,
+      workouts: []
+    };
+  }
+
+  componentDidMount() {
+    fetch(`/api/workouts/${this.state.userId}`)
+      .then(res => res.json())
+      .then(result => this.setState({
+        workouts: result
+      }))
+      .catch(err => console.error(err));
+  }
+
+  loggedWorkouts() {
     return (
       <>
       <div className="row justify-content-evenly">
@@ -48,7 +65,7 @@ class JournalPage extends React.Component {
     <>
     <Header button='Back' heading='Logged Workouts' />
     <div className="container mt-1">
-      {this.journalFull()}
+      {this.loggedWorkouts()}
     </div>
     </>
     );
