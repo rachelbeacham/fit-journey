@@ -6,14 +6,14 @@ class WorkoutDetails extends React.Component {
     return (
       <>
         <Header button="Back"></Header>
-        <div className="container text-center pop-out-colors">
-          <p className="green-text">January 1st, 2021</p>
-          <h3 className="text-white">Workout Details</h3>
+        <div className="container w-90 mh-sm-550 mh-lg-900 text-center overflow-scroll pop-out-colors">
+          <p className="green-text mt-3 mb-1">January 1st, 2021</p>
+          <h3 className="text-white mt-0">Workout Details</h3>
           <h4 className="green-text text-start">Deadlift</h4>
           <div className="row">
-            <p className="col text-decoration-underline gray-text">Set</p>
-            <p className="col text-decoration-underline gray-text">Reps</p>
-            <p className="col text-decoration-underline gray-text">Weight</p>
+            <p className="col text-decoration-underline text-muted">Set</p>
+            <p className="col text-decoration-underline text-muted">Reps</p>
+            <p className="col text-decoration-underline text-muted">Weight</p>
           </div>
           <div className="row">
             <p className="col text-white">1</p>
@@ -32,9 +32,9 @@ class WorkoutDetails extends React.Component {
           </div>
           <h4 className="green-text text-start">Barbell Squat</h4>
           <div className="row">
-            <p className="col text-decoration-underline gray-text">Set</p>
-            <p className="col text-decoration-underline gray-text">Reps</p>
-            <p className="col text-decoration-underline gray-text">Weight</p>
+            <p className="col text-decoration-underline text-muted">Set</p>
+            <p className="col text-decoration-underline text-muted">Reps</p>
+            <p className="col text-decoration-underline text-muted">Weight</p>
           </div>
           <div className="row">
             <p className="col text-white">1</p>
@@ -50,6 +50,69 @@ class WorkoutDetails extends React.Component {
             <p className="col text-white">3</p>
             <p className="col text-white">7</p>
             <p className="col text-white">155</p>
+          </div>
+          <h4 className="green-text text-start">Arnold Press</h4>
+          <div className="row">
+            <p className="col text-decoration-underline text-muted">Set</p>
+            <p className="col text-decoration-underline text-muted">Reps</p>
+            <p className="col text-decoration-underline text-muted">Weight</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">1</p>
+            <p className="col text-white">10</p>
+            <p className="col text-white">15</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">2</p>
+            <p className="col text-white">10</p>
+            <p className="col text-white">15</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">3</p>
+            <p className="col text-white">7</p>
+            <p className="col text-white">20</p>
+          </div>
+          <h4 className="green-text text-start">Arnold Press</h4>
+          <div className="row">
+            <p className="col text-decoration-underline text-muted">Set</p>
+            <p className="col text-decoration-underline text-muted">Reps</p>
+            <p className="col text-decoration-underline text-muted">Weight</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">1</p>
+            <p className="col text-white">10</p>
+            <p className="col text-white">15</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">2</p>
+            <p className="col text-white">10</p>
+            <p className="col text-white">15</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">3</p>
+            <p className="col text-white">7</p>
+            <p className="col text-white">20</p>
+          </div>
+          <h4 className="green-text text-start">Arnold Press</h4>
+          <div className="row">
+            <p className="col text-decoration-underline text-muted">Set</p>
+            <p className="col text-decoration-underline text-muted">Reps</p>
+            <p className="col text-decoration-underline text-muted">Weight</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">1</p>
+            <p className="col text-white">10</p>
+            <p className="col text-white">15</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">2</p>
+            <p className="col text-white">10</p>
+            <p className="col text-white">15</p>
+          </div>
+          <div className="row">
+            <p className="col text-white">3</p>
+            <p className="col text-white">7</p>
+            <p className="col text-white">20</p>
           </div>
         </div>
 
