@@ -35,7 +35,7 @@ input {
   border: 1px solid;
   border-image-source: linear-gradient(180deg, #12161a 0%, #1e242b 100%);
   mix-blend-mode: normal;
-  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
 
