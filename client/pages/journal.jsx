@@ -36,7 +36,7 @@ class JournalPage extends React.Component {
               <p className="green-text">{this.formatDate(workout.workoutDate)}</p>
               <p className="text-white">Duration:</p>
               <p className="green-text">{workout.workoutDuration}</p>
-              <p className="mb-2 text-light text-decoration-underline">See Full Workout</p>
+              <p className="text-light text-decoration-underline">See Full Workout</p>
             </div>
           </div>
       );

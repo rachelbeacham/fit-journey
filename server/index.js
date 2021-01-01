@@ -102,12 +102,3 @@ app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
 });
-
-/*
-select *
-    from "workouts"
-    join "exerciseSets" using ("workoutId")
-    join "exercises" using ("exerciseId")
-    join "sets" using ("setId")
-   where "userId" = $1
-   */
