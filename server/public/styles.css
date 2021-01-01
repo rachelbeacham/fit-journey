@@ -75,8 +75,8 @@ input {
   width: 90%;
 }
 
-.mh-sm-550 {
-  max-height: 550px;
+.vh-85 {
+  height: 85vh;
 }
 
 @media only screen and (min-width: 700px) {
@@ -87,9 +87,5 @@ input {
   .title {
     font-size: 2.5rem !important;
     width: 80% !important;
-  }
-
-  .mh-lg-900 {
-    max-height: 900px;
   }
 }

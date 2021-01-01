@@ -6,8 +6,8 @@ class WorkoutDetails extends React.Component {
     return (
       <>
         <Header button="Back"></Header>
-        <div className="container w-90 mh-sm-550 mh-lg-900 text-center overflow-scroll pop-out-colors">
-          <p className="green-text mt-3 mb-1">January 1st, 2021</p>
+        <div className="container w-90 vh-85 text-center overflow-scroll pop-out-colors">
+          <p className="green-text fs-5 mt-3 mb-1">January 1st, 2021</p>
           <h3 className="text-white mt-0">Workout Details</h3>
           <h4 className="green-text text-start">Deadlift</h4>
           <div className="row">

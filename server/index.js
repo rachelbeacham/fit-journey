@@ -62,6 +62,28 @@ app.get('/api/workouts/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/sets/:id', (req, res, next) => {
+  const id = req.params.id;
+  const sql = `
+  select "exerciseId",
+         "exerciseName",
+         "reps",
+         "weight",
+         "setId"
+    from "workouts"
+    join "exerciseSets" using ("workoutId")
+    join "exercises" using ("exerciseId")
+    join "sets" using ("setId")
+   where "workoutId" = $1
+  `;
+  const params = [id];
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/workouts', (req, res, next) => {
   const { date, duration, userId } = req.body;
   const sql = `
