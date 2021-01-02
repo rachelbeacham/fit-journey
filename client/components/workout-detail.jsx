@@ -1,7 +1,24 @@
 import React from 'react';
 import Header from './header';
+import { exercises, sets } from '../lib/getWorkoutDetails';
 
 class WorkoutDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      exercises: {}
+    };
+  }
+
+  componentDidMount() {
+    fetch('/api/sets/1')
+      .then(res => res.json())
+      .then(result => this.setState({
+        exercises: sets(exercises(result), result)
+      }))
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <>
@@ -122,3 +139,36 @@ class WorkoutDetails extends React.Component {
 }
 
 export default WorkoutDetails;
+
+/*
+  const exercises = {
+    squat: [
+      {
+        reps: 8,
+        Weight: 135
+      },
+      {
+        reps: 8,
+        weight: 135
+      },
+      {
+        reps: 5,
+        weight: 155
+      }
+    ],
+    deadlift: [
+      {
+        reps: 10,
+        Weight: 135
+      },
+      {
+        reps: 8,
+        weight: 155
+      },
+      {
+        reps: 5,
+        weight: 185
+      }
+    ]
+  }
+  */

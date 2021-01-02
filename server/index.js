@@ -75,6 +75,7 @@ app.get('/api/sets/:id', (req, res, next) => {
     join "exercises" using ("exerciseId")
     join "sets" using ("setId")
    where "workoutId" = $1
+order by "setId"
   `;
   const params = [id];
   db.query(sql, params)
