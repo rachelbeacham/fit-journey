@@ -39,16 +39,15 @@ class WorkoutDetails extends React.Component {
   getExerciseDetails() {
     const exercises = this.state.exercises;
     const fullWorkout = exercises.map((exercise, index) => {
-      const sets = [];
-      for (let i = 0; i < exercise.length; i++) {
-        const set = (
-          <div key={exercise[i].setId} className="row">
-            <div className="col text-white">{i + 1}</div>
-            <div className="col text-white">{exercise[i].reps}</div>
-            <div className="col text-white mb-2">{exercise[i].weight}</div>
-          </div>);
-        sets.push(set);
-      }
+      const sets = exercise.map((set, index) => {
+        return (
+          <div key={set.setId} className="row">
+            <div className="col text-white">{index + 1}</div>
+            <div className="col text-white">{set.reps}</div>
+            <div className="col text-white mb-2">{set.weight}</div>
+          </div>
+        );
+      });
       return (
         <>
           <h4 key={index} className="green-text text-start">{exercise[0].exerciseName}</h4>
