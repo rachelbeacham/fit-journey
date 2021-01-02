@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../components/header';
-import { format } from 'date-fns';
 import WorkoutDetails from '../components/workout-detail';
 
 class JournalPage extends React.Component {
@@ -23,12 +22,6 @@ class JournalPage extends React.Component {
       .catch(err => console.error(err));
   }
 
-  formatDate(date) {
-    const newDate = new Date(date);
-    const formattedDate = format(newDate, 'MMMM dd, yyyy');
-    return formattedDate;
-  }
-
   handleClick(e) {
     this.setState({
       workoutDetial: e.target.id
@@ -42,7 +35,7 @@ class JournalPage extends React.Component {
           <div key={workout.workoutId} className="col-6 col-md-4 mt-3">
             <div className="pop-out-colors  lh-1 text-center">
               <p className="text-white mt-2">Date:</p>
-              <p className="green-text">{this.formatDate(workout.workoutDate)}</p>
+              <p className="green-text">{workout.workoutDate}</p>
               <p className="text-white">Duration:</p>
               <p className="green-text">{workout.workoutDuration}</p>
               <p className="text-light text-decoration-underline"

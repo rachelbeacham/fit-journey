@@ -1,5 +1,4 @@
 import React from 'react';
-import { format } from 'date-fns';
 import Header from './header';
 import JournalPage from '../pages/journal';
 import { exercises, sets } from '../lib/getWorkoutDetails';
@@ -14,18 +13,12 @@ class WorkoutDetails extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  formatDate(date) {
-    const newDate = new Date(date);
-    const formattedDate = format(newDate, 'MMMM dd, yyyy');
-    return formattedDate;
-  }
-
   componentDidMount() {
     fetch(`/api/sets/${this.props.workoutId} `)
       .then(res => res.json())
       .then(result => this.setState({
         exercises: sets(exercises(result), result),
-        date: this.formatDate(result[0].workoutDate)
+        date: result[0].workoutDate
       }))
       .catch(err => console.error(err));
   }
