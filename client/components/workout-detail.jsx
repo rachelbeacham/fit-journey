@@ -6,7 +6,7 @@ class WorkoutDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      exercises: {}
+      exercises: []
     };
   }
 
@@ -19,6 +19,34 @@ class WorkoutDetails extends React.Component {
       .catch(err => console.error(err));
   }
 
+  getExerciseDetails() {
+    const exercises = this.state.exercises;
+    const fullWorkout = exercises.map((exercise, index) => {
+      const sets = [];
+      for (let i = 0; i < exercise.length; i++) {
+        const set = (
+          <div key={exercise[i].setId} className="row">
+            <div className="col text-white">{i + 1}</div>
+            <div className="col text-white">{exercise[i].reps}</div>
+            <div className="col text-white mb-2">{exercise[i].weight}</div>
+          </div>);
+        sets.push(set);
+      }
+      return (
+        <>
+          <h4 key={index} className="green-text text-start">{exercise[0].exerciseName}</h4>
+          <div className="row">
+            <p className="col text-decoration-underline text-muted">Set</p>
+            <p className="col text-decoration-underline text-muted">Reps</p>
+            <p className="col text-decoration-underline text-muted">Weight</p>
+          </div>
+          {sets}
+        </>
+      );
+    });
+    return fullWorkout;
+  }
+
   render() {
     return (
       <>
@@ -26,111 +54,7 @@ class WorkoutDetails extends React.Component {
         <div className="container w-90 vh-85 text-center overflow-scroll pop-out-colors">
           <p className="green-text fs-5 mt-3 mb-1">January 1st, 2021</p>
           <h3 className="text-white mt-0">Workout Details</h3>
-          <h4 className="green-text text-start">Deadlift</h4>
-          <div className="row">
-            <p className="col text-decoration-underline text-muted">Set</p>
-            <p className="col text-decoration-underline text-muted">Reps</p>
-            <p className="col text-decoration-underline text-muted">Weight</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">1</p>
-            <p className="col text-white">8</p>
-            <p className="col text-white">135</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">2</p>
-            <p className="col text-white">8</p>
-            <p className="col text-white">155</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">3</p>
-            <p className="col text-white">6</p>
-            <p className="col text-white">185</p>
-          </div>
-          <h4 className="green-text text-start">Barbell Squat</h4>
-          <div className="row">
-            <p className="col text-decoration-underline text-muted">Set</p>
-            <p className="col text-decoration-underline text-muted">Reps</p>
-            <p className="col text-decoration-underline text-muted">Weight</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">1</p>
-            <p className="col text-white">8</p>
-            <p className="col text-white">135</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">2</p>
-            <p className="col text-white">8</p>
-            <p className="col text-white">135</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">3</p>
-            <p className="col text-white">7</p>
-            <p className="col text-white">155</p>
-          </div>
-          <h4 className="green-text text-start">Arnold Press</h4>
-          <div className="row">
-            <p className="col text-decoration-underline text-muted">Set</p>
-            <p className="col text-decoration-underline text-muted">Reps</p>
-            <p className="col text-decoration-underline text-muted">Weight</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">1</p>
-            <p className="col text-white">10</p>
-            <p className="col text-white">15</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">2</p>
-            <p className="col text-white">10</p>
-            <p className="col text-white">15</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">3</p>
-            <p className="col text-white">7</p>
-            <p className="col text-white">20</p>
-          </div>
-          <h4 className="green-text text-start">Arnold Press</h4>
-          <div className="row">
-            <p className="col text-decoration-underline text-muted">Set</p>
-            <p className="col text-decoration-underline text-muted">Reps</p>
-            <p className="col text-decoration-underline text-muted">Weight</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">1</p>
-            <p className="col text-white">10</p>
-            <p className="col text-white">15</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">2</p>
-            <p className="col text-white">10</p>
-            <p className="col text-white">15</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">3</p>
-            <p className="col text-white">7</p>
-            <p className="col text-white">20</p>
-          </div>
-          <h4 className="green-text text-start">Arnold Press</h4>
-          <div className="row">
-            <p className="col text-decoration-underline text-muted">Set</p>
-            <p className="col text-decoration-underline text-muted">Reps</p>
-            <p className="col text-decoration-underline text-muted">Weight</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">1</p>
-            <p className="col text-white">10</p>
-            <p className="col text-white">15</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">2</p>
-            <p className="col text-white">10</p>
-            <p className="col text-white">15</p>
-          </div>
-          <div className="row">
-            <p className="col text-white">3</p>
-            <p className="col text-white">7</p>
-            <p className="col text-white">20</p>
-          </div>
+          {this.getExerciseDetails()}
         </div>
 
       </>
@@ -139,36 +63,3 @@ class WorkoutDetails extends React.Component {
 }
 
 export default WorkoutDetails;
-
-/*
-  const exercises = {
-    squat: [
-      {
-        reps: 8,
-        Weight: 135
-      },
-      {
-        reps: 8,
-        weight: 135
-      },
-      {
-        reps: 5,
-        weight: 155
-      }
-    ],
-    deadlift: [
-      {
-        reps: 10,
-        Weight: 135
-      },
-      {
-        reps: 8,
-        weight: 155
-      },
-      {
-        reps: 5,
-        weight: 185
-      }
-    ]
-  }
-  */

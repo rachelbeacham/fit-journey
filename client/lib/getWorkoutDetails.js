@@ -10,7 +10,7 @@ function exercises(array) {
 
 function sets(exercises, result) {
   let obj = {};
-  const workoutExercises = {};
+  const workoutExercises = [];
   exercises.forEach(exercise => {
     const sets = [];
     for (let i = 0; i < result.length; i++) {
@@ -18,12 +18,14 @@ function sets(exercises, result) {
         obj = {
           reps: result[i].reps,
           weight: result[i].weight,
-          setId: result[i].setId
+          setId: result[i].setId,
+          exerciseName: result[i].exerciseName,
+          exerciseId: result[i].exerciseId
         };
         sets.push(obj);
       }
-      workoutExercises[exercise] = sets;
     }
+    workoutExercises.push(sets);
   });
   return workoutExercises;
 }
