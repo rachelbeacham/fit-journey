@@ -69,7 +69,8 @@ app.get('/api/sets/:id', (req, res, next) => {
          "exerciseName",
          "reps",
          "weight",
-         "setId"
+         "setId",
+         "workoutDate"
     from "workouts"
     join "exerciseSets" using ("workoutId")
     join "exercises" using ("exerciseId")

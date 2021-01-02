@@ -1,22 +1,39 @@
 import React from 'react';
+import { format } from 'date-fns';
 import Header from './header';
+import JournalPage from '../pages/journal';
 import { exercises, sets } from '../lib/getWorkoutDetails';
 
 class WorkoutDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      exercises: []
+      exercises: [],
+      date: ''
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  formatDate(date) {
+    const newDate = new Date(date);
+    const formattedDate = format(newDate, 'MMMM dd, yyyy');
+    return formattedDate;
   }
 
   componentDidMount() {
-    fetch('/api/sets/1')
+    fetch(`/api/sets/${this.props.workoutId} `)
       .then(res => res.json())
       .then(result => this.setState({
-        exercises: sets(exercises(result), result)
+        exercises: sets(exercises(result), result),
+        date: this.formatDate(result[0].workoutDate)
       }))
       .catch(err => console.error(err));
+  }
+
+  handleClick() {
+    this.setState({
+      date: ''
+    });
   }
 
   getExerciseDetails() {
@@ -48,17 +65,20 @@ class WorkoutDetails extends React.Component {
   }
 
   render() {
-    return (
+    if (this.state.date) {
+      return (
       <>
-        <Header button="Back"></Header>
-        <div className="container w-90 vh-85 text-center overflow-scroll pop-out-colors">
-          <p className="green-text fs-5 mt-3 mb-1">January 1st, 2021</p>
-          <h3 className="text-white mt-0">Workout Details</h3>
+          <Header onClick={this.handleClick} button="Back"></Header>
+          <div className="container w-90 vh-85 text-center overflow-scroll pop-out-colors">
+          <p className="green-text fs-5 mt-3 mb-1">{this.state.date}</p>
+            <h3 className="text-white mt-0">Workout Details</h3>
           {this.getExerciseDetails()}
         </div>
-
       </>
-    );
+      );
+    } else {
+      return <JournalPage />;
+    }
   }
 }
 
