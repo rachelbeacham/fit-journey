@@ -1,14 +1,16 @@
 import React from 'react';
 import Header from '../components/header';
-import { format } from 'date-fns';
+import WorkoutDetails from '../components/workout-detail';
 
 class JournalPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: 1,
-      workouts: []
+      workouts: [],
+      workoutDetial: null
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -20,10 +22,10 @@ class JournalPage extends React.Component {
       .catch(err => console.error(err));
   }
 
-  formatDate(date) {
-    const newDate = new Date(date);
-    const formattedDate = format(newDate, 'MMMM dd, yyyy');
-    return formattedDate;
+  handleClick(e) {
+    this.setState({
+      workoutDetial: e.target.id
+    });
   }
 
   renderLoggedWorkouts() {
@@ -33,10 +35,11 @@ class JournalPage extends React.Component {
           <div key={workout.workoutId} className="col-6 col-md-4 mt-3">
             <div className="pop-out-colors  lh-1 text-center">
               <p className="text-white mt-2">Date:</p>
-              <p className="green-text">{this.formatDate(workout.workoutDate)}</p>
+              <p className="green-text">{workout.workoutDate}</p>
               <p className="text-white">Duration:</p>
               <p className="green-text">{workout.workoutDuration}</p>
-              <p className="text-light text-decoration-underline">See Full Workout</p>
+              <p className="text-light text-decoration-underline"
+                 id={workout.workoutId} onClick={this.handleClick}>See Full Workout</p>
             </div>
           </div>
       );
@@ -67,7 +70,7 @@ class JournalPage extends React.Component {
           </div>
         </>
       );
-    } else {
+    } else if (!this.state.workoutDetial) {
       return (
         <>
         <Header button='Back' heading='Logged Workouts' />
@@ -81,6 +84,8 @@ class JournalPage extends React.Component {
         </div>
         </>
       );
+    } else {
+      return <WorkoutDetails workoutId={this.state.workoutDetial} />;
     }
   }
 

@@ -3,6 +3,7 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
+const formatDate = require('../client/lib/formatDate');
 
 const app = express();
 const jsonMiddleware = express.json();
@@ -57,7 +58,39 @@ app.get('/api/workouts/:id', (req, res, next) => {
   const params = [id];
   db.query(sql, params)
     .then(result => {
-      res.status(200).json(result.rows);
+      const data = result.rows.map(each => {
+        each.workoutDate = formatDate(each.workoutDate);
+        return each;
+      });
+      res.status(200).json(data);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/sets/:id', (req, res, next) => {
+  const id = req.params.id;
+  const sql = `
+  select "exerciseId",
+         "exerciseName",
+         "reps",
+         "weight",
+         "setId",
+         "workoutDate"
+    from "workouts"
+    join "exerciseSets" using ("workoutId")
+    join "exercises" using ("exerciseId")
+    join "sets" using ("setId")
+   where "workoutId" = $1
+order by "setId"
+  `;
+  const params = [id];
+  db.query(sql, params)
+    .then(result => {
+      const data = result.rows.map(each => {
+        each.workoutDate = formatDate(each.workoutDate);
+        return each;
+      });
+      res.status(200).json(data);
     })
     .catch(err => next(err));
 });
