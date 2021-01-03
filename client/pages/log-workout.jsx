@@ -9,8 +9,6 @@ class LogWorkout extends React.Component {
     super(props);
     this.state = {
       userId: 1,
-      date: '',
-      duration: '',
       workoutId: null,
       type: ''
     };
@@ -68,7 +66,7 @@ class LogWorkout extends React.Component {
     } else if (this.state.workoutId && this.state.type === 'custom') {
       return (
         <>
-          <CustomEntryForm workoutId={this.state.workoutId} />
+          <CustomEntryForm onChange={this.handleChange} workoutId={this.state.workoutId} />
         </>
       );
     }
