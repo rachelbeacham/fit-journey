@@ -28,10 +28,10 @@ class CustomEntryForm extends React.Component {
       <Header button="Back" heading="Custom Workout" />
       <form onSubmit={this.handleSubmit}>
         <div className="row justify-content-center">
-          <label htmlFor="date" className="my-1 w-75 text-white">Name</label>
+          <label htmlFor="name" className="my-1 w-75 text-white">Name</label>
           <input type="text" name="name" placeholder="Optional" onChange={this.props.handleChange}
             className="mb-3 gray-text w-75 pop-in-colors d-block"></input>
-          <label htmlFor="duration" className="my-1 w-75 text-white">Type</label>
+          <label htmlFor="customWorkoutType" className="my-1 w-75 text-white">Type</label>
           <input required type="text" name="customWorkoutType" onChange={this.props.handleChange}
             placeholder="e.g. Cardio, Yoga, Hike, etc."
             className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
