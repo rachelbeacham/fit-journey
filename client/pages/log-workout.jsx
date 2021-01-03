@@ -66,7 +66,7 @@ class LogWorkout extends React.Component {
     } else if (this.state.workoutId && this.state.type === 'custom') {
       return (
         <>
-          <CustomEntryForm onChange={this.handleChange} workoutId={this.state.workoutId} />
+          <CustomEntryForm handleChange={this.handleChange} name={this.state.name} type={this.state.customWorkoutType} workoutId={this.state.workoutId} />
         </>
       );
     }
