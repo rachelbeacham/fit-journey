@@ -8,6 +8,7 @@ class CreateProfileForm extends React.Component {
       userId: 1
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -15,6 +16,21 @@ class CreateProfileForm extends React.Component {
     this.setState({
       [name]: value
     });
+  }
+
+  handleSubmit() {
+    const { name, currentWeight } = this.state;
+    const data = { name, currentWeight };
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    fetch(`/api/users/${this.state.userId}`, req)
+      .then(res => res.json())
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -29,7 +45,7 @@ class CreateProfileForm extends React.Component {
           </div>
         </div>
         <div className="col flex-column justify-content-center">
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <input type="text" name="name" onChange={this.handleChange}
              className="pop-in-colors gray-text my-3 px-3 w-100 d-block" placeholder="Name"/>
             <input type="number" name="currentWeight" onChange={this.handleChange}
