@@ -15,10 +15,20 @@ export default class InitialForm extends React.Component {
               onChange={this.props.handleChange}
               placeholder="How long was your workout?"
               className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
-            <button type="submit"
-              className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
-              Add Exercises
+            <div className="position-fixed bottom-0 start-50 translate-middle-x text-center w-100">
+              <button type="submit"
+                className="my-3 green-button w-90 fs-2 py-2"
+                value="exercises"
+                onClick={this.props.onClick}>
+                Add Exercises
               </button>
+              <button type="submit"
+                className="my-3 green-button w-90 fs-2 py-2"
+                value="custom"
+                onClick={this.props.onClick}>
+                Create a Custom Entry
+              </button>
+            </div>
           </div>
         </form>
       </div>

@@ -138,13 +138,10 @@ CREATE TABLE "goals" (
 
 
 CREATE TABLE "customWorkouts" (
-	"customWorkoutId" serial NOT NULL,
-	"customWorkoutDate" DATE NOT NULL,
-	"customWorkoutDuration" integer NOT NULL,
-	"customWorkoutName" TEXT NOT NULL,
+	"workoutId" integer NOT NULL,
+	"customWorkoutName" TEXT,
 	"type" TEXT NOT NULL,
-	"userId" integer NOT NULL,
-	CONSTRAINT "customWorkouts_pk" PRIMARY KEY ("customWorkoutId")
+	CONSTRAINT "customWorkouts_pk" PRIMARY KEY ("workoutId")
 ) WITH (
   OIDS=FALSE
 );

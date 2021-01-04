@@ -110,6 +110,22 @@ app.post('/api/workouts', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/customWorkouts/:id', (req, res, next) => {
+  const workoutId = req.params.id;
+  const { name, type } = req.body;
+  const sql = `
+    insert into "customWorkouts" ("workoutId", "customWorkoutName", "type")
+    values ($1, $2, $3)
+    returning *
+  `;
+  const params = [workoutId, name, type];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/sets', (req, res, next) => {
   const { reps, weight, exerciseId, workoutId } = req.body;
   const params = [reps, weight, workoutId, exerciseId];

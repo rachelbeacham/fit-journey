@@ -7,6 +7,6 @@ import JournalPage from './pages/journal';
 export default class App extends React.Component {
 
   render() {
-    return <JournalPage />;
+    return <LogWorkout />;
   }
 }
