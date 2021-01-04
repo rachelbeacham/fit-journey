@@ -1,4 +1,4 @@
-insert into "Users" ("username", "userEmail")
+insert into "users" ("username", "userEmail")
 values ('rbeach', 'rbeach17@yahoo.com');
 
 insert into "muscleGroups" ("muscleName")

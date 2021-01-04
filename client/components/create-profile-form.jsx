@@ -2,6 +2,21 @@ import React from 'react';
 import Header from './header';
 
 class CreateProfileForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userId: 1
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
     return (
     <>
@@ -15,8 +30,10 @@ class CreateProfileForm extends React.Component {
         </div>
         <div className="col flex-column justify-content-center">
           <form>
-            <input type="text" className="pop-in-colors my-3 px-3 w-100 d-block" placeholder="Name"/>
-            <input type="number" className="pop-in-colors px-3 my-3 w-100 d-block" placeholder="Current Weight" />
+            <input type="text" name="name" onChange={this.handleChange}
+             className="pop-in-colors gray-text my-3 px-3 w-100 d-block" placeholder="Name"/>
+            <input type="number" name="currentWeight" onChange={this.handleChange}
+             className="pop-in-colors gray-text px-3 my-3 w-100 d-block" placeholder="Current Weight" />
             <button type="submit"
                   className="green-button w-75 fs-2 py-2 position-fixed bottom-0 start-50 translate-middle-x mb-3 text-center">
                   Save
