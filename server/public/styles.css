@@ -74,6 +74,9 @@ input {
 .w-90 {
   width: 90%;
 }
+.h-90 {
+  height: 90%;
+}
 
 .vh-85 {
   height: 85vh;

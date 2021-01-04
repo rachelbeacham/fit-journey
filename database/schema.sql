@@ -31,12 +31,12 @@ CREATE TABLE "muscleGroups" (
 
 CREATE TABLE "Users" (
 	"userId" serial NOT NULL,
-	"userName" TEXT NOT NULL,
+	"userName" TEXT,
 	"currentWeight" integer,
 	"profilePictureUrl" TEXT,
-	"username" TEXT NOT NULL,
+	"username" TEXT,
 	"hashedPassword" TEXT,
-	"userEmail" TEXT NOT NULL,
+	"userEmail" TEXT,
 	CONSTRAINT "Users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
