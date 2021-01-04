@@ -145,6 +145,24 @@ app.post('/api/sets', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.patch('/api/users/:id', (req, res, next) => {
+  const userId = req.params.id;
+  const { name, currentWeight } = req.body;
+  const sql = `
+    update "users"
+       set "userName"      = $1,
+           "currentWeight" = $2
+     where "userId"        = $3
+     returning *
+  `;
+  const params = [name, currentWeight, userId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

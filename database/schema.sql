@@ -29,7 +29,7 @@ CREATE TABLE "muscleGroups" (
 
 
 
-CREATE TABLE "Users" (
+CREATE TABLE "users" (
 	"userId" serial NOT NULL,
 	"userName" TEXT,
 	"currentWeight" integer,
