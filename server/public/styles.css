@@ -10,11 +10,9 @@ input {
   outline: none;
 }
 .landing-image {
-  width: 100%;
   height: 70vh;
   background: url(/images/man-dark-bodybuilder-muscle-wallpaper-preview.jpg);
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
 }
 
