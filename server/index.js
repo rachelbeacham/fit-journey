@@ -98,7 +98,7 @@ order by "setId"
     .catch(err => next(err));
 });
 
-app.post('/api/auth/sign-up', (req, res, next) => {
+app.post('/api/sign-up', (req, res, next) => {
   const { email, username, password } = req.body;
   argon2
     .hash(password)
