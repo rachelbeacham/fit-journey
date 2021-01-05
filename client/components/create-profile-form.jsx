@@ -122,31 +122,3 @@ class CreateProfileForm extends React.Component {
 }
 
 export default CreateProfileForm;
-
-/*
-
-  handleUpload(e) {
-    e.preventDefault();
-    const formData = new FormData(event.target);
-    const req = {
-      method: 'PATCH',
-      body: formData
-    };
-    fetch(`/api/users/${this.state.userId}`, req)
-      .then(result => {
-        e.target.reset();
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }
-
-  handleUpload(e) {
-    e.preventDefault();
-    const formData = new FormData(event.target);
-    this.setState({
-      profilePictureUrl: formData
-    });
-  }
-
-  */
