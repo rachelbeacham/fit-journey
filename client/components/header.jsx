@@ -8,7 +8,8 @@ export default class Header extends React.Component {
         <header className="container mt-3">
           <div className="row">
             <div className="col-2">
-              <button onClick={this.props.onClick} className="pop-out-colors mt-2 gray-text top-button">{this.props.button}</button>
+              <button onClick={this.props.onClick} className="pop-out-colors mt-2 gray-text top-button">{this.props.button}
+              <a href={this.props.href}></a></button>
             </div>
             <div className="col-10">
               <h1 className="oregano title green-text text-center">Fit Journey</h1>

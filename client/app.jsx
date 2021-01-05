@@ -6,6 +6,7 @@ import JournalPage from './pages/journal';
 import CreateProfileForm from './components/create-profile-form';
 import LandingPage from './pages/landing-page';
 import parseRoute from './lib/parse-route';
+import SignUp from './pages/sign-up';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <LandingPage />;
+    return <SignUp />;
   }
 }
