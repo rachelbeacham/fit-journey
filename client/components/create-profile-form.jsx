@@ -28,7 +28,7 @@ class CreateProfileForm extends React.Component {
   }
 
   handleSubmit(e) {
-  //  e.preventDefault();
+    e.preventDefault();
     const { name, currentWeight } = this.state;
     const data = { name, currentWeight };
     const req = {
@@ -51,12 +51,28 @@ class CreateProfileForm extends React.Component {
       body: formData
     };
     fetch(`/api/users/${this.state.userId}`, req)
+      .then(res => res.json())
       .then(result => {
         e.target.reset();
+        this.setState({
+          profileImg: result[0].profilePictureUrl
+        });
       })
       .catch(err => {
         console.error(err);
       });
+  }
+
+  renderProfilePicture() {
+    if (this.state.profileImg) {
+      return (
+        <img src={this.state.profileImg} className="rounded img-fluid" />
+      );
+    } else {
+      return (
+        <p className="gray-text fs-3 oregano">Profile Picture</p>
+      );
+    }
   }
 
   render() {
@@ -69,8 +85,8 @@ class CreateProfileForm extends React.Component {
     <div className="container d-flex flex-column justify-content-center align-items-center">
       <div className="row">
         <div className="col d-flex justify-content-center">
-          <div className="pop-out-colors d-flex align-items-center justify-content-center h-90 w-90 mt-3">
-            <p className="gray-text fs-3 oregano">Profile Picture</p>
+          <div className="pop-out-colors d-flex align-items-center justify-content-center h-90 w-100 mt-3">
+            {this.renderProfilePicture()}
           </div>
         </div>
         <div className="col flex-column justify-content-center">
