@@ -29,15 +29,15 @@ CREATE TABLE "muscleGroups" (
 
 
 
-CREATE TABLE "Users" (
+CREATE TABLE "users" (
 	"userId" serial NOT NULL,
-	"userName" TEXT NOT NULL,
+	"userName" TEXT,
 	"currentWeight" integer,
 	"profilePictureUrl" TEXT,
-	"username" TEXT NOT NULL,
+	"username" TEXT,
 	"hashedPassword" TEXT,
-	"userEmail" TEXT NOT NULL,
-	CONSTRAINT "Users_pk" PRIMARY KEY ("userId")
+	"userEmail" TEXT,
+	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
 );
@@ -152,9 +152,9 @@ ALTER TABLE "exercises" ADD CONSTRAINT "exercises_fk0" FOREIGN KEY ("muscleGroup
 
 
 
-ALTER TABLE "workouts" ADD CONSTRAINT "workouts_fk0" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+ALTER TABLE "workouts" ADD CONSTRAINT "workouts_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "routines" ADD CONSTRAINT "routines_fk0" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+ALTER TABLE "routines" ADD CONSTRAINT "routines_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
 
 ALTER TABLE "exerciseSets" ADD CONSTRAINT "exerciseSets_fk0" FOREIGN KEY ("workoutId") REFERENCES "workouts"("workoutId");
@@ -163,11 +163,11 @@ ALTER TABLE "exerciseSets" ADD CONSTRAINT "exerciseSets_fk2" FOREIGN KEY ("setId
 
 ALTER TABLE "routineExercises" ADD CONSTRAINT "routineExercises_fk0" FOREIGN KEY ("routineId") REFERENCES "routines"("routineId");
 
-ALTER TABLE "progressPhotos" ADD CONSTRAINT "progressPhotos_fk0" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+ALTER TABLE "progressPhotos" ADD CONSTRAINT "progressPhotos_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
 ALTER TABLE "favorites" ADD CONSTRAINT "favorites_fk0" FOREIGN KEY ("exerciseId") REFERENCES "exercises"("exerciseId");
-ALTER TABLE "favorites" ADD CONSTRAINT "favorites_fk1" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+ALTER TABLE "favorites" ADD CONSTRAINT "favorites_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "goals" ADD CONSTRAINT "goals_fk0" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+ALTER TABLE "goals" ADD CONSTRAINT "goals_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "customWorkouts" ADD CONSTRAINT "customWorkouts_fk0" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+ALTER TABLE "customWorkouts" ADD CONSTRAINT "customWorkouts_fk0" FOREIGN KEY ("workoutId") REFERENCES "workouts"("workoutId");

@@ -3,6 +3,8 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
+const uploadsMiddleware = require('./uploads-middleware');
+const path = require('path');
 const formatDate = require('../client/lib/formatDate');
 
 const app = express();
@@ -141,6 +143,42 @@ app.post('/api/sets', (req, res, next) => {
   db.query(query, params)
     .then(result => {
       res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/users/:id', uploadsMiddleware, (req, res, next) => {
+  const userId = req.params.id;
+  const { name, currentWeight } = req.body;
+  let url = null;
+  if (req.file) {
+    url = path.join('/images', req.file.filename);
+  }
+  let sql;
+  let params;
+  if (url) {
+    params = [name, currentWeight, url, userId];
+    sql = `
+    update "users"
+       set "userName"          = $1,
+           "currentWeight"     = $2,
+           "profilePictureUrl" = $3
+     where "userId"            = $4
+     returning *
+  `;
+  } else {
+    params = [name, currentWeight, userId];
+    sql = `
+    update "users"
+       set "userName"          = $1,
+           "currentWeight"     = $2
+     where "userId"            = $3
+     returning *
+  `;
+  }
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
     })
     .catch(err => next(err));
 });
