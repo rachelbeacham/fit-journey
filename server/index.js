@@ -1,11 +1,12 @@
 require('dotenv/config');
-const express = require('express');
 const staticMiddleware = require('./static-middleware');
-const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
-const path = require('path');
 const formatDate = require('../client/lib/formatDate');
+const express = require('express');
+const argon2 = require('argon2');
+const path = require('path');
+const pg = require('pg');
 
 const app = express();
 const jsonMiddleware = express.json();
@@ -93,6 +94,25 @@ order by "setId"
         return each;
       });
       res.status(200).json(data);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/auth/sign-up', (req, res, next) => {
+  const { email, username, password } = req.body;
+  argon2
+    .hash(password)
+    .then(hashedpassword => {
+      const sql = `
+        insert into "users" ("userEmail", "username", "hashedPassword")
+        values ($1, $2, $3)
+        returning "userId"
+      `;
+      const params = [email, username, hashedpassword];
+      return db.query(sql, params)
+        .then(result => {
+          res.status(201).json(result.rows[0]);
+        });
     })
     .catch(err => next(err));
 });

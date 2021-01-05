@@ -16,7 +16,7 @@ export default class App extends React.Component {
     };
   }
 
-  conmponentDidMount() {
+  componentDidMount() {
     window.addEventListener('hashchange', () => {
       const location = parseRoute(window.location.hash);
       this.setState({
@@ -26,6 +26,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <SignUp />;
+    const { location } = this.state;
+    if (location.path === '') {
+      return <LandingPage />;
+    }
+    if (location.path === 'sign-up') {
+      return <SignUp />;
+    }
   }
 }

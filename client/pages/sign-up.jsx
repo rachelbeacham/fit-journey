@@ -20,7 +20,7 @@ class SignUp extends React.Component {
               className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
             <button type="submit"
                 className="my-3 green-button w-90 fs-2 py-2 position-fixed bottom-0 start-50 translate-middle-x">
-           Create Account
+              Create Account
             </button>
           </div>
         </form>
