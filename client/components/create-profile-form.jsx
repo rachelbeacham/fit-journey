@@ -11,6 +11,7 @@ class CreateProfileForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
   handleChange(e) {
@@ -26,7 +27,8 @@ class CreateProfileForm extends React.Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+  //  e.preventDefault();
     const { name, currentWeight } = this.state;
     const data = { name, currentWeight };
     const req = {
@@ -39,6 +41,22 @@ class CreateProfileForm extends React.Component {
     fetch(`/api/users/${this.state.userId}`, req)
       .then(res => res.json())
       .catch(err => console.error(err));
+  }
+
+  handleUpload(e) {
+    e.preventDefault();
+    const formData = new FormData(event.target);
+    const req = {
+      method: 'PATCH',
+      body: formData
+    };
+    fetch(`/api/users/${this.state.userId}`, req)
+      .then(result => {
+        e.target.reset();
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
@@ -72,10 +90,10 @@ class CreateProfileForm extends React.Component {
         </div>
       </div>
       <div className={uploadModalClass}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleUpload}>
           <div className="flex-column my-3 align-items-center justify-content-center">
-            <input onChange={this.handleChange} required type="file" name="profilePicture" className="ms-4 gray-text" />
-            <button type="submit" className="green-button ps-1 fs-4 w-75">
+            <input required type="file" name="profilePictureUrl" className="ms-4 gray-text" />
+            <button type='submit' onClick={this.handleClick} className="green-button ps-1 fs-4 w-75">
               Upload
             </button>
           </div>
@@ -88,3 +106,31 @@ class CreateProfileForm extends React.Component {
 }
 
 export default CreateProfileForm;
+
+/*
+
+  handleUpload(e) {
+    e.preventDefault();
+    const formData = new FormData(event.target);
+    const req = {
+      method: 'PATCH',
+      body: formData
+    };
+    fetch(`/api/users/${this.state.userId}`, req)
+      .then(result => {
+        e.target.reset();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  handleUpload(e) {
+    e.preventDefault();
+    const formData = new FormData(event.target);
+    this.setState({
+      profilePictureUrl: formData
+    });
+  }
+
+  */
