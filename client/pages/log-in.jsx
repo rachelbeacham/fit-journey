@@ -2,6 +2,18 @@ import React from 'react';
 import Header from '../components/header';
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
     return (
       <>
