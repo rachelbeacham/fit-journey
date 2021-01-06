@@ -29,10 +29,13 @@ export default class App extends React.Component {
   render() {
     const { location } = this.state;
     if (location.path === '') {
-      return <Login />;
+      return <LandingPage />;
     }
     if (location.path === 'sign-up') {
       return <SignUp />;
+    }
+    if (location.path === 'login') {
+      return <Login />;
     }
   }
 }
