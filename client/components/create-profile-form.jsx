@@ -1,11 +1,12 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 import Header from './header';
 
-class CreateProfileForm extends React.Component {
+export default class CreateProfileForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 1,
+      userId: null,
       uploadModalOpen: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -18,6 +19,13 @@ class CreateProfileForm extends React.Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value
+    });
+  }
+
+  componentDidMount() {
+    const { userId } = this.context.user;
+    this.setState({
+      userId
     });
   }
 
@@ -41,6 +49,7 @@ class CreateProfileForm extends React.Component {
     fetch(`/api/users/${this.state.userId}`, req)
       .then(res => res.json())
       .catch(err => console.error(err));
+    window.location.hash = 'profile';
   }
 
   handleUpload(e) {
@@ -121,4 +130,4 @@ class CreateProfileForm extends React.Component {
   }
 }
 
-export default CreateProfileForm;
+CreateProfileForm.contextType = AppContext;

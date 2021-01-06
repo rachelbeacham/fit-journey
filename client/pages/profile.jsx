@@ -1,20 +1,58 @@
 import React from 'react';
 import Header from '../components/header';
+import AppContext from '../lib/app-context';
 
-class Profile extends React.Component {
+export default class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profileDetails: true
+    };
+  }
+
+  componentDidMount() {
+    const { userId } = this.context.user;
+    fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(result => {
+        const details = result[0];
+        if (details.currentWeight && details.userName && details.profilePictureUrl) {
+          this.setState({
+            userName: details.userName,
+            profilePictureUrl: details.profilePictureUrl,
+            currentWeight: details.currentWeight
+          });
+        } else {
+          this.setState({
+            profileDetails: false
+          });
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
+    const personalInfoClass = (this.state.profileDetails)
+      ? 'row mt-3'
+      : 'd-none';
+    const createProfileClass = (this.state.profileDetails)
+      ? 'd-none'
+      : 'row mt-3';
     return (
       <>
       <Header noButtons="true" />
-      <div className="container">
-        <div className="row mt-3 vh-25">
+      <div className="container text-center">
+        <div className={personalInfoClass}>
           <div className="col">
-            <img src="/images/profilePictureUrl-1609821856305.jpeg" className="w-100 rounded" />
+            <img src={this.state.profilePictureUrl} className="w-100 rounded" />
           </div>
           <div className="col">
-            <p className="text-white fs-4">Rachel Beacham</p>
-            <p className="text-white">Current Weight: 120</p>
+            <p className="text-white fs-4">{this.state.userName}</p>
+            <p className="text-white">Current Weight: {this.state.currentWeight}</p>
           </div>
+        </div>
+        <div className={createProfileClass}>
+            <a href="#createProfile"><h3 className="green-text">Create Profile</h3></a>
         </div>
         <div className="row mt-3">
           <form>
@@ -37,4 +75,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+Profile.contextType = AppContext;

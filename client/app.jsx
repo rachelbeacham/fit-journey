@@ -38,7 +38,7 @@ export default class App extends React.Component {
   handleSignIn(result) {
     const { user, token } = result;
     window.localStorage.setItem('react-context-jwt', token);
-    window.location.hash = 'home';
+    window.location.hash = '';
     this.setState({
       user
     });
@@ -46,8 +46,9 @@ export default class App extends React.Component {
 
   renderPage() {
     const { location } = this.state;
-    if (!this.state.user) return <LandingPage />;
-
+    if (location.path === 'landing') {
+      return <LandingPage />;
+    }
     if (location.path === 'sign-up') {
       return <SignUp />;
     }
@@ -59,6 +60,9 @@ export default class App extends React.Component {
     }
     if (location.path === 'profile') {
       return <Profile />;
+    }
+    if (location.path === 'createProfile') {
+      return <CreateProfileForm button="Back" href="#profile" />;
     }
   }
 
