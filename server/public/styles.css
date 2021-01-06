@@ -9,9 +9,20 @@ input {
   height: 3rem;
   outline: none;
 }
+.landing-image {
+  height: 70vh;
+  background: url(/images/man-dark-bodybuilder-muscle-wallpaper-preview.jpg);
+  background-position: center;
+  background-size: cover;
+}
 
 .oregano {
   font-family: oregano, cursive;
+}
+
+.landing-buttons {
+  background-color: black;
+  height: 30vh;
 }
 
 .green-text {
