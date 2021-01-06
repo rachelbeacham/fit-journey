@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../components/header';
+import AppContext from '../lib/app-context';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -12,6 +14,25 @@ class Login extends React.Component {
     this.setState({
       [name]: value
     });
+  }
+
+  handleSubmit(e) {
+    const { handleSignIn } = this.context;
+    e.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/sign-in', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.user && result.token) {
+          handleSignIn(result);
+        }
+      });
   }
 
   render() {
@@ -38,4 +59,5 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+
+Login.contextType = AppContext;

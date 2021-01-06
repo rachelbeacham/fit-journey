@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from './lib/app-context';
 import ExerciseList from './pages/exercise-list';
 import LogWorkout from './pages/log-workout';
 import AddExercise from './components/add-exercise';
@@ -13,8 +14,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
       location: parseRoute(window.location.hash)
     };
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   componentDidMount() {
@@ -24,9 +27,18 @@ export default class App extends React.Component {
         location
       });
     });
+
   }
 
-  render() {
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('react-context-jwt', token);
+    this.setState({
+      user
+    });
+  }
+
+  renderPage() {
     const { location } = this.state;
     if (location.path === '') {
       return <LandingPage />;
@@ -38,4 +50,19 @@ export default class App extends React.Component {
       return <Login />;
     }
   }
+
+  render() {
+    const { user, location } = this.state;
+    const { handleSignIn } = this;
+    const contextValue = { user, location, handleSignIn };
+    return (
+      <AppContext.Provider value={contextValue}>
+        <>
+          {this.renderPage()}
+        </>
+      </AppContext.Provider>
+    );
+  }
 }
+
+App.contextType = AppContext;
