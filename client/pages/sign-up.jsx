@@ -5,6 +5,7 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -14,12 +15,31 @@ class SignUp extends React.Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { email, username, password } = this.state;
+    const data = { email, username, password };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    fetch('/api/sign-up', req)
+      .then(res => res.json())
+      .then(result => this.setState({
+        userId: result.userId
+      }))
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <>
       <Header href="#" button="Back" heading="Sign Up" />
       <div className="container text-center">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="row justify-content-center">
             <label htmlFor="email" className="my-1 w-75 fs-4 text-start text-white">Email</label>
             <input onChange={this.handleChange} required type="email" name="email"
