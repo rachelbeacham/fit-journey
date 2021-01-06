@@ -7,6 +7,7 @@ import CreateProfileForm from './components/create-profile-form';
 import LandingPage from './pages/landing-page';
 import parseRoute from './lib/parse-route';
 import SignUp from './pages/sign-up';
+import Login from './pages/log-in';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class App extends React.Component {
   render() {
     const { location } = this.state;
     if (location.path === '') {
-      return <LandingPage />;
+      return <Login />;
     }
     if (location.path === 'sign-up') {
       return <SignUp />;
