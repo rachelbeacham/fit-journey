@@ -2,6 +2,15 @@ import React from 'react';
 
 export default class Header extends React.Component {
   render() {
+    if (this.props.noButtons === 'true') {
+      return (
+        <header className="container mt-3">
+          <div className="row justify-content-center">
+            <h1 className="oregano title green-text text-center">Fit Journey</h1>
+          </div>
+        </header>
+      );
+    }
     if (!this.props.workoutId) {
       return (
       <>

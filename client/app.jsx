@@ -5,11 +5,13 @@ import ExerciseList from './pages/exercise-list';
 import LogWorkout from './pages/log-workout';
 import AddExercise from './components/add-exercise';
 import JournalPage from './pages/journal';
+import Profile from './pages/profile';
 import CreateProfileForm from './components/create-profile-form';
 import LandingPage from './pages/landing-page';
 import parseRoute from './lib/parse-route';
 import SignUp from './pages/sign-up';
 import Login from './pages/log-in';
+import decodeToken from './lib/decode-token';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,6 +30,9 @@ export default class App extends React.Component {
         location
       });
     });
+    const token = window.localStorage.getItem('react-context-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user });
   }
 
   handleSignIn(result) {
@@ -41,17 +46,19 @@ export default class App extends React.Component {
 
   renderPage() {
     const { location } = this.state;
-    if (location.path === '') {
-      return <LandingPage />;
-    }
+    if (!this.state.user) return <LandingPage />;
+
     if (location.path === 'sign-up') {
       return <SignUp />;
     }
     if (location.path === 'login') {
       return <Login />;
     }
-    if (location.path === 'home') {
+    if (location.path === '') {
       return <Home />;
+    }
+    if (location.path === 'profile') {
+      return <Profile />;
     }
   }
 
