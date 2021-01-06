@@ -3,6 +3,8 @@ const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 const formatDate = require('../client/lib/formatDate');
+const ClientError = require('./client-error');
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const argon2 = require('argon2');
 const path = require('path');
@@ -17,6 +19,59 @@ const db = new pg.Pool({
 
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
+
+app.post('/api/sign-up', (req, res, next) => {
+  const { email, username, password } = req.body;
+  argon2
+    .hash(password)
+    .then(hashedpassword => {
+      const sql = `
+        insert into "users" ("userEmail", "username", "hashedPassword")
+        values ($1, $2, $3)
+        returning "userId"
+      `;
+      const params = [email, username, hashedpassword];
+      return db.query(sql, params)
+        .then(result => {
+          res.status(201).json(result.rows[0]);
+        });
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/sign-in', (req, res, next) => {
+  const { username, password } = req.body;
+  const sql = `
+    select "userId",
+           "hashedPassword"
+      from "users"
+     where "username" = $1
+  `;
+  const params = [username];
+  db.query(sql, params)
+    .then(result => {
+      const user = result.rows[0];
+      if (!user) {
+        throw new ClientError(401, 'invalid login');
+      }
+      const { userId, hashedPassword } = user;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'invalid login');
+          }
+          const payload = { userId, username };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          const response = {
+            token,
+            user: payload
+          };
+          res.status(200).json(response);
+        });
+    })
+    .catch(err => next(err));
+});
 
 app.get('/api/exercises', (req, res, next) => {
   const sql = `
@@ -94,25 +149,6 @@ order by "setId"
         return each;
       });
       res.status(200).json(data);
-    })
-    .catch(err => next(err));
-});
-
-app.post('/api/sign-up', (req, res, next) => {
-  const { email, username, password } = req.body;
-  argon2
-    .hash(password)
-    .then(hashedpassword => {
-      const sql = `
-        insert into "users" ("userEmail", "username", "hashedPassword")
-        values ($1, $2, $3)
-        returning "userId"
-      `;
-      const params = [email, username, hashedpassword];
-      return db.query(sql, params)
-        .then(result => {
-          res.status(201).json(result.rows[0]);
-        });
     })
     .catch(err => next(err));
 });
