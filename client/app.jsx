@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from './lib/app-context';
+import Home from './pages/home';
 import ExerciseList from './pages/exercise-list';
 import LogWorkout from './pages/log-workout';
 import AddExercise from './components/add-exercise';
@@ -27,12 +28,12 @@ export default class App extends React.Component {
         location
       });
     });
-
   }
 
   handleSignIn(result) {
     const { user, token } = result;
     window.localStorage.setItem('react-context-jwt', token);
+    window.location.hash = 'home';
     this.setState({
       user
     });
@@ -48,6 +49,9 @@ export default class App extends React.Component {
     }
     if (location.path === 'login') {
       return <Login />;
+    }
+    if (location.path === 'home') {
+      return <Home />;
     }
   }
 
