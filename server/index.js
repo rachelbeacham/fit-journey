@@ -220,6 +220,21 @@ app.post('/api/sets', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/goals/:id', (req, res, next) => {
+  const userId = req.params.id;
+  const params = [userId];
+  const sql = `
+    select *
+      from "goals"
+     where "userId" = $1
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/goals/:id', (req, res, next) => {
   const userId = req.params.id;
   const { goalDescription, completed } = req.body;

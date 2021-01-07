@@ -11,9 +11,14 @@ export default class Goals extends React.Component {
     this.addGoal = this.addGoal.bind(this);
   }
 
-  componentDidMount() {
-
-  }
+  /* componentDidMount() {
+    fetch(`/api/goals/${this.context.user.userId}`)
+      .then(res => res.json())
+      .then(goals => this.setState({
+        goals
+      }))
+     .catch(err => console.error(err))
+  } */
 
   addGoal(newGoal) {
     const req = {
