@@ -9,8 +9,7 @@ export default class LogWorkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      workoutId: null,
-      type: ''
+      workoutId: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,16 +24,22 @@ export default class LogWorkout extends React.Component {
   }
 
   handleClick(e) {
-    this.setState({
-      type: e.target.value
-    });
+    if (e.target.value === 'exercises') {
+      this.setState({
+        isCustom: false
+      });
+    } else {
+      this.setState({
+        isCustom: true
+      });
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const token = this.context.token;
-    const { date, duration } = this.state;
-    const data = { date, duration };
+    const { date, duration, isCustom } = this.state;
+    const data = { date, duration, isCustom };
     const req = {
       method: 'POST',
       headers: {
@@ -52,23 +57,25 @@ export default class LogWorkout extends React.Component {
   }
 
   render() {
+    const { handleChange, handleClick, handleSubmit } = this;
+    const { workoutId, isCustom, name, type } = this.state;
     if (!this.state.workoutId) {
       return (
         <>
           <Header button='Home' href='#' heading='Log a Workout' />
-          <InitialForm onClick={this.handleClick} handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+          <InitialForm onClick={handleClick} handleSubmit={handleSubmit} handleChange={handleChange} />
         </>
       );
-    } else if (this.state.workoutId && this.state.type === 'exercises') {
+    } else if (workoutId && !isCustom) {
       return (
         <>
-          <ExerciseList workoutId={this.state.workoutId} />
+          <ExerciseList workoutId={workoutId} />
         </>
       );
-    } else if (this.state.workoutId && this.state.type === 'custom') {
+    } else if (workoutId && isCustom) {
       return (
         <>
-          <CustomEntryForm handleChange={this.handleChange} name={this.state.name} type={this.state.customWorkoutType} workoutId={this.state.workoutId} />
+          <CustomEntryForm handleChange={handleChange} name={name} type={type} isCustom={isCustom} workoutId={workoutId} />
         </>
       );
     }

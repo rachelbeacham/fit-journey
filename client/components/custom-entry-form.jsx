@@ -40,7 +40,7 @@ export default class CustomEntryForm extends React.Component {
           <input type="text" name="name" placeholder="Optional" onChange={this.props.handleChange}
             className="mb-3 gray-text w-75 pop-in-colors d-block"></input>
           <label htmlFor="customWorkoutType" className="my-1 w-75 text-white">Type</label>
-          <input required type="text" name="customWorkoutType" onChange={this.props.handleChange}
+          <input required type="text" name="type" onChange={this.props.handleChange}
             placeholder="e.g. Cardio, Yoga, Hike, etc."
             className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
           <div className="position-fixed bottom-0 start-50 translate-middle-x mb-3 text-center w-100">
