@@ -3,12 +3,12 @@ import Header from '../components/header';
 import InitialForm from '../components/log-workout-initial-form';
 import ExerciseList from './exercise-list';
 import CustomEntryForm from '../components/custom-entry-form';
+import AppContext from '../lib/app-context';
 
-class LogWorkout extends React.Component {
+export default class LogWorkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 1,
       workoutId: null,
       type: ''
     };
@@ -32,12 +32,14 @@ class LogWorkout extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { date, duration, userId } = this.state;
-    const data = { date, duration, userId };
+    const token = this.context.token;
+    const { date, duration } = this.state;
+    const data = { date, duration };
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(data)
     };
@@ -73,4 +75,4 @@ class LogWorkout extends React.Component {
   }
 }
 
-export default LogWorkout;
+LogWorkout.contextType = AppContext;

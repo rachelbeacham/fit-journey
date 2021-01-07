@@ -36,17 +36,19 @@ export default class CreateProfileForm extends React.Component {
   }
 
   handleSubmit(e) {
+    const token = this.context.token;
     e.preventDefault();
     const { name, currentWeight } = this.state;
     const data = { name, currentWeight };
     const req = {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(data)
     };
-    fetch(`/api/users/${this.state.userId}`, req)
+    fetch('/api/users', req)
       .then(res => res.json())
       .catch(err => console.error(err));
     window.location.hash = 'profile';
@@ -54,12 +56,16 @@ export default class CreateProfileForm extends React.Component {
 
   handleUpload(e) {
     e.preventDefault();
+    const token = this.context.token;
     const formData = new FormData(event.target);
     const req = {
       method: 'PATCH',
-      body: formData
+      body: formData,
+      headers: {
+        'X-Access-Token': token
+      }
     };
-    fetch(`/api/users/${this.state.userId}`, req)
+    fetch('/api/users', req)
       .then(res => res.json())
       .then(result => {
         e.target.reset();

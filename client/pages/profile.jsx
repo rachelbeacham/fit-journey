@@ -13,8 +13,11 @@ export default class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { userId } = this.context.user;
-    fetch(`/api/users/${userId}`)
+    fetch('/api/users', {
+      headers: {
+        'X-Access-Token': this.context.token
+      }
+    })
       .then(res => res.json())
       .then(result => {
         const details = result[0];

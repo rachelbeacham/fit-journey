@@ -2,8 +2,9 @@ import React from 'react';
 import Header from './header';
 import JournalPage from '../pages/journal';
 import { exercises, sets } from '../lib/getWorkoutDetails';
+import AppContext from '../lib/app-context';
 
-class WorkoutDetails extends React.Component {
+export default class WorkoutDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,12 @@ class WorkoutDetails extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/sets/${this.props.workoutId} `)
+    const token = this.context.token;
+    fetch(`/api/sets/${this.props.workoutId}`, {
+      headers: {
+        'X-Access-Token': token
+      }
+    })
       .then(res => res.json())
       .then(result => this.setState({
         exercises: sets(exercises(result), result),
@@ -74,4 +80,4 @@ class WorkoutDetails extends React.Component {
   }
 }
 
-export default WorkoutDetails;
+WorkoutDetails.contextType = AppContext;

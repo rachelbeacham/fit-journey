@@ -14,7 +14,12 @@ export default class Goals extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/goals/${this.context.user.userId}`)
+    const token = this.context.token;
+    fetch('/api/goals', {
+      headers: {
+        'X-Access-Token': token
+      }
+    })
       .then(res => res.json())
       .then(goals => this.setState({
         goals
@@ -23,14 +28,16 @@ export default class Goals extends React.Component {
   }
 
   addGoal(newGoal) {
+    const token = this.context.token;
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(newGoal)
     };
-    fetch(`/api/goals/${this.context.user.userId}`, req)
+    fetch('/api/goals', req)
       .then(res => res.json())
       .then(goal => {
         const updated = this.state.goals.slice();
@@ -43,12 +50,14 @@ export default class Goals extends React.Component {
   }
 
   toggleCompleted(goalId) {
+    const token = this.context.token;
     const { goals } = this.state;
     const target = goals.find(goal => goal.goalId === goalId);
     const req = {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify({ completed: !target.completed })
     };
