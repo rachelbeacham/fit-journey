@@ -6,7 +6,8 @@ export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      profileDetails: true
+      profileDetails: true,
+      goals: []
     };
   }
 
@@ -52,7 +53,7 @@ export default class Profile extends React.Component {
           </div>
         </div>
         <div className={createProfileClass}>
-            <a href="#createProfile"><h3 className="green-text">Create Profile</h3></a>
+            <a className="text-decoration-none" href="#createProfile"><h3 className="green-text">Create Profile</h3></a>
         </div>
         <div className="row mt-3">
           <form>
@@ -61,8 +62,8 @@ export default class Profile extends React.Component {
             <button type="submit" className="green-button py-1 px-3">ADD</button>
           </form>
         </div>
-        <div className="pop-out-colors overflow-scroll mt-3 vh-20">
-
+        <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-scroll mt-3 vh-20">
+            You haven&apost added any goals yet!
         </div>
           <div className="pop-out-colors d-flex justify-content-evenly text-center my-3 w-75 py-3 position-fixed bottom-0 start-50 translate-middle-x">
             <a href="#profile"><i className="fas col mx-4 fa-user green-text fs-1"></i></a>

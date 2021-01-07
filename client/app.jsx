@@ -45,14 +45,14 @@ export default class App extends React.Component {
 
   renderPage() {
     const { location } = this.state;
-    if (location.path === 'landing') {
-      return <LandingPage />;
-    }
-    if (location.path === 'sign-up') {
+    if (location.path === 'sign-up' && this.state.user === null) {
       return <SignUp />;
     }
-    if (location.path === 'login') {
+    if (location.path === 'login' && this.state.user === null) {
       return <Login />;
+    }
+    if (this.state.user === null) {
+      return <LandingPage />;
     }
     if (location.path === '') {
       return <Home />;

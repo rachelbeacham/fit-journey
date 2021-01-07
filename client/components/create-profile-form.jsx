@@ -90,7 +90,7 @@ export default class CreateProfileForm extends React.Component {
       : 'd-none';
     return (
     <>
-    <Header heading="Create Profile" button="Back" />
+    <Header heading="Create Profile" button="Back" href="#profile" />
     <div className="container d-flex flex-column justify-content-center align-items-center">
       <div className="row">
         <div className="col d-flex justify-content-center">
