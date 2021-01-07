@@ -8,6 +8,7 @@ export default class Goals extends React.Component {
     this.state = {
       goals: []
     };
+    this.addGoal = this.addGoal.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +37,7 @@ export default class Goals extends React.Component {
   render() {
     return (
       <>
-      <GoalsForm />
+      <GoalsForm onSubmit={this.addGoal} />
       <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-scroll mt-3 vh-20">
           You haven&apos;t added any goals yet!
       </div>
