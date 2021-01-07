@@ -3,7 +3,6 @@ import AppContext from './lib/app-context';
 import Home from './pages/home';
 import ExerciseList from './pages/exercise-list';
 import LogWorkout from './pages/log-workout';
-import AddExercise from './components/add-exercise';
 import JournalPage from './pages/journal';
 import Profile from './pages/profile';
 import CreateProfileForm from './components/create-profile-form';
@@ -63,6 +62,15 @@ export default class App extends React.Component {
     }
     if (location.path === 'createProfile') {
       return <CreateProfileForm button="Back" href="#profile" />;
+    }
+    if (location.path === 'journal') {
+      return <JournalPage button='Back' href='#' />;
+    }
+    if (location.path === 'view-exercises') {
+      return <ExerciseList />;
+    }
+    if (location.path === 'log-workout') {
+      return <LogWorkout button='Back' href='#' />;
     }
   }
 

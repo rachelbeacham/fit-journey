@@ -104,7 +104,7 @@ class ExerciseList extends React.Component {
     }
     return (
       <>
-        <Header button='Back' workoutId={this.props.workoutId} heading={heading}/>
+        <Header button='Home' href='#' workoutId={this.props.workoutId} heading={heading}/>
         <div className={filterClass}>
           <form className="text-center">
             <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>

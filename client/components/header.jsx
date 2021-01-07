@@ -45,7 +45,9 @@ export default class Header extends React.Component {
                 <h1 className="oregano mt-2 title green-text text-center">Fit Journey</h1>
               </div>
               <div className="col pe-3 d-flex justify-content-end">
-                <button className="pop-out-colors mt-2 gray-text top-button">Finish!</button>
+                <a href='#journal'>
+                  <button className="pop-out-colors mt-2 gray-text top-button">Finish!</button>
+                </a>
               </div>
             </div>
           </header>

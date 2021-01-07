@@ -60,7 +60,7 @@ class WorkoutDetails extends React.Component {
     if (this.state.date) {
       return (
       <>
-          <Header onClick={this.handleClick} button="Back"></Header>
+          <Header href='#journal' onClick={this.handleClick} button="Back"></Header>
           <div className="container w-90 vh-85 text-center overflow-scroll pop-out-colors">
           <p className="green-text fs-5 mt-3 mb-1">{this.state.date}</p>
             <h3 className="text-white mt-0">Workout Details</h3>

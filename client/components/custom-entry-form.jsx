@@ -5,6 +5,11 @@ class CustomEntryForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    window.location.hash = '#journal';
   }
 
   handleSubmit(e) {
@@ -25,7 +30,7 @@ class CustomEntryForm extends React.Component {
   render() {
     return (
       <>
-      <Header button="Back" heading="Custom Workout" />
+      <Header noButtons='true' heading="Custom Workout" />
       <form onSubmit={this.handleSubmit}>
         <div className="row justify-content-center">
           <label htmlFor="name" className="my-1 w-75 text-white">Name</label>
@@ -36,7 +41,7 @@ class CustomEntryForm extends React.Component {
             placeholder="e.g. Cardio, Yoga, Hike, etc."
             className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
           <div className="position-fixed bottom-0 start-50 translate-middle-x mb-3 text-center w-100">
-            <button type="submit"
+            <button type="submit" onClick={this.handleClick}
               className="my-3 green-button w-90 fs-2 py-2">
                 Log Custom Workout
             </button>
