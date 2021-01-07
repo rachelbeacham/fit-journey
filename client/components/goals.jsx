@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
 import GoalsForm from './goals-form';
+import Goal from './individual-goal';
 
 export default class Goals extends React.Component {
   constructor(props) {
@@ -39,13 +40,36 @@ export default class Goals extends React.Component {
       .catch(err => console.error(err));
   }
 
+  renderGoalList() {
+    if (!this.state.goals[0]) {
+      return (
+        <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-scroll mt-3 vh-20">
+          You haven&apos;t added any goals yet!
+        </div>
+      );
+    } else {
+      return (
+        <div className="pop-out-colors gray-text overflow-scroll mt-3 vh-20">
+           <ul className="list-group text-start">
+            {
+              this.state.goals.map(goal => {
+                return (
+                  <Goal key={goal.goalId}
+                  goal={goal} toggleCompleted={this.toggleCompleted} />
+                );
+              })
+            }
+          </ul>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <>
       <GoalsForm onSubmit={this.addGoal} />
-      <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-scroll mt-3 vh-20">
-          You haven&apos;t added any goals yet!
-      </div>
+      {this.renderGoalList()}
       </>
     );
   }
