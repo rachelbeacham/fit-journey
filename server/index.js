@@ -1,8 +1,9 @@
 require('dotenv/config');
-const staticMiddleware = require('./static-middleware');
-const errorMiddleware = require('./error-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
+const staticMiddleware = require('./static-middleware');
 const formatDate = require('../client/lib/formatDate');
+const errorMiddleware = require('./error-middleware');
 const ClientError = require('./client-error');
 const jwt = require('jsonwebtoken');
 const express = require('express');
