@@ -33,9 +33,10 @@ export default class Goals extends React.Component {
     fetch(`/api/goals/${this.context.user.userId}`, req)
       .then(res => res.json())
       .then(goal => {
-        this.state.goals.push(goal);
+        const updated = this.state.goals.slice();
+        updated.push(goal);
         this.setState({
-          goals: this.state.goals
+          goals: updated
         });
       })
       .catch(err => console.error(err));
@@ -43,11 +44,7 @@ export default class Goals extends React.Component {
 
   toggleCompleted(goalId) {
     const { goals } = this.state;
-    const target = goals.find(goal => {
-      if (goal.goalId === goalId) {
-        return { completed: goal.completed };
-      }
-    });
+    const target = goals.find(goal => goal.goalId === goalId);
     const req = {
       method: 'PATCH',
       headers: {
