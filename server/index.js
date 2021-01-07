@@ -251,6 +251,23 @@ app.post('/api/goals/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.patch('/api/goals/:id', (req, res, next) => {
+  const goalId = req.params.id;
+  const { completed } = req.body;
+  const params = [completed, goalId];
+  const sql = `
+    update "goals"
+       set "completed" = $1
+    where "goalId"     = $2
+    returning *
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.patch('/api/users/:id', uploadsMiddleware, (req, res, next) => {
   const userId = req.params.id;
   const { name, currentWeight } = req.body;
