@@ -1,19 +1,13 @@
 import React from 'react';
+import GoalsForm from './goals-form';
+import GoalsList from './goals-list';
 
 export default class Goals extends React.Component {
   render() {
     return (
       <>
-      <div className="row mt-3">
-        <form>
-          <label htmlFor="goals" className="text-white fs-3 me-3">Goals:</label>
-          <input type="text" placeholder="Add a new goal" className="gray-text ps-3 w-50 me-3 pop-in-colors"></input>
-          <button type="submit" className="green-button py-1 px-3">ADD</button>
-        </form>
-      </div>
-      <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-scroll mt-3 vh-20">
-        You haven&apos;t added any goals yet!
-      </div>
+      <GoalsForm />
+      <GoalsList />
       </>
     );
   }
