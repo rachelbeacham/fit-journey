@@ -53,7 +53,7 @@ class LogWorkout extends React.Component {
     if (!this.state.workoutId) {
       return (
         <>
-          <Header button='Back' heading='Log a Workout' />
+          <Header button='Home' href='#' heading='Log a Workout' />
           <InitialForm onClick={this.handleClick} handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
         </>
       );

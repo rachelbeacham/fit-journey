@@ -23,9 +23,13 @@ class JournalPage extends React.Component {
   }
 
   handleClick(e) {
-    this.setState({
-      workoutDetial: e.target.id
-    });
+    if (e.target.id === 'log-workout') {
+      window.location.hash = e.target.id;
+    } else {
+      this.setState({
+        workoutDetial: e.target.id
+      });
+    }
   }
 
   renderLoggedWorkouts() {
@@ -51,7 +55,7 @@ class JournalPage extends React.Component {
     return (
       <>
         <p className="text-center fs-3 text-muted mt-2">You havent logged any workouts yet!</p>
-        <button className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
+        <button id='log-workout' onClick={this.handleClick} className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
           Log a Workout
         </button>
       </>
@@ -62,7 +66,7 @@ class JournalPage extends React.Component {
     if (!this.state.workouts[0]) {
       return (
         <>
-          <Header button='Back' heading='Logged Workouts' />
+          <Header button='Home' href='#' heading='Logged Workouts' />
           <div className="container mt-1">
             <div className="row">
               {this.journalEmpty()}
@@ -73,12 +77,12 @@ class JournalPage extends React.Component {
     } else if (!this.state.workoutDetial) {
       return (
         <>
-        <Header button='Back' heading='Logged Workouts' />
+        <Header button='Home' href="#" heading='Logged Workouts' />
         <div className="container mt-1">
-          <div className="row justify-content-evenly">
+          <div className="row vh-70 justify-content-evenly">
             {this.renderLoggedWorkouts()}
           </div>
-          <button className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
+          <button id='log-workout' onClick={this.handleClick} className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
               Log a Workout
           </button>
         </div>
