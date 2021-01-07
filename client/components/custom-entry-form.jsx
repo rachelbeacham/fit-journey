@@ -1,7 +1,8 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 import Header from './header';
 
-class CustomEntryForm extends React.Component {
+export default class CustomEntryForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,12 +14,14 @@ class CustomEntryForm extends React.Component {
   }
 
   handleSubmit(e) {
+    const token = this.context.token;
     const { name, type } = this.props;
     const data = { name, type };
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(data)
     };
@@ -53,4 +56,4 @@ class CustomEntryForm extends React.Component {
   }
 }
 
-export default CustomEntryForm;
+CustomEntryForm.contextType = AppContext;

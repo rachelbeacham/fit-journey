@@ -31,7 +31,7 @@ export default class App extends React.Component {
     });
     const token = window.localStorage.getItem('react-context-jwt');
     const user = token ? decodeToken(token) : null;
-    this.setState({ user });
+    this.setState({ user, token });
   }
 
   handleSignIn(result) {
@@ -75,9 +75,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { user, location } = this.state;
+    const { user, location, token } = this.state;
     const { handleSignIn } = this;
-    const contextValue = { user, location, handleSignIn };
+    const contextValue = { user, location, handleSignIn, token };
     return (
       <AppContext.Provider value={contextValue}>
         <>

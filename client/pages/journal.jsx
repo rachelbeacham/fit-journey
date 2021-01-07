@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '../components/header';
 import WorkoutDetails from '../components/workout-detail';
+import AppContext from '../lib/app-context';
 
-class JournalPage extends React.Component {
+export default class JournalPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,11 @@ class JournalPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/workouts/${this.state.userId}`)
+    fetch('/api/workouts', {
+      headers: {
+        'X-Access-Token': this.context.token
+      }
+    })
       .then(res => res.json())
       .then(result => this.setState({
         workouts: result
@@ -95,4 +100,4 @@ class JournalPage extends React.Component {
 
 }
 
-export default JournalPage;
+JournalPage.contextType = AppContext;

@@ -1,8 +1,9 @@
 require('dotenv/config');
-const staticMiddleware = require('./static-middleware');
-const errorMiddleware = require('./error-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
+const staticMiddleware = require('./static-middleware');
 const formatDate = require('../client/lib/formatDate');
+const errorMiddleware = require('./error-middleware');
 const ClientError = require('./client-error');
 const jwt = require('jsonwebtoken');
 const express = require('express');
@@ -73,23 +74,6 @@ app.post('/api/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/users/:id', (req, res, next) => {
-  const userId = req.params.id;
-  const params = [userId];
-  const sql = `
-    select "userName",
-           "currentWeight",
-           "profilePictureUrl"
-      from "users"
-     where "userId" = $1
-  `;
-  db.query(sql, params)
-    .then(result => {
-      res.status(200).json(result.rows);
-    })
-    .catch(err => next(err));
-});
-
 app.get('/api/exercises', (req, res, next) => {
   const sql = `
     select *
@@ -121,8 +105,27 @@ app.get('/api/exercises/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/workouts/:id', (req, res, next) => {
-  const id = req.params.id;
+app.use(authorizationMiddleware);
+
+app.get('/api/users', (req, res, next) => {
+  const { userId } = req.user;
+  const params = [userId];
+  const sql = `
+    select "userName",
+           "currentWeight",
+           "profilePictureUrl"
+      from "users"
+     where "userId" = $1
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/workouts', (req, res, next) => {
+  const { userId } = req.user;
   const sql = `
   select "workoutDate",
          "workoutDuration",
@@ -130,7 +133,7 @@ app.get('/api/workouts/:id', (req, res, next) => {
     from "workouts"
    where "userId" = $1
   `;
-  const params = [id];
+  const params = [userId];
   db.query(sql, params)
     .then(result => {
       const data = result.rows.map(each => {
@@ -171,7 +174,8 @@ order by "setId"
 });
 
 app.post('/api/workouts', (req, res, next) => {
-  const { date, duration, userId } = req.body;
+  const { userId } = req.user;
+  const { date, duration } = req.body;
   const sql = `
     insert into "workouts" ("workoutDate", "workoutDuration", "userId")
     values ($1, $2, $3)
@@ -220,8 +224,56 @@ app.post('/api/sets', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.patch('/api/users/:id', uploadsMiddleware, (req, res, next) => {
-  const userId = req.params.id;
+app.get('/api/goals', (req, res, next) => {
+  const { userId } = req.user;
+  const params = [userId];
+  const sql = `
+    select *
+      from "goals"
+     where "userId" = $1
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/goals', (req, res, next) => {
+  const { userId } = req.user;
+  const { goalDescription, completed } = req.body;
+  const params = [goalDescription, completed, userId];
+  const sql = `
+    insert into "goals" ("goalDescription", "completed", "userId")
+    values ($1, $2, $3)
+    returning *
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/goals/:id', (req, res, next) => {
+  const goalId = req.params.id;
+  const { completed } = req.body;
+  const params = [completed, goalId];
+  const sql = `
+    update "goals"
+       set "completed" = $1
+    where "goalId"     = $2
+    returning *
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/users', uploadsMiddleware, (req, res, next) => {
+  const { userId } = req.user;
   const { name, currentWeight } = req.body;
   let url = null;
   if (req.file) {

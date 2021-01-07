@@ -1,7 +1,8 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 import ExerciseList from '../pages/exercise-list';
 
-class AddExercise extends React.Component {
+export default class AddExercise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,13 +17,15 @@ class AddExercise extends React.Component {
   }
 
   handleClick() {
+    const token = this.context.token;
     const { reps, weight } = this.state;
     const { workoutId, exerciseId } = this.props;
     const data = { reps, weight, workoutId, exerciseId };
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(data)
     };
@@ -101,4 +104,4 @@ class AddExercise extends React.Component {
   }
 }
 
-export default AddExercise;
+AddExercise.contextType = AppContext;
