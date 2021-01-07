@@ -23,7 +23,7 @@ export default class Goals extends React.Component {
       },
       body: JSON.stringify(newGoal)
     };
-    fetch('/api/goals', req)
+    fetch(`/api/goals/${this.context.user.userId}`, req)
       .then(res => res.json())
       .then(goal => {
         this.state.goals.push(goal);
