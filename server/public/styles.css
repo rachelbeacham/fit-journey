@@ -122,6 +122,10 @@ input {
   overflow: scroll;
 }
 
+.completed {
+  text-decoration: line-through;
+}
+
 input,
 button,
 i {

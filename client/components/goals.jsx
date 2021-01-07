@@ -10,6 +10,7 @@ export default class Goals extends React.Component {
       goals: []
     };
     this.addGoal = this.addGoal.bind(this);
+    this.toggleCompleted = this.toggleCompleted.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +39,32 @@ export default class Goals extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  toggleCompleted(goalId) {
+    const { goals } = this.state;
+    const target = goals.find(goal => {
+      if (goal.goalId === goalId) {
+        return { completed: goal.completed };
+      }
+    });
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ completed: !target.completed })
+    };
+    fetch(`/api/goals/${goalId}`, req)
+      .then(res => res.json())
+      .then(data => {
+        const updated = this.state.goals.slice();
+        const index = updated.findIndex(goal => (goal.goalId === goalId));
+        updated[index] = data[0];
+        this.setState({
+          goals: updated
+        });
+      });
   }
 
   renderGoalList() {
