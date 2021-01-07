@@ -220,6 +220,22 @@ app.post('/api/sets', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/goals/:id', (req, res, next) => {
+  const userId = req.params.id;
+  const { goalDescription, completed } = req.body;
+  const params = [goalDescription, completed, userId];
+  const sql = `
+    insert into "goals" ("goalDescription", "completed", "userId")
+    values ($1, $2, $3)
+    returning *
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.patch('/api/users/:id', uploadsMiddleware, (req, res, next) => {
   const userId = req.params.id;
   const { name, currentWeight } = req.body;
