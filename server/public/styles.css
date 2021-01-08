@@ -1,7 +1,7 @@
 body {
   position: relative;
   font-family: 'Palanquin', sans-serif;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(./images/dark-background-texture-of-beech-hd-copy.jpg);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(./images/dark-background-texture-of-beech-hd-copy.jpg);
 }
 
 select,
@@ -33,6 +33,7 @@ input {
   background-size: cover;
   border-radius: 15px;
   position: relative;
+  box-shadow: 4px 4px 6px rgba(15, 10, 10, 0.7);
 }
 
 .log-workout {
@@ -42,6 +43,7 @@ input {
   background-size: cover;
   border-radius: 15px;
   position: relative;
+  box-shadow: 4px 4px 6px rgba(15, 10, 10, 0.7);
 }
 
 .green-text {

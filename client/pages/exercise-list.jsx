@@ -102,9 +102,15 @@ class ExerciseList extends React.Component {
       filterClass = 'd-none';
       heading = 'Add Exercise';
     }
+    const headerButton = this.props.workoutId
+      ? 'Finish'
+      : 'Home';
+    const headerHref = this.props.workoutId
+      ? '#journal'
+      : '#';
     return (
       <>
-        <Header button='Home' href='#' workoutId={this.props.workoutId} heading={heading}/>
+        <Header button={headerButton} href={headerHref} workoutId={this.props.workoutId} heading={heading}/>
         <div className={filterClass}>
           <form className="text-center">
             <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>

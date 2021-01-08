@@ -38,9 +38,7 @@ export default class App extends React.Component {
     const { user, token } = result;
     window.localStorage.setItem('react-context-jwt', token);
     window.location.hash = '';
-    this.setState({
-      user
-    });
+    this.setState({ user, token });
   }
 
   renderPage() {

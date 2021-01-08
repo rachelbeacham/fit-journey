@@ -36,6 +36,10 @@ export default class AddExercise extends React.Component {
         setCount: this.state.setCount + 1
       }))
       .catch(err => console.error(err));
+    this.setState({
+      reps: '',
+      weight: ''
+    });
   }
 
   handleChange(e) {
@@ -54,6 +58,7 @@ export default class AddExercise extends React.Component {
   }
 
   render() {
+    const { reps, weight } = this.state;
     if (this.state.view === 'exercises') {
       return (
         <>
@@ -81,12 +86,12 @@ export default class AddExercise extends React.Component {
             <p className="fs-2 gray-text">{this.state.setCount}</p>
           </div>
           <div className="col text-center">
-            <input type="number" name='reps' required
+            <input type="number" name='reps' required value={reps}
               className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
           <div className="col text-center">
-            <input type="number" name='weight' required
+            <input type="number" name='weight' required value={weight}
               className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
