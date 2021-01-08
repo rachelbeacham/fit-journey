@@ -126,21 +126,26 @@ app.get('/api/users', (req, res, next) => {
 
 app.get('/api/workouts', (req, res, next) => {
   const { userId } = req.user;
-  const sql = `
-  select "workoutDate",
-         "workoutDuration",
-         "workoutId"
-    from "workouts"
-   where "userId" = $1
-  `;
   const params = [userId];
+  const sql = `
+   select "workouts"."workoutId",
+          "workouts"."workoutDate",
+          "workouts"."workoutDuration",
+          "workouts"."isCustom",
+          "customWorkouts"."customWorkoutName",
+          "customWorkouts"."type"
+     from "workouts"
+left join "customWorkouts"
+    ON "customWorkouts"."workoutId" = "workouts"."workoutId"
+    where "userId" = $1
+  `;
   db.query(sql, params)
     .then(result => {
-      const data = result.rows.map(each => {
+      const workouts = result.rows.map(each => {
         each.workoutDate = formatDate(each.workoutDate);
         return each;
       });
-      res.status(200).json(data);
+      res.status(200).json(workouts);
     })
     .catch(err => next(err));
 });
@@ -175,13 +180,13 @@ order by "setId"
 
 app.post('/api/workouts', (req, res, next) => {
   const { userId } = req.user;
-  const { date, duration } = req.body;
+  const { date, duration, isCustom } = req.body;
   const sql = `
-    insert into "workouts" ("workoutDate", "workoutDuration", "userId")
-    values ($1, $2, $3)
+    insert into "workouts" ("workoutDate", "workoutDuration", "userId", "isCustom")
+    values ($1, $2, $3, $4)
     returning "workoutId"
   `;
-  const params = [date, duration, userId];
+  const params = [date, duration, userId, isCustom];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);

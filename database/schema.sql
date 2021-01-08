@@ -49,6 +49,7 @@ CREATE TABLE "workouts" (
 	"userId" integer NOT NULL,
 	"workoutDate" DATE NOT NULL,
 	"workoutDuration" TEXT NOT NULL,
+	"isCustom" BOOLEAN NOT NULL,
 	CONSTRAINT "workouts_pk" PRIMARY KEY ("workoutId")
 ) WITH (
   OIDS=FALSE

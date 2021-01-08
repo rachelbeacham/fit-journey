@@ -40,7 +40,8 @@ export default class JournalPage extends React.Component {
   renderLoggedWorkouts() {
     const workouts = this.state.workouts;
     const journalList = workouts.map(workout => {
-      return (
+      if (!workout.isCustom) {
+        return (
           <div key={workout.workoutId} className="col-6 col-md-4 mt-3">
             <div className="pop-out-colors  lh-1 text-center">
               <p className="text-white mt-2">Date:</p>
@@ -51,7 +52,20 @@ export default class JournalPage extends React.Component {
                  id={workout.workoutId} onClick={this.handleClick}>See Full Workout</p>
             </div>
           </div>
-      );
+        );
+      } else {
+        return (
+            <div key={workout.workoutId} className="col-6 col-md-4 mt-3">
+              <div className="pop-out-colors  lh-1 text-center">
+                <p className="text-white mt-2">Date:</p>
+                <p className="green-text">{workout.workoutDate}</p>
+                <p className="text-white">Duration:</p>
+                <p className="green-text">{workout.workoutDuration}</p>
+                <p className="gray-text">{workout.customWorkoutName} {workout.type}</p>
+              </div>
+            </div>
+        );
+      }
     });
     return journalList;
   }
