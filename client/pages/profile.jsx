@@ -20,7 +20,6 @@ export default class Profile extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         const details = result[0];
         if (details.currentWeight || details.userName || details.profilePictureUrl) {
           this.setState({
@@ -43,7 +42,7 @@ export default class Profile extends React.Component {
       : 'd-none';
     const createProfileClass = (this.state.profileDetails)
       ? 'd-none'
-      : 'row mt-3';
+      : 'row mt-3 text-center';
     return (
       <>
       <Header noButtons="true" />
