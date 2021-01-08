@@ -20,8 +20,9 @@ export default class Profile extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
+        console.log(result);
         const details = result[0];
-        if (details.currentWeight && details.userName && details.profilePictureUrl) {
+        if (details.currentWeight || details.userName || details.profilePictureUrl) {
           this.setState({
             userName: details.userName,
             profilePictureUrl: details.profilePictureUrl,
@@ -46,7 +47,7 @@ export default class Profile extends React.Component {
     return (
       <>
       <Header noButtons="true" />
-      <div className="container text-center">
+      <div className="container">
         <div className={personalInfoClass}>
           <div className="col">
             <img src={this.state.profilePictureUrl} className="w-100 rounded" />
@@ -54,6 +55,7 @@ export default class Profile extends React.Component {
           <div className="col">
             <p className="text-white fs-4">{this.state.userName}</p>
             <p className="text-white">Current Weight: {this.state.currentWeight}</p>
+            <a className="text-decoration-none" href="#createProfile" heading="Edit Profile"><p className="text-start green-text">Edit Profile</p></a>
           </div>
         </div>
         <div className={createProfileClass}>

@@ -282,7 +282,7 @@ app.patch('/api/goals/:id', (req, res, next) => {
 
 app.patch('/api/users', uploadsMiddleware, (req, res, next) => {
   const { userId } = req.user;
-  const { name, currentWeight } = req.body;
+  const { userName, currentWeight } = req.body;
   let url = null;
   if (req.file) {
     url = path.join('/images', req.file.filename);
@@ -290,7 +290,7 @@ app.patch('/api/users', uploadsMiddleware, (req, res, next) => {
   let sql;
   let params;
   if (url) {
-    params = [name, currentWeight, url, userId];
+    params = [userName, currentWeight, url, userId];
     sql = `
     update "users"
        set "userName"          = $1,
@@ -300,7 +300,7 @@ app.patch('/api/users', uploadsMiddleware, (req, res, next) => {
      returning *
   `;
   } else {
-    params = [name, currentWeight, userId];
+    params = [userName, currentWeight, userId];
     sql = `
     update "users"
        set "userName"          = $1,
