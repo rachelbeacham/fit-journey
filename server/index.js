@@ -15,7 +15,10 @@ const app = express();
 const jsonMiddleware = express.json();
 
 const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 app.use(staticMiddleware);
