@@ -126,22 +126,26 @@ app.get('/api/users', (req, res, next) => {
 
 app.get('/api/workouts', (req, res, next) => {
   const { userId } = req.user;
-  const sql = `
-  select "workoutDate",
-         "workoutDuration",
-         "workoutId",
-         "isCustom"
-    from "workouts"
-   where "userId" = $1
-  `;
   const params = [userId];
+  const sql = `
+   select "workouts"."workoutId",
+          "workouts"."workoutDate",
+          "workouts"."workoutDuration",
+          "workouts"."isCustom",
+          "customWorkouts"."customWorkoutName",
+          "customWorkouts"."type"
+     from "workouts"
+left join "customWorkouts"
+    ON "customWorkouts"."workoutId" = "workouts"."workoutId"
+    where "userId" = $1
+  `;
   db.query(sql, params)
     .then(result => {
-      const data = result.rows.map(each => {
+      const workouts = result.rows.map(each => {
         each.workoutDate = formatDate(each.workoutDate);
         return each;
       });
-      res.status(200).json(data);
+      res.status(200).json(workouts);
     })
     .catch(err => next(err));
 });
