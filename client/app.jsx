@@ -80,8 +80,8 @@ export default class App extends React.Component {
 
   render() {
     const { user, location, token } = this.state;
-    const { handleSignIn } = this;
-    const contextValue = { user, location, handleSignIn, token };
+    const { handleSignIn, handleSignOut } = this;
+    const contextValue = { user, location, handleSignIn, handleSignOut, token };
     return (
       <AppContext.Provider value={contextValue}>
         <>
