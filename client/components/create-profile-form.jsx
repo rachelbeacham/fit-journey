@@ -32,7 +32,7 @@ export default class CreateProfileForm extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const { userName, currentWeight, profilePictureUrl } = result[0];
+        const { userName, currentWeight, profilePictureUrl } = result;
         this.setState({
           userName,
           currentWeight,

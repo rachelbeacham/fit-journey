@@ -20,7 +20,7 @@ export default class Profile extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const { currentWeight, userName, profilePictureUrl } = result[0];
+        const { currentWeight, userName, profilePictureUrl } = result;
         if (currentWeight || userName || profilePictureUrl) {
           this.setState({
             userName,
