@@ -43,7 +43,7 @@ export default class Profile extends React.Component {
       );
     } else {
       return (
-        <div className="pop-out-colors d-flex align-items-center justify-content-center h-90 w-100 mt-3">
+        <div className="pop-out-colors d-flex align-items-center justify-content-center h-90 w-100">
           <p className="gray-text fs-3 oregano">Profile Picture</p>
         </div>
       );
