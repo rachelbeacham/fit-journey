@@ -73,7 +73,6 @@ class ExerciseList extends React.Component {
           <div className="col lh-1 flex-col">
             <h4 className="text-white">{ exercise.exerciseName }</h4>
             <p className="gray-text">{ exercise.muscleName }</p>
-            <p className="green-text">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
             <button id={exercise.exerciseId} className={addButtonClass}>ADD</button>
