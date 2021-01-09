@@ -20,12 +20,12 @@ export default class Profile extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const details = result[0];
-        if (details.currentWeight && details.userName && details.profilePictureUrl) {
+        const { currentWeight, userName, profilePictureUrl } = result;
+        if (currentWeight || userName || profilePictureUrl) {
           this.setState({
-            userName: details.userName,
-            profilePictureUrl: details.profilePictureUrl,
-            currentWeight: details.currentWeight
+            userName,
+            profilePictureUrl,
+            currentWeight
           });
         } else {
           this.setState({
@@ -36,24 +36,39 @@ export default class Profile extends React.Component {
       .catch(err => console.error(err));
   }
 
+  renderProfilePicture() {
+    if (this.state.profilePictureUrl) {
+      return (
+        <img src={this.state.profilePictureUrl} className="rounded img-fluid" />
+      );
+    } else {
+      return (
+        <div className="pop-out-colors d-flex align-items-center justify-content-center h-90 w-100">
+          <p className="gray-text fs-3 oregano">Profile Picture</p>
+        </div>
+      );
+    }
+  }
+
   render() {
     const personalInfoClass = (this.state.profileDetails)
       ? 'row mt-3'
       : 'd-none';
     const createProfileClass = (this.state.profileDetails)
       ? 'd-none'
-      : 'row mt-3';
+      : 'row mt-3 text-center';
     return (
       <>
       <Header noButtons="true" />
-      <div className="container text-center">
+      <div className="container">
         <div className={personalInfoClass}>
-          <div className="col">
-            <img src={this.state.profilePictureUrl} className="w-100 rounded" />
+            <div className="col">
+            {this.renderProfilePicture()}
           </div>
           <div className="col">
             <p className="text-white fs-4">{this.state.userName}</p>
             <p className="text-white">Current Weight: {this.state.currentWeight}</p>
+            <a className="text-decoration-none" href="#createProfile" heading="Edit Profile"><p className="text-start green-text">Edit Profile</p></a>
           </div>
         </div>
         <div className={createProfileClass}>

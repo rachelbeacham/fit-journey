@@ -6,8 +6,9 @@ export default class CreateProfileForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: null,
-      uploadModalOpen: false
+      uploadModalOpen: false,
+      userName: '',
+      currentWeight: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,10 +24,22 @@ export default class CreateProfileForm extends React.Component {
   }
 
   componentDidMount() {
-    const { userId } = this.context.user;
-    this.setState({
-      userId
-    });
+    const { token } = this.context;
+    fetch('/api/users', {
+      headers: {
+        'X-Access-Token': token
+      }
+    })
+      .then(res => res.json())
+      .then(result => {
+        const { userName, currentWeight, profilePictureUrl } = result;
+        this.setState({
+          userName,
+          currentWeight,
+          profilePictureUrl
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   handleClick() {
@@ -38,8 +51,8 @@ export default class CreateProfileForm extends React.Component {
   handleSubmit(e) {
     const token = this.context.token;
     e.preventDefault();
-    const { name, currentWeight } = this.state;
-    const data = { name, currentWeight };
+    const { userName, currentWeight } = this.state;
+    const data = { userName, currentWeight };
     const req = {
       method: 'PATCH',
       headers: {
@@ -70,7 +83,7 @@ export default class CreateProfileForm extends React.Component {
       .then(result => {
         e.target.reset();
         this.setState({
-          profileImg: result[0].profilePictureUrl
+          profilePictureUrl: result[0].profilePictureUrl
         });
       })
       .catch(err => {
@@ -79,9 +92,9 @@ export default class CreateProfileForm extends React.Component {
   }
 
   renderProfilePicture() {
-    if (this.state.profileImg) {
+    if (this.state.profilePictureUrl) {
       return (
-        <img src={this.state.profileImg} className="rounded img-fluid" />
+        <img src={this.state.profilePictureUrl} className="rounded img-fluid" />
       );
     } else {
       return (
@@ -96,7 +109,7 @@ export default class CreateProfileForm extends React.Component {
       : 'd-none';
     return (
     <>
-    <Header heading="Create Profile" button="Back" href="#profile" />
+    <Header heading="Profile Details" button="Back" href="#profile" />
     <div className="container d-flex flex-column justify-content-center align-items-center">
       <div className="row">
         <div className="col d-flex justify-content-center">
@@ -106,10 +119,10 @@ export default class CreateProfileForm extends React.Component {
         </div>
         <div className="col flex-column justify-content-center">
           <form onSubmit={this.handleSubmit}>
-            <input type="text" name="name" onChange={this.handleChange}
-             className="pop-in-colors gray-text my-3 px-3 w-100 d-block" placeholder="Name"/>
+            <input type="text" name="userName" onChange={this.handleChange}
+             className="pop-in-colors gray-text my-3 px-3 w-100 d-block" value={this.state.userName} placeholder="Name"/>
             <input type="number" name="currentWeight" onChange={this.handleChange}
-             className="pop-in-colors gray-text px-3 my-3 w-100 d-block" placeholder="Current Weight" />
+             className="pop-in-colors gray-text px-3 my-3 w-100 d-block" value={this.state.currentWeight} placeholder="Current Weight" />
             <button type="submit"
                   className="green-button w-90 fs-2 py-2 position-fixed bottom-0 start-50 translate-middle-x mb-3 text-center">
                   Save
