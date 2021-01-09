@@ -59,7 +59,7 @@ export default class Profile extends React.Component {
       : 'row mt-3 text-center';
     return (
       <>
-      <Header noButtons="true" />
+      <Header button="Sign Out" onClick={this.context.handleSignOut} />
       <div className="container">
         <div className={personalInfoClass}>
             <div className="col">
