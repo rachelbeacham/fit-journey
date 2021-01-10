@@ -49,7 +49,7 @@ export default class Login extends React.Component {
               <input required onChange={this.handleChange} type="password" name="password"
                 className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
               <button type="submit"
-                className="my-3 green-button w-75 fs-2 py-2 position-fixed bottom-0 start-50 translate-middle-x">
+                className="my-3 green-button w-75 fs-2 py-2 position-absolute bottom-0 start-50 translate-middle-x">
                 Go
             </button>
             </div>

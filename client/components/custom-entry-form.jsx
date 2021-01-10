@@ -43,7 +43,7 @@ export default class CustomEntryForm extends React.Component {
           <input required type="text" name="type" onChange={this.props.handleChange}
             placeholder="e.g. Cardio, Yoga, Hike, etc."
             className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
-          <div className="position-fixed bottom-0 start-50 translate-middle-x mb-3 text-center w-100">
+          <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3 text-center w-100">
             <button type="submit" onClick={this.handleClick}
               className="my-3 green-button w-90 fs-2 py-2">
                 Log Custom Workout

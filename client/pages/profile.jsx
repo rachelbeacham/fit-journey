@@ -52,7 +52,7 @@ export default class Profile extends React.Component {
 
   render() {
     const personalInfoClass = (this.state.profileDetails)
-      ? 'row mt-3'
+      ? 'row mt-3 d-flex justify-content-center'
       : 'd-none';
     const createProfileClass = (this.state.profileDetails)
       ? 'd-none'
@@ -75,7 +75,7 @@ export default class Profile extends React.Component {
             <a className="text-decoration-none" href="#createProfile"><h3 className="green-text">Create Profile</h3></a>
         </div>
         <Goals />
-          <div className="pop-out-colors d-flex justify-content-evenly text-center my-3 w-75 py-3 position-fixed bottom-0 start-50 translate-middle-x">
+          <div className="pop-out-colors d-flex justify-content-evenly text-center my-3 w-75 py-3 position-absolute bottom-0 start-50 translate-middle-x">
             <a href="#profile"><i className="fas col mx-4 fa-user green-text fs-1"></i></a>
             <a href="#"><i className="fas mx-4 col fa-dumbbell green-text fs-1"></i></a>
             <a href="#journal"><i className="fas col mx-4 fa-book green-text fs-1"></i></a>

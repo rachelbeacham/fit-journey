@@ -76,13 +76,13 @@ export default class Goals extends React.Component {
   renderGoalList() {
     if (!this.state.goals[0]) {
       return (
-        <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-scroll mt-3 vh-20">
+        <div className="pop-out-colors d-flex justify-content-center align-items-center gray-text overflow-auto mt-3 vh-20">
           You haven&apos;t added any goals yet!
         </div>
       );
     } else {
       return (
-        <div className="pop-out-colors gray-text overflow-scroll mt-3 vh-20">
+        <div className="pop-out-colors gray-text overflow-auto mt-3 vh-20">
            <ul className="list-group text-start">
             {
               this.state.goals.map(goal => {

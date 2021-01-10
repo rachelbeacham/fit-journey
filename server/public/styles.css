@@ -1,7 +1,15 @@
 body {
-  position: relative;
+  margin: 0 auto;
   font-family: 'Palanquin', sans-serif;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(./images/dark-background-texture-of-beech-hd-copy.jpg);
+}
+
+#root {
+  max-width: 700px;
+  height: 100vh;
+  position: relative;
+  margin: auto;
+  padding: 0.5rem;
 }
 
 select,
@@ -121,7 +129,7 @@ input {
 
 .vh-70 {
   height: 70vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .completed {
@@ -130,8 +138,37 @@ input {
 
 input,
 button,
-i {
+i,
+a,
+.pointer {
   cursor: pointer;
+}
+
+i,
+.transition {
+  transform: scale(1);
+  transition: 0.5s;
+}
+
+i:hover,
+.transition:hover {
+  transform: scale(1.3);
+}
+
+button:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px 3px #b7dd16;
+}
+
+.green-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px 3px #fff;
+}
+
+.outline-none:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 @media only screen and (min-width: 700px) {

@@ -9,7 +9,7 @@ export default function Goal(props) {
   return (
     <li>
       <div className="d-flex form-check align-items-center">
-        <input id={id} type="checkbox" checked={completed}
+        <input id={id} type="checkbox" className="outline-none" checked={completed}
           onChange={() => props.toggleCompleted(goalId)} />
         <label className={goalClass} htmlFor={id}>{goalDescription}</label>
       </div>
