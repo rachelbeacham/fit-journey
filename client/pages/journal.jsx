@@ -48,7 +48,7 @@ export default class JournalPage extends React.Component {
               <p className="green-text">{workout.workoutDate}</p>
               <p className="text-white">Duration:</p>
               <p className="green-text">{workout.workoutDuration}</p>
-              <p className="text-light text-decoration-underline"
+              <p className="text-light transition pointer text-decoration-underline"
                  id={workout.workoutId} onClick={this.handleClick}>See Full Workout</p>
             </div>
           </div>
@@ -74,7 +74,7 @@ export default class JournalPage extends React.Component {
     return (
       <>
         <p className="text-center fs-3 text-muted mt-2">You havent logged any workouts yet!</p>
-        <button id='log-workout' onClick={this.handleClick} className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
+        <button id='log-workout' onClick={this.handleClick} className="position-absolute bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
           Log a Workout
         </button>
       </>
@@ -101,7 +101,7 @@ export default class JournalPage extends React.Component {
           <div className="row vh-70 justify-content-evenly">
             {this.renderLoggedWorkouts()}
           </div>
-          <button id='log-workout' onClick={this.handleClick} className="position-fixed bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
+          <button id='log-workout' onClick={this.handleClick} className="position-absolute bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
               Log a Workout
           </button>
         </div>

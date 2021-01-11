@@ -124,13 +124,13 @@ export default class CreateProfileForm extends React.Component {
             <input type="number" name="currentWeight" onChange={this.handleChange}
              className="pop-in-colors gray-text px-3 my-3 w-100 d-block" value={this.state.currentWeight} placeholder="Current Weight" />
             <button type="submit"
-                  className="green-button w-90 fs-2 py-2 position-fixed bottom-0 start-50 translate-middle-x mb-3 text-center">
+                  className="green-button w-90 fs-2 py-2 position-absolute bottom-0 start-50 translate-middle-x mb-3 text-center">
                   Save
             </button>
           </form>
         </div>
         <div className="row mt-2">
-          <p onClick={this.handleClick} className="text-start green-text mx-2 fs-3">Change Picture</p>
+          <p onClick={this.handleClick} className="text-start pointer green-text mx-2 fs-3">Change Picture</p>
         </div>
       </div>
       <div className={uploadModalClass}>
