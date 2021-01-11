@@ -7,7 +7,6 @@ export default class JournalPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 1,
       workouts: [],
       workoutDetial: null
     };
