@@ -1,4 +1,4 @@
-#Fit Journey
+# Fit Journey
 
 Fit Journey is a full stack application solo project that allows users to log their workouts and goals.  This application features an Express server, a PostgreSQL relational database. 
 
