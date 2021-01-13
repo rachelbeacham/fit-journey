@@ -41,4 +41,13 @@ Try the application live at https://fit-journey.herokuapp.com/
 
 ## Preview:
 
-
+![Login Page](/server/public/images/Login-screen.png)
+![Home Page](/server/public/images/home-page.png)
+![Profile Page](/server/public/images/profile-page.png)
+![Log Workout Form](/server/public/images/log-workout-form.png)
+![Custom Workout Form](/server/public/images/custom-workout-form.png)
+![Add Exercises to workout Page](/server/public/images/add-exercises-workout-page.png)
+![Exercise Details](/server/public/images/exercise-details.png)
+![Add Exercise Form](/server/public/images/add-exercise-form.png)
+![Logged Workouts Journal](/server/public/images/logged-workouts-journal.png)
+![Logged Workout Details](/server/public/images/logged-workout-details.png)
