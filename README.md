@@ -18,7 +18,7 @@ Fit Journey is a full stack application solo project that allows users to log th
 Try the application live at https://fit-journey.herokuapp.com/
 
 ## Feature List:
-.
+
 1. User can view a list weight training exercises
 1. User can filter exercises by major body part
 1. User can user can view exercise details(how to + demo image).
