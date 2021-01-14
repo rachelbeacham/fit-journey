@@ -5,11 +5,10 @@ body {
 }
 
 #root {
-  max-width: 700px;
+  max-width: 768px;
   height: 100vh;
   position: relative;
   margin: auto;
-  padding: 0.5rem;
 }
 
 select,
@@ -19,7 +18,7 @@ input {
 }
 
 .landing-image {
-  height: 70vh;
+  height: 65vh;
   background: url(/images/man-dark-bodybuilder-muscle-wallpaper-preview.jpg);
   background-position: center;
   background-size: cover;
@@ -31,7 +30,7 @@ input {
 
 .landing-buttons {
   background-color: black;
-  height: 30vh;
+  height: 35vh;
 }
 
 .view-exercises {
