@@ -4,6 +4,7 @@ import InitialForm from '../components/log-workout-initial-form';
 import ExerciseList from './exercise-list';
 import CustomEntryForm from '../components/custom-entry-form';
 import AppContext from '../lib/app-context';
+import NavBar from '../components/nav-bar';
 
 export default class LogWorkout extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ export default class LogWorkout extends React.Component {
     if (!this.state.workoutId) {
       return (
         <>
+          <NavBar />
           <Header button='Home' href='#' heading='Log a Workout' />
           <InitialForm onClick={handleClick} handleSubmit={handleSubmit} handleChange={handleChange} />
         </>

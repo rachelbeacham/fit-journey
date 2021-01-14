@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/header';
 import AppContext from '../lib/app-context';
 import Goals from '../components/goals';
+import NavBar from '../components/nav-bar';
 
 export default class Profile extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ export default class Profile extends React.Component {
       : 'row mt-3 text-center';
     return (
       <>
+      <NavBar />
       <Header button="Sign Out" onClick={this.context.handleSignOut} />
       <div className="container">
         <div className={personalInfoClass}>
@@ -75,7 +77,7 @@ export default class Profile extends React.Component {
             <a className="text-decoration-none" href="#createProfile"><h3 className="green-text">Create Profile</h3></a>
         </div>
         <Goals />
-          <div className="pop-out-colors d-flex justify-content-evenly text-center my-3 w-75 py-3 position-absolute bottom-0 start-50 translate-middle-x">
+          <div className="pop-out-colors d-flex d-none-lg justify-content-around text-center mt-3 w-100 py-3 position-absolute bottom-0 start-50 translate-middle-x">
             <a href="#profile"><i className="fas col mx-4 fa-user green-text fs-1"></i></a>
             <a href="#"><i className="fas mx-4 col fa-dumbbell green-text fs-1"></i></a>
             <a href="#journal"><i className="fas col mx-4 fa-book green-text fs-1"></i></a>
