@@ -184,6 +184,10 @@ input:focus {
   text-decoration: none;
 }
 
+.title-lg {
+  display: contents;
+}
+
 @media only screen and (min-width: 700px) {
   .w-md-50 {
     width: 50% !important;
@@ -204,8 +208,8 @@ input:focus {
     display: none !important;
   }
 
-  .title {
-    display: none;
+  .title-lg {
+    display: none !important;
   }
 
   .navbar {
