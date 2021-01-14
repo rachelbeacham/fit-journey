@@ -1,26 +1,24 @@
 import React from 'react';
+import Login from './log-in';
 
 class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      demo: false,
-      username: '',
-      password: ''
+      demo: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     this.setState({
-      demo: true,
-      username: 'demoUser',
-      password: 'password'
+      demo: true
     });
   }
 
   render() {
-    return (
+    if (!this.state.demo) {
+      return (
       <div className="text-center">
         <div className="landing-image"></div>
         <div className="landing-buttons">
@@ -35,11 +33,16 @@ class LandingPage extends React.Component {
             </button>
           </a>
           <button className="pop-in-colors my-3 py-2 w-75 text-white fs-2" onClick={this.handleClick}>
-              Skip Login & Demo!
+              Use Demo Account
           </button>
         </div>
       </div>
-    );
+      );
+    } else {
+      return (
+        <Login username="demoUser" password="password" />
+      );
+    }
   }
 }
 

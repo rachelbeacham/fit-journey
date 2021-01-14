@@ -31,7 +31,7 @@ app.post('/api/sign-up', (req, res, next) => {
     .then(hashedpassword => {
       const sql = `
         insert into "users" ("username", "hashedPassword")
-        values ($1, $2, $3)
+        values ($1, $2)
         returning "userId"
       `;
       const params = [username, hashedpassword];

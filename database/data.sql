@@ -1,5 +1,5 @@
-insert into "users" ("username")
-values ('demoUser');
+insert into "users" ("username", "hashedPassword")
+values ('demoUser', '$argon2i$v=19$m=4096,t=3,p=1$cvolV1H+iPIT2dVvqEFpYw$gBozwSKQBY+cJNdweEEmMzFXNdUS/Ovt1pfUha7cZVA');
 
 insert into "muscleGroups" ("muscleName")
 values ('Arms'),

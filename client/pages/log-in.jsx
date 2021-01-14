@@ -7,6 +7,7 @@ export default class Login extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
@@ -14,6 +15,16 @@ export default class Login extends React.Component {
     this.setState({
       [name]: value
     });
+  }
+
+  handleClick() {
+    if (this.props.username) {
+      const { username, password } = this.props;
+      this.setState({
+        username,
+        password
+      });
+    }
   }
 
   handleSubmit(e) {
@@ -36,19 +47,20 @@ export default class Login extends React.Component {
   }
 
   render() {
+    const noButtons = this.props.username ? 'true' : 'false';
     return (
       <>
-        <Header href="#" button="Back" heading="Login" />
+        <Header href="#" noButtons={noButtons} button="Back" heading="Login" />
         <div className="container text-center">
           <form onSubmit={this.handleSubmit}>
             <div className="row justify-content-center">
               <label htmlFor="username" className="my-1 w-75 fs-4 text-start text-white">Username</label>
-              <input onChange={this.handleChange} required type="text" name="username"
+              <input onChange={this.handleChange} required type="text" name="username" value={this.props.username}
                 className="mb-3 gray-text w-75 pop-in-colors d-block"></input>
               <label htmlFor="password" className="my-1 w-75 fs-4 text-start text-white">Password</label>
-              <input required onChange={this.handleChange} type="password" name="password"
+              <input required onChange={this.handleChange} type="password" name="password" value={this.props.password}
                 className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
-              <button type="submit"
+              <button type="submit" onClick={this.handleClick}
                 className="my-3 green-button w-75 fs-2 py-2 position-absolute bottom-0 start-50 translate-middle-x">
                 Go
             </button>
