@@ -17,8 +17,8 @@ class SignUp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, username, password } = this.state;
-    const data = { email, username, password };
+    const { username, password } = this.state;
+    const data = { username, password };
     const req = {
       method: 'POST',
       headers: {
@@ -44,10 +44,7 @@ class SignUp extends React.Component {
       <div className="container text-center">
         <form onSubmit={this.handleSubmit}>
           <div className="row justify-content-center">
-            <label htmlFor="email" className="my-1 w-75 fs-4 text-start text-white">Email</label>
-            <input onChange={this.handleChange} required type="email" name="email"
-              className="mb-3 gray-text w-75 pop-in-colors d-block"></input>
-              <label htmlFor="username" className="my-1 w-75 fs-4 text-start text-white">Username</label>
+            <label htmlFor="username" className="my-1 w-75 fs-4 text-start text-white">Username</label>
             <input required onChange={this.handleChange} type="text" name="username"
               className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
             <label htmlFor="password" className="my-1 fs-4 w-75 text-start text-white">Password</label>

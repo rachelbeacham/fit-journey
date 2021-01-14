@@ -25,16 +25,16 @@ app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
 app.post('/api/sign-up', (req, res, next) => {
-  const { email, username, password } = req.body;
+  const { username, password } = req.body;
   argon2
     .hash(password)
     .then(hashedpassword => {
       const sql = `
-        insert into "users" ("userEmail", "username", "hashedPassword")
+        insert into "users" ("username", "hashedPassword")
         values ($1, $2, $3)
         returning "userId"
       `;
-      const params = [email, username, hashedpassword];
+      const params = [username, hashedpassword];
       return db.query(sql, params)
         .then(result => {
           res.status(201).json(result.rows[0]);
