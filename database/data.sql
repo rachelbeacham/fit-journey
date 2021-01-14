@@ -1,3 +1,6 @@
+insert into "users" ("username", "hashedPassword")
+values ('demoUser', 'password');
+
 insert into "muscleGroups" ("muscleName")
 values ('Arms'),
        ('Back'),

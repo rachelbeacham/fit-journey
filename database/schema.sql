@@ -36,7 +36,6 @@ CREATE TABLE "users" (
 	"profilePictureUrl" TEXT,
 	"username" TEXT,
 	"hashedPassword" TEXT,
-	"userEmail" TEXT,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
