@@ -7,7 +7,7 @@ export default class Header extends React.Component {
       return (
         <header className="container mt-3">
           <div className="row justify-content-center">
-            <h1 className="oregano title title-lg green-text text-center">Fit Journey</h1>
+            <h1 className="oregano title green-text text-center">Fit Journey</h1>
           </div>
         </header>
       );
@@ -15,7 +15,7 @@ export default class Header extends React.Component {
       const { path } = this.context.location;
       let titleClass;
       let buttonClass;
-      if (path === 'login' || path === 'sign-up') {
+      if (path === 'login' || path === 'sign-up' || path === '') {
         titleClass = 'oregano title green-text text-center';
         buttonClass = 'pop-out-colors mt-2 gray-text top-button';
       } else {

@@ -47,10 +47,10 @@ export default class Login extends React.Component {
   }
 
   render() {
-    // const noButtons = this.props.username ? 'true' : 'false';
+    const noButtons = (this.props.username) ? 'true' : 'false';
     return (
       <>
-        <Header href="#" button="Back" heading="Login" />
+        <Header noButtons={noButtons} href="#" button="Back" heading="Login" />
         <div className="container text-center">
           <form onSubmit={this.handleSubmit}>
             <div className="row justify-content-center">
