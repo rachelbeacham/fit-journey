@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
+import NavBar from '../components/nav-bar';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Home extends React.Component {
   render() {
     return (
     <>
+      <NavBar />
       <Header noButtons="true" button="Back" />
       <div className="container text-center">
         <div className="row justify-content-center">
@@ -24,7 +26,7 @@ export default class Home extends React.Component {
             <h3 className=" w-100 green-text position-absolute bottom-0 start-50 translate-middle-x">View exercises</h3>
           </div>
         </div>
-        <div className="pop-out-colors d-flex justify-content-evenly my-3 w-75 py-3 position-absolute bottom-0 start-50 translate-middle-x">
+        <div className="pop-out-colors d-flex d-none-lg justify-content-around py-3 w-100 position-absolute bottom-0 start-50 translate-middle-x">
           <a href="#profile"><i className="fas mx-4 fa-user green-text fs-1"></i></a>
           <a href="#"><i className="fas mx-4 fa-dumbbell green-text fs-1"></i></a>
           <a href="#journal"><i className="fas mx-4 fa-book green-text fs-1"></i></a>

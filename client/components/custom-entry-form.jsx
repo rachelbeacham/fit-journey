@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
 import Header from './header';
+import NavBar from './nav-bar';
 
 export default class CustomEntryForm extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ export default class CustomEntryForm extends React.Component {
   render() {
     return (
       <>
+      <NavBar />
       <Header noButtons='true' heading="Custom Workout" />
       <form onSubmit={this.handleSubmit}>
         <div className="row justify-content-center">

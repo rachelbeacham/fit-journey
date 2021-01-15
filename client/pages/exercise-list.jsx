@@ -2,6 +2,7 @@ import React from 'react';
 import AddExercise from '../components/add-exercise';
 import ExerciseDetail from '../components/exercise-detail';
 import Header from '../components/header';
+import NavBar from '../components/nav-bar';
 
 class ExerciseList extends React.Component {
   constructor(props) {
@@ -109,6 +110,7 @@ class ExerciseList extends React.Component {
       : '#';
     return (
       <>
+        <NavBar />
         <Header button={headerButton} href={headerHref} workoutId={this.props.workoutId} heading={heading}/>
         <div className={filterClass}>
           <form className="text-center">

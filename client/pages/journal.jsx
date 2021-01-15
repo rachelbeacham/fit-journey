@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
+import NavBar from '../components/nav-bar';
 import WorkoutDetails from '../components/workout-detail';
 import AppContext from '../lib/app-context';
 
@@ -84,6 +85,7 @@ export default class JournalPage extends React.Component {
     if (!this.state.workouts[0]) {
       return (
         <>
+          <NavBar />
           <Header button='Home' href='#' heading='Logged Workouts' />
           <div className="container mt-1">
             <div className="row">
@@ -95,6 +97,7 @@ export default class JournalPage extends React.Component {
     } else if (!this.state.workoutDetial) {
       return (
         <>
+        <NavBar />
         <Header button='Home' href="#" heading='Logged Workouts' />
         <div className="container mt-1">
           <div className="row vh-70 justify-content-evenly">

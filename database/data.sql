@@ -1,3 +1,6 @@
+insert into "users" ("username", "hashedPassword")
+values ('demoUser', '$argon2i$v=19$m=4096,t=3,p=1$cvolV1H+iPIT2dVvqEFpYw$gBozwSKQBY+cJNdweEEmMzFXNdUS/Ovt1pfUha7cZVA');
+
 insert into "muscleGroups" ("muscleName")
 values ('Arms'),
        ('Back'),
@@ -62,4 +65,27 @@ values ('Barbell Bench Press', '/images/barbell-chest-press.jpeg', '1. Lie on th
 3. Begin exercise by pulling the bar down to your upper chest. Focus on using your lats to pull the bar down and not your arms.
 4. Reverse movement back to starting position with control.', '2'),
         ('Plank', '/images/plank.jpg', '1. Assume a standard push-up position. Except instead of resting your weight on your hands, place your elbows and forearms flat on the floor.
-2. Begin exercise by raising hips so that your entire body from your heels to your head is in a straight line. Hold this position for at least 30 seconds. Brace your core and breath deeply throughout hold.', '4')
+2. Begin exercise by raising hips so that your entire body from your heels to your head is in a straight line. Hold this position for at least 30 seconds. Brace your core and breath deeply throughout hold.', '4'),
+        ('Dumbbell Lunge', '/images/dumbbell-lunge.jpg', '1. Grab a dumbbell in each hand and hold them at the side of the body with arms straight.
+2. Step forward until front leg thigh is parallel with the ground and back leg knee is 1-2 inches from the ground.
+3. Step back to return to starting position and repeat movement with other leg to complete the repetition.', '5'),
+        ('One-Arm Dumbbell Row', '/images/one-arm-dumbbell-row.jpg', '1. With a dumbbell on each side of a flat bench, place your right hand and your right knee on the flat bench.
+2. With a straight back and your stomach parallel to the weight bench, grasp the left hand side dumbbell with your left hand, palm facing towards you.
+3. Exhaling, bring the dumbbell straight up to your chest by bending the elbow back to a 90 degree angle.
+4. Inhaling, lower the dumbbell until your arm is straight down and your elbow has only a slight bend.
+5. Repeat for a full set of repetitions and then switch sides', '2'),
+        ('Dumbbell Shrug', '/images/dumbbell-shrugs.jpg', '1. Stand up straight with a dumbbell in each hand. Your palms should be facing your torso, with your arms extended to your sides.
+2. Raise the dumbbells by lifting your shoulders as high as possible, exhaling as you do so. Hold the contraction at the top for a second.
+3. Bring the dumbbells back to the starting position.
+4. Repeat for the number of reps in your set.' , '6'),
+        ('Dumbbell Shoulder Press', '/images/dumbbell-shoulder-press.jpeg', '1. Grab a pair of dumbbells and hold them at your side.
+2. Bring dumbbells up so that they are out in front of your shoulders and your palms are facing out. This is the starting position.
+3. Begin exercise by pushing dumbbells up over your head until your arms are almost straight. Lower back down to the starting position and repeat.
+4. Perform standing or seated' , '6'),
+        ('Tricep Pushdown', '/images/tricep-pushdown.jpg', '1. Feet shoulder width apart, face a high pulley machine with an attached bar at shoulder level height and grasp it with your palms facing down. Hold the bar close to your chest for your starting position.
+2. Keeping your body stationary, exhale as you lower the bar by completely extending your arms downward until the bar touches your thighs.
+3. Hold for a moment and then inhale as you slowly return the bar to shoulder level.', '1'),
+        ('Pull Ups', '/images/pull-ups.jpg', '1. Grab onto the bar with your hands 6-8 inches wider than shoulder width apart.
+2. Hang by your arms and then pull yourself all the way up so that your chin goes over the bar.
+3. Lower yourself all the way down.
+4. Repeat this motion for the desired amount of repetitions.', '2')

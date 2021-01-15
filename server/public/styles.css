@@ -5,11 +5,10 @@ body {
 }
 
 #root {
-  max-width: 700px;
+  max-width: 768px;
   height: 100vh;
   position: relative;
   margin: auto;
-  padding: 0.5rem;
 }
 
 select,
@@ -19,7 +18,7 @@ input {
 }
 
 .landing-image {
-  height: 70vh;
+  height: 65vh;
   background: url(/images/man-dark-bodybuilder-muscle-wallpaper-preview.jpg);
   background-position: center;
   background-size: cover;
@@ -31,7 +30,7 @@ input {
 
 .landing-buttons {
   background-color: black;
-  height: 30vh;
+  height: 35vh;
 }
 
 .view-exercises {
@@ -171,6 +170,20 @@ input:focus {
   box-shadow: none;
 }
 
+.d-none-sm {
+  display: none;
+}
+
+.nav-list {
+  list-style-type: none;
+}
+
+.nav-link:hover,
+.brand:hover {
+  color: white;
+  text-decoration: none;
+}
+
 @media only screen and (min-width: 700px) {
   .w-md-50 {
     width: 50% !important;
@@ -183,5 +196,23 @@ input:focus {
   .title {
     font-size: 2.5rem !important;
     width: 80% !important;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .d-none-lg {
+    display: none !important;
+  }
+
+  .title-lg {
+    display: none !important;
+  }
+
+  .navbar {
+    display: contents;
+  }
+
+  .d-none-sm {
+    display: contents;
   }
 }
