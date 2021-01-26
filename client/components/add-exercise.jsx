@@ -29,17 +29,18 @@ export default class AddExercise extends React.Component {
       },
       body: JSON.stringify(data)
     };
-
-    fetch('/api/sets', req)
-      .then(res => res.json())
-      .then(() => this.setState({
-        setCount: this.state.setCount + 1
-      }))
-      .catch(err => console.error(err));
-    this.setState({
-      reps: '',
-      weight: ''
-    });
+    if (reps !== '' && weight !== '') {
+      fetch('/api/sets', req)
+        .then(res => res.json())
+        .then(() => this.setState({
+          setCount: this.state.setCount + 1
+        }))
+        .catch(err => console.error(err));
+      this.setState({
+        reps: '',
+        weight: ''
+      });
+    }
   }
 
   handleChange(e) {
