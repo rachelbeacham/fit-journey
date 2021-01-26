@@ -136,7 +136,7 @@ export default class CreateProfileForm extends React.Component {
       <div className={uploadModalClass}>
         <form onSubmit={this.handleUpload}>
           <div className="flex-column my-3 align-items-center justify-content-center">
-            <input required type="file" name="profilePictureUrl" className="ms-4 gray-text" />
+            <input required="required" type="file" name="profilePictureUrl" className="ms-4 gray-text" />
             <button type='submit' onClick={this.handleClick} className="green-button ps-1 fs-4 w-75">
               Upload
             </button>

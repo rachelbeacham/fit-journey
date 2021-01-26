@@ -7,11 +7,6 @@ export default class CustomEntryForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    window.location.hash = '#journal';
   }
 
   handleSubmit(e) {
@@ -29,6 +24,7 @@ export default class CustomEntryForm extends React.Component {
     fetch(`/api/customWorkouts/${this.props.workoutId}`, req)
       .then(res => res.json())
       .catch(err => console.error(err));
+    window.location.hash = '#journal';
   }
 
   render() {
@@ -46,8 +42,7 @@ export default class CustomEntryForm extends React.Component {
             placeholder="e.g. Cardio, Yoga, Hike, etc."
             className="mb-3 w-75 gray-text pop-in-colors d-block"></input>
           <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3 text-center w-100">
-            <button type="submit" onClick={this.handleClick}
-              className="my-3 green-button w-90 fs-2 py-2">
+            <button type="submit" className="my-3 green-button w-90 fs-2 py-2">
                 Log Custom Workout
             </button>
           </div>

@@ -98,7 +98,7 @@ export default class AddExercise extends React.Component {
           </div>
         </div>
         <div className="d-flex justify-content-end">
-              <button className="pop-out-colors text-white" onClick={this.handleClick}>Save this Set!</button>
+          <button className="pop-out-colors text-white" onClick={this.handleClick}>Save this Set!</button>
         </div>
         <div className="text-center my-3">
           <button type="submit" onClick={this.props.handleClick} className="text-center px-2 fs-4 py-2 green-button">Add Another Exercise</button>
