@@ -88,4 +88,41 @@ values ('Barbell Bench Press', '/images/barbell-chest-press.jpeg', '1. Lie on th
         ('Pull Ups', '/images/pull-ups.jpg', '1. Grab onto the bar with your hands 6-8 inches wider than shoulder width apart.
 2. Hang by your arms and then pull yourself all the way up so that your chin goes over the bar.
 3. Lower yourself all the way down.
-4. Repeat this motion for the desired amount of repetitions.', '2')
+4. Repeat this motion for the desired amount of repetitions.', '2'),
+        ('Seated Bent-Over Rear Delt Raise', '/images/seated-bent-over-rear-delt-raise.png', '1. Sit on the edge of a flat bench with dumbbells behind your calves on the floor.
+2. With feet slightly less than shoulder width apart, bend at the waist so your chest nearly touches your knees and grasp the dumbbells with palms facing each other.
+3. Exhale and bend your arms slightly to lift the dumbbells straight up off the floor. The dumbbells should be by the sides of your calves for your starting position.
+4. With elbows still slightly bent, exhale and raise the dumbbells straight up to the sides until your arms are parallel to the floor.
+5. Hold for a moment and then inhale and slowly lower the dumbbells back into starting position.', '6'),
+        ('Weighted Calf Raise', '/images/weighted-calf-raise.jpg', '1. Use a weighted calf machine, leg press machine or hold a barbell in your hands to do weighted calf raises. Use a weight that is challenging and only allows for 10 reps.
+2. If you do not have access to weights, perform single leg calf raises but aim for 20 per leg.', '5'),
+        ('Overhead Barbell Tricep Extension', '/images/overhead-barbell-tricep-extension.jpg', '1: Stand or sit upright with your feet shoulder width apart and a barbell grasped palms down with hands closer than shoulder width apart.
+2. Raise the barbell overhead and fully extend your arms. Your palms should now be facing inward and upward. This is your starting position.
+3. Keep your upper arms stationary and close to the sides of your head as you inhale and bend your arms, lowering the barbell to the back of your neck. Your elbows should be pointing upward.
+4. Exhale as you slowly reverse the motion and return to the starting position.', '1'),
+        ('Hammer Curl', '/images/hammer-curl.jpg', '1: Stand up straight with your torso upright. Hold a dumbbell in each hand at arms-length. Your elbows should be close to your torso.
+2. The palms of your hands should be facing your torso. This is the starting position for the exercise.
+3. Curl the weight forward while contracting your biceps. Your upper arm should remain stationary. Continue to lift the weight until your biceps are fully contracted and the dumbbell is at shoulder level. Hold the contraction for a moment as you squeeze your biceps.
+4. Inhale and slowly start to bring the dumbbells back to the starting position. Repeat for desired number of reps.', '1'),
+        ('Incline Bench Press', '/images/incline-bench-press.jpg', '1: Lie down on an incline bench. Gripping the bar with a medium-width grip, lift the bar off the rack. Hold it straight over your head, keeping your arms locked. This is the starting position for the exercise.
+2. Inhaling slowly, move the bar down toward your upper chest.
+3. After a slight pause, push the bar back to the starting position. Exhale while doing so. Arms should be locked. Squeeze your chest and hold for a second before bringing the bar down again.
+4. Repeat the process for the desired number of repetitions.
+5. Place bar back on rack when the exercise has been completed.', '3'),
+        ('Lateral Raise', '/images/lateral-raise.jpg', '1. With a dumbbell in each hand, palms facing in, stand upright with your feet shoulder width apart and your arms down by your sides. This is your starting position.
+2. With straight arms, exhale as you raise the dumbbells out to the sides until your arms are parallel with the floor.
+3. Hold the contraction for a moment and then inhale as you lower the dumbbells back to your starting position.
+4. Repeat for a the desired amount of reps.', '6'),
+        ('Dips', '/images/dips.jpg', '1. Begin by standing on a raised surface about one foot behind where your hands will be placed on the bars, or so that your feet will not hit anything when dipping down.
+2. Grasp the dip bars with neutral wrists and squeeze hard into the bars to maintain tightness. Before raising yourself to the starting position, create an external rotation torque on the bars (attempt to twist thumbs out) to pull your shoulder blades back into place and make your elbows point behind you.
+3. Begin by raising your body so that your arms are locked while supporting your entire weight in a vertical position.
+4. While keeping your shoulders pulled back and elbows close to your sides, bend your arms until they reach 90 degrees of flexion or you feel a stretch in your shoulder girdle.
+5. While keeping your body tight and feet pressed out in front, forcefully press yourself up to the starting position.', '1'),
+        ('Leg Curls', '/images/seated-leg-curls.jpg', '1. Sit upright on a leg curl machine that is adjusted to your height. Your back should be against the back pad and your feet should be on the foot rests with your thighs under the leg pads.
+2. Grasp the handle bars and raise your legs so that they are fully extended in front of you and parallel to the floor for your starting position.
+3. Exhale and lower your legs, bending at the knees, until your legs form a 90 degree angle.
+4. Pause for a moment and then inhale as you raise your legs back to the starting position. Repeat for a desired amount of reps.', '5'),
+        ('Leg Extension', '/images/leg-extensions.png', '1. Sit on a leg extension machine. Position your legs under the pad and grasp the side bars with your hands. This is the starting position.
+2. Extend your legs to the maximum, exhaling as you do so. Pause a second in this contracted position.
+3. Lower the weight back to the original position as you inhale. Make sure your legs do not go past the 90-degree angle point.
+4. Repeat for the desired number of reps.', '5')
