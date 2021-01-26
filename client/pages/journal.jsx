@@ -103,9 +103,11 @@ export default class JournalPage extends React.Component {
           <div className="row vh-70 justify-content-evenly">
             {this.renderLoggedWorkouts()}
           </div>
-          <button id='log-workout' onClick={this.handleClick} className="position-absolute bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
-              Log a Workout
-          </button>
+          <div className="bottom-button text-center w-100">
+            <button id='log-workout' onClick={this.handleClick} className="my-3 green-button w-75 fs-2 py-2">
+                Log a Workout
+            </button>
+          </div>
         </div>
         </>
       );
