@@ -9,7 +9,11 @@ export default class Home extends React.Component {
   }
 
   handleClick(e) {
-    window.location.hash = e.target.id;
+    if (e.target.tagName === 'DIV') {
+      window.location.hash = e.target.id;
+    } else {
+      window.location.hash = e.target.parentElement.id;
+    }
   }
 
   render() {
@@ -23,7 +27,7 @@ export default class Home extends React.Component {
             <h3 className="position-absolute green-text w-100 bottom-0 start-50 translate-middle-x">Log Workout</h3>
           </div>
           <div className="view-exercises pointer my-4 home-image w-75" id="view-exercises" onClick={this.handleClick}>
-            <h3 className=" w-100 green-text position-absolute bottom-0 start-50 translate-middle-x">View exercises</h3>
+            <h3 className="w-100 green-text position-absolute bottom-0 start-50 translate-middle-x">View Exercises</h3>
           </div>
         </div>
         <div className="pop-out-colors d-flex d-none-lg justify-content-around py-3 w-100 position-absolute bottom-0 start-50 translate-middle-x">
