@@ -54,10 +54,26 @@ input {
   box-shadow: 4px 4px 6px rgba(15, 10, 10, 0.7);
 }
 
+option {
+  -webkit-color: green;
+  -moz-color: green;
+  -ms-color: green;
+  -o-color: green;
+  color: green;
+  -webkit-background-color: red;
+  -moz-background-color: red;
+  -ms-background-color: red;
+  -o-background-color: red;
+  background-color: red;
+}
+
 .green-text {
   background-image: linear-gradient(180deg, #b7dd18 0%, #4b9800 100%);
   color: transparent;
   -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -ms-background-clip: text;
+  -o-background-clip: text;
   background-clip: text;
 }
 
