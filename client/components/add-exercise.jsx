@@ -111,6 +111,3 @@ export default class AddExercise extends React.Component {
 }
 
 AddExercise.contextType = AppContext;
-
-/* line 100 -           <p className="fs-3 me-3 green-text transition" onClick={this.handleClick}>Save this Set!</p>
-*/
