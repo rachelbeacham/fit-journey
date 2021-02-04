@@ -29,17 +29,18 @@ export default class AddExercise extends React.Component {
       },
       body: JSON.stringify(data)
     };
-
-    fetch('/api/sets', req)
-      .then(res => res.json())
-      .then(() => this.setState({
-        setCount: this.state.setCount + 1
-      }))
-      .catch(err => console.error(err));
-    this.setState({
-      reps: '',
-      weight: ''
-    });
+    if (reps !== '' && weight !== '') {
+      fetch('/api/sets', req)
+        .then(res => res.json())
+        .then(() => this.setState({
+          setCount: this.state.setCount + 1
+        }))
+        .catch(err => console.error(err));
+      this.setState({
+        reps: '',
+        weight: ''
+      });
+    }
   }
 
   handleChange(e) {
@@ -86,21 +87,21 @@ export default class AddExercise extends React.Component {
             <p className="fs-2 gray-text">{this.state.setCount}</p>
           </div>
           <div className="col text-center">
-            <input type="number" name='reps' required value={reps}
+            <input type="number" name='reps' required="required" value={reps}
               className="w-100 text-center gray-text fs-3 w-md-50 h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
           <div className="col text-center">
-            <input type="number" name='weight' required value={weight}
+            <input type="number" name='weight' required="required" value={weight}
               className="w-100 text-center w-md-50 fs-3 gray-text h-75 pop-in-colors"
               onChange={this.handleChange}></input>
           </div>
         </div>
         <div className="d-flex justify-content-end">
-          <p className="fs-3 me-3 green-text transition" onClick={this.handleClick}>Save this Set!</p>
+          <button className="pop-out-colors text-white" onClick={this.handleClick}>Save this Set!</button>
         </div>
         <div className="text-center my-3">
-          <button onClick={this.props.handleClick} className="text-center px-2 fs-4 py-2 green-button">Add Another Exercise</button>
+          <button type="submit" onClick={this.props.handleClick} className="text-center px-2 fs-4 py-2 green-button">Add Another Exercise</button>
         </div>
       </form>
     </div>

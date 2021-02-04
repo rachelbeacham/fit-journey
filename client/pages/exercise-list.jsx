@@ -25,11 +25,19 @@ class ExerciseList extends React.Component {
   }
 
   handleChange(e) {
-    fetch(`/api/exercises/${e.target.value}`)
-      .then(res => res.json())
-      .then(exercises => this.setState({
-        exercises
-      }));
+    if (e.target.value === 'All') {
+      fetch('/api/exercises')
+        .then(res => res.json())
+        .then(exercises => this.setState({
+          exercises
+        }));
+    } else {
+      fetch(`/api/exercises/${e.target.value}`)
+        .then(res => res.json())
+        .then(exercises => this.setState({
+          exercises
+        }));
+    }
   }
 
   handleClick(e) {
@@ -116,6 +124,7 @@ class ExerciseList extends React.Component {
           <form className="text-center">
             <select defaultValue="Filter by Muscle" className="pop-out-colors w-75 gray-text mb-3" onChange={this.handleChange}>
               <option disabled>Filter by Muscle</option>
+              <option value='All'>All muscle groups</option>
               <option value='Arms'>Arms</option>
               <option value='Back'>Back</option>
               <option value='Chest'>Chest</option>
