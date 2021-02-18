@@ -3,6 +3,7 @@ import AddExercise from '../components/add-exercise';
 import ExerciseDetail from '../components/exercise-detail';
 import Header from '../components/header';
 import NavBar from '../components/nav-bar';
+import AppContext from '../lib/app-context';
 
 class ExerciseList extends React.Component {
   constructor(props) {
@@ -45,6 +46,22 @@ class ExerciseList extends React.Component {
       this.setState({
         addBox: e.target.id
       });
+    } else if (e.target.tagName === 'P') {
+      const token = this.context.token;
+      const exerciseId = e.target.id;
+      const data = { exerciseId };
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        },
+        body: JSON.stringify(data)
+      };
+      fetch('/api/favorites', req)
+        .then(res => res.json())
+        .then(e.target.innerText = 'Added to Favorites')
+        .catch(err => console.error(err));
     } else {
       this.setState({
         infoBox: e.target.id,
@@ -82,7 +99,7 @@ class ExerciseList extends React.Component {
           <div className="col lh-1 flex-col">
             <h4 className="text-white">{ exercise.exerciseName }</h4>
             <p className="gray-text">{ exercise.muscleName }</p>
-            <p className="green-text pointer">Add to Favorites</p>
+            <p id={exercise.exerciseId} className="green-text pointer">Add to Favorites</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
             <button id={exercise.exerciseId} className={addButtonClass}>ADD</button>
@@ -140,5 +157,5 @@ class ExerciseList extends React.Component {
     );
   }
 }
-
+ExerciseList.contextType = AppContext;
 export default ExerciseList;
