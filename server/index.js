@@ -263,6 +263,22 @@ app.post('/api/goals', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/favorites', (req, res, next) => {
+  const { userId } = req.user;
+  const { exerciseId } = req.body;
+  const params = [exerciseId, userId];
+  const sql = `
+    insert into "favorites" ("exerciseId", "userId")
+    values ($1, $2)
+    returning *
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.patch('/api/goals/:id', (req, res, next) => {
   const goalId = req.params.id;
   const { completed } = req.body;
