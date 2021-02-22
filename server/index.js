@@ -247,6 +247,27 @@ app.get('/api/goals', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/favorites', (req, res, next) => {
+  const { userId } = req.user;
+  const params = [userId];
+  const sql = `
+    select "exerciseId"
+      from "favorites"
+     where "userId" = $1
+  `;
+  db.query(sql, params)
+    .then(result => {
+      const favoritesArray = [];
+      result.rows.forEach(favorite => {
+        for (const key in favorite) {
+          favoritesArray.push(favorite[key]);
+        }
+      });
+      res.status(200).send(favoritesArray);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/goals', (req, res, next) => {
   const { userId } = req.user;
   const { goalDescription, completed } = req.body;
@@ -259,6 +280,35 @@ app.post('/api/goals', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/favorites', (req, res, next) => {
+  const { userId } = req.user;
+  const { exerciseId } = req.body;
+  const params = [exerciseId, userId];
+  const getSQL = `
+    select *
+    from "favorites"
+    where "exerciseId" = $1 AND "userId" = $2
+  `;
+  const insertSQL = `
+    insert into "favorites" ("exerciseId", "userId")
+    values ($1, $2)
+    returning *
+  `;
+  db.query(getSQL, params)
+    .then(result => {
+      if (result.rows[0]) {
+        res.status(200).json(result.rows[0]);
+      } else {
+        db.query(insertSQL, params)
+          .then(result => {
+            res.status(201).json(result.rows[0]);
+          })
+          .catch(err => next(err));
+      }
     })
     .catch(err => next(err));
 });
