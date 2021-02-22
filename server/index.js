@@ -247,6 +247,21 @@ app.get('/api/goals', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/favorites', (req, res, next) => {
+  const { userId } = req.user;
+  const params = [userId];
+  const sql = `
+    select *
+    from "favorites"
+    where "userId" = $1
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/goals', (req, res, next) => {
   const { userId } = req.user;
   const { goalDescription, completed } = req.body;
