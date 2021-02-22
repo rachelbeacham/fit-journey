@@ -267,14 +267,27 @@ app.post('/api/favorites', (req, res, next) => {
   const { userId } = req.user;
   const { exerciseId } = req.body;
   const params = [exerciseId, userId];
-  const sql = `
+  const getSQL = `
+    select *
+    from "favorites"
+    where "exerciseId" = $1 AND "userId" = $2
+  `;
+  const insertSQL = `
     insert into "favorites" ("exerciseId", "userId")
     values ($1, $2)
     returning *
   `;
-  db.query(sql, params)
+  db.query(getSQL, params)
     .then(result => {
-      res.status(201).json(result.rows[0]);
+      if (result.rows[0]) {
+        res.status(200).json(result.rows[0]);
+      } else {
+        db.query(insertSQL, params)
+          .then(result => {
+            res.status(201).json(result.rows[0]);
+          })
+          .catch(err => next(err));
+      }
     })
     .catch(err => next(err));
 });
