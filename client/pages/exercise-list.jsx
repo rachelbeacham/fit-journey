@@ -106,12 +106,18 @@ class ExerciseList extends React.Component {
     const exercises = this.state.exercises;
     const favorites = this.state.favorites;
     const exerciseList = exercises.map(exercise => {
+      let favoritesText;
+      if (favorites.includes(exercise.exerciseId)) {
+        favoritesText = String.fromCharCode(0x2713) + ' Added to Favorites';
+      } else {
+        favoritesText = 'Add to Favorites';
+      }
       return (
         <div key={exercise.exerciseId} onClick={this.handleClick} className="mt-3 mx-2 border-bottom row">
           <div className="col lh-1 flex-col">
             <h4 className="text-white">{ exercise.exerciseName }</h4>
             <p className="gray-text">{ exercise.muscleName }</p>
-            <p id={exercise.exerciseId} className="green-text pointer">Add to Favorites</p>
+            <p id={exercise.exerciseId} className="green-text pointer">{favoritesText}</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
             <button id={exercise.exerciseId} className={addButtonClass}>ADD</button>
