@@ -251,13 +251,19 @@ app.get('/api/favorites', (req, res, next) => {
   const { userId } = req.user;
   const params = [userId];
   const sql = `
-    select *
-    from "favorites"
-    where "userId" = $1
+    select "exerciseId"
+      from "favorites"
+     where "userId" = $1
   `;
   db.query(sql, params)
     .then(result => {
-      res.status(200).json(result.rows);
+      const favoritesArray = [];
+      result.rows.forEach(favorite => {
+        for (const key in favorite) {
+          favoritesArray.push(favorite[key]);
+        }
+      });
+      res.status(200).send(favoritesArray);
     })
     .catch(err => next(err));
 });

@@ -104,6 +104,7 @@ class ExerciseList extends React.Component {
       ? 'green-button px-3 py-1 mx-1 transition'
       : 'green-button px-3 py-1 mx-1 d-none';
     const exercises = this.state.exercises;
+    const favorites = this.state.favorites;
     const exerciseList = exercises.map(exercise => {
       return (
         <div key={exercise.exerciseId} onClick={this.handleClick} className="mt-3 mx-2 border-bottom row">
