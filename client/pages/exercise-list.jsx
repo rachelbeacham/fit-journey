@@ -11,7 +11,8 @@ class ExerciseList extends React.Component {
     this.state = {
       exercises: [],
       infoBox: '',
-      addBox: this.props.addBox
+      addBox: this.props.addBox,
+      favorites: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -22,6 +23,16 @@ class ExerciseList extends React.Component {
       .then(res => res.json())
       .then(exercises => this.setState({
         exercises
+      }));
+    fetch('/api/favorites', {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.context.token
+      }
+    })
+      .then(res => res.json())
+      .then(favorites => this.setState({
+        favorites
       }));
   }
 
