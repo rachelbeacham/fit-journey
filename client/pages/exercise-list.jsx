@@ -71,7 +71,7 @@ class ExerciseList extends React.Component {
       };
       fetch('/api/favorites', req)
         .then(res => res.json())
-        .then(e.target.innerText = 'Added to Favorites')
+        .then(e.target.innerText = String.fromCharCode(0x2713) + ' Added to Favorites')
         .catch(err => console.error(err));
     } else {
       this.setState({
