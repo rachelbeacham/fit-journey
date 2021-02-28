@@ -251,7 +251,9 @@ app.get('/api/favoritesList', (req, res, next) => {
   const { userId } = req.user;
   const params = [userId];
   const sql = `
-   select *
+   select "exerciseId",
+          "exerciseName",
+          "muscleName"
      from "favorites"
      join "exercises" using ("exerciseId")
      join "muscleGroups" using ("muscleGroupId")
