@@ -11,6 +11,7 @@ import parseRoute from './lib/parse-route';
 import SignUp from './pages/sign-up';
 import Login from './pages/log-in';
 import decodeToken from './lib/decode-token';
+import Favorites from './pages/favorites';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -75,6 +76,9 @@ export default class App extends React.Component {
     }
     if (location.path === 'log-workout') {
       return <LogWorkout button='Back' href='#' />;
+    }
+    if (location.path === 'favorites') {
+      return <Favorites />;
     }
   }
 

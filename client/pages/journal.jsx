@@ -73,7 +73,7 @@ export default class JournalPage extends React.Component {
   journalEmpty() {
     return (
       <>
-        <p className="text-center fs-3 text-muted mt-2">You havent logged any workouts yet!</p>
+        <p className="text-center fs-3 text-muted mt-2">You haven&apos;t logged any workouts yet!</p>
         <button id='log-workout' onClick={this.handleClick} className="position-absolute bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
           Log a Workout
         </button>
