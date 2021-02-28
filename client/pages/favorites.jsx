@@ -10,6 +10,7 @@ export default class Favorites extends React.Component {
     this.state = {
       favorites: []
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -25,11 +26,15 @@ export default class Favorites extends React.Component {
       }));
   }
 
+  handleClick() {
+    window.location.hash = 'view-exercises';
+  }
+
   favoritesEmpty() {
     return (
       <>
       <p className="text-center fs-3 text-muted mt-2">You haven&apos;t saved any favorites yet!</p>
-      <button className="position-absolute bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
+      <button onClick={this.handleClick} className="position-absolute bottom-0 start-50 translate-middle-x my-3 green-button w-75 fs-2 py-2">
           View Exercise List
       </button>
      </>
