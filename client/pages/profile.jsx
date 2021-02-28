@@ -77,6 +77,9 @@ export default class Profile extends React.Component {
             <a className="text-decoration-none" href="#createProfile"><h3 className="green-text">Create Profile</h3></a>
         </div>
         <Goals />
+        <div className="d-flex mt-3 justify-content-center">
+          <button className="green-button py-1 px-3">View Favortie Exercises</button>
+        </div>
           <div className="pop-out-colors d-flex d-none-lg justify-content-around text-center mt-3 w-100 py-3 position-absolute bottom-0 start-50 translate-middle-x">
             <a href="#profile"><i className="fas col mx-4 fa-user green-text fs-1"></i></a>
             <a href="#"><i className="fas mx-4 col fa-dumbbell green-text fs-1"></i></a>
