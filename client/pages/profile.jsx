@@ -83,7 +83,7 @@ export default class Profile extends React.Component {
         </div>
         <Goals />
         <div className="d-flex mt-3 justify-content-center">
-          <button onClick={this.handleClick} className="green-button py-1 px-3">View Favortie Exercises</button>
+          <button onClick={this.handleClick} className="fs-4 green-button py-1 px-3">View Favorite Exercises</button>
         </div>
           <div className="pop-out-colors d-flex d-none-lg justify-content-around text-center mt-3 w-100 py-3 position-absolute bottom-0 start-50 translate-middle-x">
             <a href="#profile"><i className="fas col mx-4 fa-user green-text fs-1"></i></a>
