@@ -3,6 +3,26 @@ import AppContext from '../lib/app-context';
 import Header from '../components/header';
 
 export default class Favorites extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favorites: []
+    };
+  }
+
+  componentDidMount() {
+    fetch('/api/favoritesList', {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.context.token
+      }
+    })
+      .then(res => res.json())
+      .then(favorites => this.setState({
+        favorites
+      }));
+  }
+
   render() {
     return (
      <>
