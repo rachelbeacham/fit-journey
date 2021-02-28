@@ -102,10 +102,16 @@ class ExerciseList extends React.Component {
   getExercises() {
     const addButtonClass = this.props.workoutId
       ? 'green-button px-3 py-1 mx-1 transition'
-      : 'green-button px-3 py-1 mx-1 d-none';
+      : 'd-none';
     const exercises = this.state.exercises;
     const favorites = this.state.favorites;
-    const exerciseList = exercises.map(exercise => {
+    let listType;
+    if (this.context.location.path === 'favorites') {
+      listType = this.props.favorites;
+    } else {
+      listType = exercises;
+    }
+    const exerciseList = listType.map(exercise => {
       let favoritesText;
       if (favorites.includes(exercise.exerciseId)) {
         favoritesText = String.fromCharCode(0x2713) + ' Added to Favorites';
@@ -133,7 +139,11 @@ class ExerciseList extends React.Component {
     let element;
     let filterClass;
     let heading;
-    if (!this.state.infoBox && !this.state.addBox) {
+    if (this.context.location.path === 'favorites' && !this.state.infoBox && !this.state.addBox) {
+      element = this.getExercises();
+      filterClass = 'd-none';
+      heading = 'My Favorites';
+    } if (!this.state.infoBox && !this.state.addBox && this.context.location.path !== 'favorites') {
       element = this.getExercises();
       filterClass = 'col';
       heading = 'Exercises';
