@@ -102,10 +102,16 @@ class ExerciseList extends React.Component {
   getExercises() {
     const addButtonClass = this.props.workoutId
       ? 'green-button px-3 py-1 mx-1 transition'
-      : 'green-button px-3 py-1 mx-1 d-none';
+      : 'd-none';
     const exercises = this.state.exercises;
     const favorites = this.state.favorites;
-    const exerciseList = exercises.map(exercise => {
+    let listType;
+    if (this.context.location.path === 'favorites') {
+      listType = this.props.favorites;
+    } else {
+      listType = exercises;
+    }
+    const exerciseList = listType.map(exercise => {
       let favoritesText;
       if (favorites.includes(exercise.exerciseId)) {
         favoritesText = String.fromCharCode(0x2713) + ' Added to Favorites';
@@ -130,10 +136,15 @@ class ExerciseList extends React.Component {
   }
 
   render() {
+    const location = this.context.location.path;
     let element;
     let filterClass;
     let heading;
-    if (!this.state.infoBox && !this.state.addBox) {
+    if (location === 'favorites' && !this.state.infoBox && !this.state.addBox) {
+      element = this.getExercises();
+      filterClass = 'd-none';
+      heading = 'My Favorites';
+    } if (!this.state.infoBox && !this.state.addBox && location !== 'favorites') {
       element = this.getExercises();
       filterClass = 'col';
       heading = 'Exercises';
@@ -146,12 +157,18 @@ class ExerciseList extends React.Component {
       filterClass = 'd-none';
       heading = 'Add Exercise';
     }
-    const headerButton = this.props.workoutId
-      ? 'Finish'
-      : 'Home';
-    const headerHref = this.props.workoutId
-      ? '#journal'
-      : '#';
+    let headerButton;
+    let headerHref;
+    if (location === 'favorites') {
+      headerButton = 'Back';
+      headerHref = '#profile';
+    } else if (this.props.workoutId) {
+      headerButton = 'Finish';
+      headerHref = '#journal';
+    } else if (!this.props.workoutId) {
+      headerButton = 'Home';
+      headerHref = '#';
+    }
     return (
       <>
         <NavBar />

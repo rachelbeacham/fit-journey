@@ -247,6 +247,25 @@ app.get('/api/goals', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/favoritesList', (req, res, next) => {
+  const { userId } = req.user;
+  const params = [userId];
+  const sql = `
+   select "exerciseId",
+          "exerciseName",
+          "muscleName"
+     from "favorites"
+     join "exercises" using ("exerciseId")
+     join "muscleGroups" using ("muscleGroupId")
+    where "userId" = $1
+  `;
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/favorites', (req, res, next) => {
   const { userId } = req.user;
   const params = [userId];
