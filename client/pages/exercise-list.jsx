@@ -3,6 +3,7 @@ import AddExercise from '../components/add-exercise';
 import ExerciseDetail from '../components/exercise-detail';
 import Header from '../components/header';
 import NavBar from '../components/nav-bar';
+import AppContext from '../lib/app-context';
 
 class ExerciseList extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class ExerciseList extends React.Component {
     this.state = {
       exercises: [],
       infoBox: '',
-      addBox: this.props.addBox
+      addBox: this.props.addBox,
+      favorites: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -21,6 +23,16 @@ class ExerciseList extends React.Component {
       .then(res => res.json())
       .then(exercises => this.setState({
         exercises
+      }));
+    fetch('/api/favorites', {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.context.token
+      }
+    })
+      .then(res => res.json())
+      .then(favorites => this.setState({
+        favorites
       }));
   }
 
@@ -45,6 +57,22 @@ class ExerciseList extends React.Component {
       this.setState({
         addBox: e.target.id
       });
+    } else if (e.target.tagName === 'P') {
+      const token = this.context.token;
+      const exerciseId = e.target.id;
+      const data = { exerciseId };
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        },
+        body: JSON.stringify(data)
+      };
+      fetch('/api/favorites', req)
+        .then(res => res.json())
+        .then(e.target.innerText = String.fromCharCode(0x2713) + ' Added to Favorites')
+        .catch(err => console.error(err));
     } else {
       this.setState({
         infoBox: e.target.id,
@@ -74,14 +102,28 @@ class ExerciseList extends React.Component {
   getExercises() {
     const addButtonClass = this.props.workoutId
       ? 'green-button px-3 py-1 mx-1 transition'
-      : 'green-button px-3 py-1 mx-1 d-none';
+      : 'd-none';
     const exercises = this.state.exercises;
-    const exerciseList = exercises.map(exercise => {
+    const favorites = this.state.favorites;
+    let listType;
+    if (this.context.location.path === 'favorites') {
+      listType = this.props.favorites;
+    } else {
+      listType = exercises;
+    }
+    const exerciseList = listType.map(exercise => {
+      let favoritesText;
+      if (favorites.includes(exercise.exerciseId)) {
+        favoritesText = String.fromCharCode(0x2713) + ' Added to Favorites';
+      } else {
+        favoritesText = 'Add to Favorites';
+      }
       return (
         <div key={exercise.exerciseId} onClick={this.handleClick} className="mt-3 mx-2 border-bottom row">
           <div className="col lh-1 flex-col">
             <h4 className="text-white">{ exercise.exerciseName }</h4>
             <p className="gray-text">{ exercise.muscleName }</p>
+            <p id={exercise.exerciseId} className="green-text pointer">{favoritesText}</p>
           </div>
           <div className="col d-flex justify-content-end align-items-center">
             <button id={exercise.exerciseId} className={addButtonClass}>ADD</button>
@@ -94,10 +136,15 @@ class ExerciseList extends React.Component {
   }
 
   render() {
+    const location = this.context.location.path;
     let element;
     let filterClass;
     let heading;
-    if (!this.state.infoBox && !this.state.addBox) {
+    if (location === 'favorites' && !this.state.infoBox && !this.state.addBox) {
+      element = this.getExercises();
+      filterClass = 'd-none';
+      heading = 'My Favorites';
+    } if (!this.state.infoBox && !this.state.addBox && location !== 'favorites') {
       element = this.getExercises();
       filterClass = 'col';
       heading = 'Exercises';
@@ -110,12 +157,18 @@ class ExerciseList extends React.Component {
       filterClass = 'd-none';
       heading = 'Add Exercise';
     }
-    const headerButton = this.props.workoutId
-      ? 'Finish'
-      : 'Home';
-    const headerHref = this.props.workoutId
-      ? '#journal'
-      : '#';
+    let headerButton;
+    let headerHref;
+    if (location === 'favorites') {
+      headerButton = 'Back';
+      headerHref = '#profile';
+    } else if (this.props.workoutId) {
+      headerButton = 'Finish';
+      headerHref = '#journal';
+    } else if (!this.props.workoutId) {
+      headerButton = 'Home';
+      headerHref = '#';
+    }
     return (
       <>
         <NavBar />
@@ -139,5 +192,5 @@ class ExerciseList extends React.Component {
     );
   }
 }
-
+ExerciseList.contextType = AppContext;
 export default ExerciseList;

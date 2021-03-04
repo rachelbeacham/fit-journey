@@ -36,7 +36,7 @@ input {
 
 .view-exercises {
   background: url(/images/push_up.jpeg);
-  height: 20vh;
+  height: 23vh;
   background-position: center;
   background-size: cover;
   border-radius: 15px;
@@ -46,7 +46,7 @@ input {
 
 .log-workout {
   background: url(/images/woman_barbell.jpeg);
-  height: 20vh;
+  height: 23vh;
   background-position: center;
   background-size: cover;
   border-radius: 15px;
